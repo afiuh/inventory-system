@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人物品管理系统 | 陈懿灵</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>个人物品管理系统</h1>
+        <div class="subtitle">Inventory Management | 可视化版本 v1.0</div>
+    </header>
+
+    <!-- 统计栏 -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-value" id="totalItems">0</div>
+            <div class="stat-label">总物品数</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value" id="withBlockCount">0</div>
+            <div class="stat-label">有色块</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value" id="inPlaceCount">0</div>
+            <div class="stat-label">在位</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value" id="takenCount">0</div>
+            <div class="stat-label">带走</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value" id="borrowedCount">0</div>
+            <div class="stat-label">借出</div>
+        </div>
+    </div>
+
+    <!-- 控制面板 -->
+    <div class="control-panel">
+        <input type="text" class="search-box" id="searchBox" placeholder="搜索物品名称、简介、位置...">
+        <select class="filter-select" id="categoryFilter">
+            <option value="">全部分类</option>
+        </select>
+        <select class="filter-select" id="statusFilter">
+            <option value="">全部状态</option>
+            <option value="在位">在位</option>
+            <option value="带走">带走</option>
+            <option value="借出">借出</option>
+        </select>
+        <button class="btn" id="btnAdd">+ 添加物品</button>
+        <button class="btn btn-secondary" id="btnBorrow">借用清单</button>
+        <button class="btn btn-secondary" id="btnManage">配置管理</button>
+        <button class="btn btn-secondary" id="btnExport">导出备份</button>
+        <button class="btn btn-secondary" id="btnImport">导入备份</button>
+        <input type="file" id="importFile" style="display: none;" accept=".json">
+    </div>
+
+    <!-- ✅ 修改：标签页导航（动态渲染视图标签） -->
+    <div class="tabs" id="viewTabs">
+        <!-- 视图标签由 JS 动态生成 -->
+        <button class="tab view-add">+ 添加视图</button>
+    </div>
+
+    <!-- 视图容器 -->
+    <div id="viewContainer" class="view-container">
+        <div class="view-main">
+            <div class="zone-map" id="currentMap">
+                <div class="zone-label" id="zoneLabel">床铺全景</div>
+            </div>
+        </div>
+        <div class="view-layers" id="layerTabs">
+            <!-- 动态渲染层标签 -->
+        </div>
+    </div>
+
+    <!-- 物品清单 -->
+    <div class="item-list-panel">
+        <h3>物品清单</h3>
+        <div id="itemList"></div>
+    </div>
+
+    <footer>
+        <p>数据本地存储于浏览器 | 定期导出备份防止丢失</p>
+        <p>© 2024 Chen Yiling. System Iteration Continuous.</p>
+    </footer>
+</div>
+
+<!-- 添加/编辑物品弹窗 -->
+<div class="modal" id="itemModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTitle">添加物品</h2>
+            <button class="close-btn" data-close="itemModal">&times;</button>
+        </div>
+        <form id="itemForm">
+            <input type="hidden" id="itemId">
+            <div class="form-group">
+                <label for="itemName">物品名称 *</label>
+                <input type="text" id="itemName" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="itemCategory">分类 *</label>
+                    <select id="itemCategory" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="itemStatus">状态 *</label>
+                    <select id="itemStatus" required>
+                        <option value="在位">在位</option>
+                        <option value="带走">带走</option>
+                        <option value="借出">借出</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="itemView">所在视图 *</label>
+                    <select id="itemView" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="itemLayer">所在层 *</label>
+                    <select id="itemLayer" required></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="itemDescription">简介</label>
+                <textarea id="itemDescription" placeholder="物品描述、用途等"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="itemNote">备注</label>
+                <input type="text" id="itemNote" placeholder="其他补充信息">
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" data-close="itemModal">取消</button>
+                <button type="submit" class="btn">保存物品</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 色块编辑弹窗 -->
+<div class="modal" id="blockModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>设置位置色块</h2>
+            <button class="close-btn" data-close="blockModal">&times;</button>
+        </div>
+        <form id="blockForm">
+            <input type="hidden" id="blockItemId">
+
+            <div class="form-group">
+                <label>形状</label>
+                <div class="shape-selector">
+                    <button type="button" class="shape-btn active" data-shape="rectangle">长方形</button>
+                    <button type="button" class="shape-btn" data-shape="square">正方形</button>
+                    <button type="button" class="shape-btn" data-shape="circle">圆形</button>
+                    <button type="button" class="shape-btn" data-shape="irregular">不规则</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>颜色</label>
+                <div class="color-selector">
+                    <input type="color" id="blockColor" value="#4A90E2">
+                    <input type="text" id="blockColorHex" value="#4A90E2" placeholder="#4A90E2">
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" data-close="blockModal">取消</button>
+                <button type="button" class="btn" id="btnPlaceBlock">确认</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 视图管理弹窗 -->
+<div class="modal" id="viewModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>添加视图</h2>
+            <button class="close-btn" data-close="viewModal">&times;</button>
+        </div>
+        <form id="viewForm">
+            <div class="form-group">
+                <label for="viewName">视图名称 *</label>
+                <input type="text" id="viewName" required placeholder="如：储物间">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="viewWidth">宽度 *</label>
+                    <input type="number" id="viewWidth" required min="10" value="100">
+                </div>
+                <div class="form-group">
+                    <label for="viewHeight">高度 *</label>
+                    <input type="number" id="viewHeight" required min="10" value="80">
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" data-close="viewModal">取消</button>
+                <button type="submit" class="btn">添加</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 分类管理弹窗 -->
+<div class="modal" id="categoryModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>分类管理</h2>
+            <button class="close-btn" data-close="categoryModal">&times;</button>
+        </div>
+        <div class="category-manager">
+            <div class="form-group">
+                <label>添加新分类</label>
+                <div class="input-group">
+                    <input type="text" id="newCategoryName" placeholder="输入分类名称">
+                    <button class="btn" id="btnAddCategory">添加</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>现有分类</label>
+                <div id="categoryList" class="category-list"></div>
+            </div>
+        </div>
+        <div class="form-actions">
+            <button class="btn btn-secondary" data-close="categoryModal">关闭</button>
+        </div>
+    </div>
+</div>
+
+<!-- 借用清单弹窗 -->
+<div class="modal" id="borrowModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>借用清单</h2>
+            <button class="close-btn" data-close="borrowModal">&times;</button>
+        </div>
+        <div id="borrowList"></div>
+        <div class="form-actions" style="margin-top: 20px;">
+            <button class="btn btn-secondary" data-close="borrowModal">关闭</button>
+        </div>
+    </div>
+</div>
+
+<!-- 记录借用弹窗 -->
+<div class="modal" id="borrowRecordModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>记录借用</h2>
+            <button class="close-btn" data-close="borrowRecordModal">&times;</button>
+        </div>
+        <form id="borrowForm">
+            <input type="hidden" id="borrowItemId">
+            <div class="form-group">
+                <label for="borrowItemName">物品名称</label>
+                <input type="text" id="borrowItemName" readonly>
+            </div>
+            <div class="form-group">
+                <label for="borrowerName">借用人 *</label>
+                <input type="text" id="borrowerName" required placeholder="谁借走了？">
+            </div>
+            <div class="form-group">
+                <label for="borrowDate">借用日期</label>
+                <input type="date" id="borrowDate">
+            </div>
+            <div class="form-group">
+                <label for="returnDate">预计归还日期</label>
+                <input type="date" id="returnDate">
+            </div>
+            <div class="form-group">
+                <label for="borrowNote">备注</label>
+                <input type="text" id="borrowNote" placeholder="其他说明">
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" data-close="borrowRecordModal">取消</button>
+                <button type="submit" class="btn">确认借用</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 层管理弹窗 -->
+<div class="modal" id="layerModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>添加层</h2>
+            <button class="close-btn" data-close="layerModal">&times;</button>
+        </div>
+        <form id="layerForm">
+            <input type="hidden" id="layerViewId">
+            <div class="form-group">
+                <label for="layerName">层名称 *</label>
+                <input type="text" id="layerName" required placeholder="如：文具层">
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" data-close="layerModal">取消</button>
+                <button type="submit" class="btn">添加</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 物品详情弹窗 -->
+<div class="modal" id="detailModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="detailTitle">物品详情</h2>
+            <button class="close-btn" data-close="detailModal">&times;</button>
+        </div>
+        <div id="detailContent"></div>
+        <div class="form-actions" style="margin-top: 20px;">
+            <button class="btn" id="btnEditFromDetail">编辑</button>
+            <button class="btn btn-secondary" id="btnDeleteFromDetail">删除</button>
+            <button class="btn btn-secondary" data-close="detailModal">关闭</button>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript 文件加载（顺序很重要） -->
+<script src="js/data.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/layer.js"></script>
+<script src="js/render.js"></script>
+<script src="js/interaction.js"></script>
+<script src="js/crud.js"></script>
+<script src="js/search.js"></script>
+<script src="js/borrow.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
