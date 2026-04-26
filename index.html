@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人物品管理系统 | 陈懿灵</title>
+    <title>个人物品管理系统 v1.2 | 陈懿灵</title>
+    <!-- Linear Design Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;510;590&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -50,7 +54,7 @@
             <option value="带走">带走</option>
             <option value="借出">借出</option>
         </select>
-        <button class="btn" id="btnAdd">+ 添加物品</button>
+        <button class="btn btn-primary" id="btnAdd">+ 添加物品</button>
         <button class="btn btn-secondary" id="btnBorrow">借用清单</button>
         <button class="btn btn-secondary" id="btnManage">配置管理</button>
         <button class="btn btn-secondary" id="btnExport">导出备份</button>
@@ -135,7 +139,7 @@
             </div>
             <div class="form-actions">
                 <button type="button" class="btn btn-secondary" data-close="itemModal">取消</button>
-                <button type="submit" class="btn">保存物品</button>
+                <button type="submit" class="btn btn-primary">保存物品</button>
             </div>
         </form>
     </div>
@@ -278,7 +282,7 @@
             </div>
             <div class="form-actions">
                 <button type="button" class="btn btn-secondary" data-close="borrowRecordModal">取消</button>
-                <button type="submit" class="btn">确认借用</button>
+                <button type="submit" class="btn btn-primary">确认借用</button>
             </div>
         </form>
     </div>
@@ -315,7 +319,7 @@
         <div id="detailContent"></div>
         <div class="form-actions" style="margin-top: 20px;">
             <button class="btn" id="btnEditFromDetail">编辑</button>
-            <button class="btn btn-secondary" id="btnDeleteFromDetail">删除</button>
+            <button class="btn btn-danger" id="btnDeleteFromDetail">删除</button>
             <button class="btn btn-secondary" data-close="detailModal">关闭</button>
         </div>
     </div>
@@ -324,12 +328,12 @@
 <!-- JavaScript 文件加载（顺序很重要） -->
 <script src="js/data.js"></script>
 <script src="js/storage.js"></script>
-<script src="js/layer.js"></script>
 <script src="js/render.js"></script>
 <script src="js/interaction.js"></script>
 <script src="js/crud.js"></script>
 <script src="js/search.js"></script>
 <script src="js/borrow.js"></script>
+<script src="js/layer.js"></script>
 <script src="js/main.js"></script>
 
 </body>

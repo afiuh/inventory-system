@@ -1,106 +1,74 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-个人物品管理系统 - 本地服务器启动脚本
-用法：python start_server.py
+Personal Inventory System - Flask Backend Server
+
+Author: Chen Yiling
 """
 
-import http.server
-import socketserver
-import webbrowser
-import os
 import sys
-import threading
+import os
+import webbrowser
 import time
-import json
 
-# 配置
+# Fix Python path for virtual environment conflicts
+SITE_PACKAGES = r'C:\Users\c3458\AppData\Local\Programs\Python\Python312\Lib\site-packages'
+if SITE_PACKAGES not in sys.path:
+    sys.path.insert(0, SITE_PACKAGES)
+
+# Config
 PORT = 8888
 DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
 
-class CustomHandler(http.server.SimpleHTTPRequestHandler):
-    """自定义请求处理器，设置正确的目录"""
+def main():
+    """Main function"""
+    global PORT
+    
+    # Check project files
+    if not os.path.exists(os.path.join(DIRECTORY, "index.html")):
+        print("[ERROR] index.html not found")
+        sys.exit(1)
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, directory=DIRECTORY, **kwargs)
-
-    def log_message(self, format, *args):
-        """自定义日志格式"""
-        print(f"[{self.log_date_time_string()}] {format % args}")
-
-    def do_GET(self):
-        """处理 GET 请求"""
-        if self.path == "/api/status":
-            # API 状态端点
-            response = {
-                "service": "录音分析工具 API",
-                "version": "1.0.0",
-                "status": "running"
-            }
-            self.send_response(200)
-            self.send_header("Content-Type", "application/json; charset=utf-8")
-            self.send_header("Access-Control-Allow-Origin", "*")
-            self.end_headers()
-            self.wfile.write(json.dumps(response, ensure_ascii=False).encode("utf-8"))
-        else:
-            # 其他请求使用默认处理
-            super().do_GET()
-
-
-class ReuseAddrTCPServer(socketserver.TCPServer):
-    """允许地址重用的 TCP 服务器"""
-    allow_reuse_address = True
-
-
-def start_server():
-    """启动 HTTP 服务器"""
-    with ReuseAddrTCPServer(("", PORT), CustomHandler) as httpd:
-        print(f"✅ 服务器已启动")
-        print(f"📁 项目目录：{DIRECTORY}")
-        print(f"🌐 访问地址：http://localhost:{PORT}")
-        print(f"📋 按 Ctrl+C 停止服务器")
+    try:
+        # Add backend directory to Python path
+        backend_dir = os.path.join(DIRECTORY, 'backend')
+        sys.path.insert(0, backend_dir)
+        
+        from app import app
+        
         print("=" * 50)
-        httpd.serve_forever()
-
-
-def open_browser():
-    """延迟打开浏览器"""
-    time.sleep(1.5)  # 等待服务器启动
-    webbrowser.open(f"http://localhost:{PORT}")
+        print("  Personal Inventory System - Backend Mode")
+        print("=" * 50)
+        print(f"[OK] Server running at: http://localhost:{PORT}")
+        print(f"[OK] Database: {os.path.join(backend_dir, 'inventory.db')}")
+        print(f"[INFO] Press Ctrl+C to stop")
+        print("=" * 50)
+        
+        # Open browser after 1.5 seconds
+        def open_browser():
+            time.sleep(1.5)
+            webbrowser.open(f"http://localhost:{PORT}")
+        
+        import threading
+        threading.Thread(target=open_browser, daemon=True).start()
+        
+        # Start Flask server
+        app.run(host='0.0.0.0', port=PORT, debug=False, threaded=True)
+        
+    except ImportError as e:
+        print(f"[ERROR] Import failed: {e}")
+        print("   Please run: pip install flask flask-cors")
+        sys.exit(1)
+    except KeyboardInterrupt:
+        print("\n[INFO] Server stopped")
+    except OSError as e:
+        if hasattr(e, 'winerror') and e.winerror == 10048:
+            print(f"[ERROR] Port {PORT} is already in use")
+            print(f"   Try: python start_server.py --port 8889")
+        else:
+            print(f"[ERROR] {e}")
 
 
 if __name__ == "__main__":
-    try:
-        # 检查项目文件是否存在
-        if not os.path.exists(os.path.join(DIRECTORY, "index.html")):
-            print("❌ 错误：未找到 index.html 文件")
-            print(f"   请确保此脚本与 index.html 在同一目录")
-            sys.exit(1)
-
-        print("=" * 50)
-        print("🎯 个人物品管理系统 - 启动中...")
-        print("=" * 50)
-
-        # 在新线程中启动服务器
-        server_thread = threading.Thread(target=start_server, daemon=True)
-        server_thread.start()
-
-        # 打开浏览器
-        open_browser()
-
-        # 保持主线程运行
-        while True:
-            time.sleep(1)
-
-    except KeyboardInterrupt:
-        print("\n⚠️  服务器已停止")
-    except OSError as e:
-        if e.errno == 98 or e.winerror == 10048:  # Linux 或 Windows 端口被占用
-            print(f"❌ 错误：端口 {PORT} 已被占用")
-            print("   请关闭占用该端口的程序，或修改 PORT 变量换一个端口")
-        else:
-            print(f"❌ 错误：{e}")
-    except Exception as e:
-        print(f"❌ 错误：{e}")
-        sys.exit(1)
+    main()

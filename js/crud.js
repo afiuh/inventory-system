@@ -1,95 +1,68 @@
 // js/crud.js
+// CRUD 操作 - 全异步适配
 
 const CRUD = {
-    // 当前编辑的物品 ID
     currentItemId: null,
 
-    // 初始化 CRUD 系统
     init() {
         this.bindEvents();
         this.initCategorySelect();
         this.initViewSelect();
     },
 
-    // 绑定事件
     bindEvents() {
-        // 添加物品按钮
         document.getElementById('btnAdd').addEventListener('click', () => {
             this.openAddItemModal();
         });
 
-        // 物品表单提交
-        document.getElementById('itemForm').addEventListener('submit', (e) => {
+        document.getElementById('itemForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            this.submitItemForm();
+            await this.submitItemForm();
         });
 
-        // 色块表单 - 形状选择
         document.querySelectorAll('.shape-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 document.querySelectorAll('.shape-btn').forEach(b => b.classList.remove('active'));
                 e.target.classList.add('active');
-                // ✅ 删除：this.updateBlockPreview();
             });
         });
 
-        // ✅ 删除：大小选择事件绑定（已移除大小选择器）
-
-        // 色块表单 - 颜色选择
         document.getElementById('blockColor').addEventListener('input', (e) => {
             document.getElementById('blockColorHex').value = e.target.value;
-            // ✅ 删除：this.updateBlockPreview();
         });
 
         document.getElementById('blockColorHex').addEventListener('input', (e) => {
             const color = e.target.value;
             if (/^#[0-9A-Fa-f]{6}$/.test(color)) {
                 document.getElementById('blockColor').value = color;
-                // ✅ 删除：this.updateBlockPreview();
             }
         });
 
-        // 确认放置色块
-        document.getElementById('btnPlaceBlock').addEventListener('click', () => {
-            this.confirmBlockPlace();
+        document.getElementById('btnPlaceBlock').addEventListener('click', async () => {
+            await this.confirmBlockPlace();
         });
 
-        // ✅ 新增：配置管理按钮
-        const btnManage = document.getElementById('btnManage');
-        if (btnManage) {
-            btnManage.addEventListener('click', () => {
-                this.openManageModal();
-            });
-        }
+        document.getElementById('btnManage').addEventListener('click', () => {
+            this.openManageModal();
+        });
 
-        // ✅ 新增：视图表单提交
-        const viewForm = document.getElementById('viewForm');
-        if (viewForm) {
-            viewForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                Layer.submitAddView();
-            });
-        }
+        document.getElementById('viewForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            await Layer.submitAddView();
+        });
 
-        // ✅ 新增：添加分类按钮
-        const btnAddCategory = document.getElementById('btnAddCategory');
-        if (btnAddCategory) {
-            btnAddCategory.addEventListener('click', () => {
-                this.addCategory();
-            });
-        }
+        document.getElementById('btnAddCategory').addEventListener('click', async () => {
+            await this.addCategory();
+        });
 
-        // 借用清单按钮
         document.getElementById('btnBorrow').addEventListener('click', () => {
             Borrow.openBorrowModal();
         });
 
-        // 导出备份
         document.getElementById('btnExport').addEventListener('click', () => {
             Storage.exportData();
         });
 
-        // 导入备份
         document.getElementById('btnImport').addEventListener('click', () => {
             document.getElementById('importFile').click();
         });
@@ -99,66 +72,48 @@ const CRUD = {
             if (file) {
                 Storage.importData(file, (success, msg) => {
                     alert(msg);
-                    if (success) {
-                        location.reload();
-                    }
+                    if (success) location.reload();
                 });
             }
         });
 
-        // 借用表单提交
-        document.getElementById('borrowForm').addEventListener('submit', (e) => {
+        document.getElementById('borrowForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            Borrow.submitBorrowForm();
+            await Borrow.submitBorrowForm();
         });
 
-        // 详情弹窗 - 编辑按钮
         document.getElementById('btnEditFromDetail').addEventListener('click', () => {
-            if (this.currentItemId) {
-                this.editItem(this.currentItemId);
-            }
+            if (this.currentItemId) this.editItem(this.currentItemId);
         });
 
-        // 详情弹窗 - 删除按钮
         document.getElementById('btnDeleteFromDetail').addEventListener('click', () => {
-            if (this.currentItemId) {
-                this.deleteItem(this.currentItemId);
-            }
+            if (this.currentItemId) this.deleteItem(this.currentItemId);
         });
 
-        // ✅ 修复：删除 Interaction.endPlaceMode() 调用
         document.querySelectorAll('[data-close]').forEach(btn => {
             btn.addEventListener('click', () => {
                 const modalId = btn.dataset.close;
                 document.getElementById(modalId).classList.remove('active');
-                // ✅ 删除：Interaction.endPlaceMode();
             });
         });
 
-        // ✅ 修复：删除 Interaction.endPlaceMode() 调用
         document.querySelectorAll('.modal').forEach(modal => {
             modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove('active');
-                    // ✅ 删除：Interaction.endPlaceMode();
-                }
+                if (e.target === modal) modal.classList.remove('active');
             });
         });
     },
 
-    // ==================== 初始化选择器 ====================
+    // ==================== 初始化 ====================
 
-    // 初始化分类选择器
     initCategorySelect() {
         const select = document.getElementById('itemCategory');
         if (!select) return;
-
         select.innerHTML = CATEGORIES.map(cat =>
             `<option value="${cat}">${cat}</option>`
         ).join('');
     },
 
-    // 初始化视图选择器
     initViewSelect() {
         const select = document.getElementById('itemView');
         if (!select) return;
@@ -167,18 +122,16 @@ const CRUD = {
             `<option value="${view.id}">${view.name}</option>`
         ).join('');
 
-        // 视图变化时更新层选项
         select.addEventListener('change', () => {
             this.updateLayerSelect(select.value);
         });
     },
 
-    // 更新层选择器
-    updateLayerSelect(viewId) {
+    async updateLayerSelect(viewId) {
         const layerSelect = document.getElementById('itemLayer');
         if (!layerSelect) return;
 
-        const layers = Storage.getLayersByView(viewId);
+        const layers = await Storage.getLayersByView(viewId);
         layerSelect.innerHTML = layers.map(layer =>
             `<option value="${layer.id}">${layer.name}</option>`
         ).join('');
@@ -186,7 +139,6 @@ const CRUD = {
 
     // ==================== 物品管理 ====================
 
-    // 打开添加物品弹窗
     openAddItemModal() {
         this.currentItemId = null;
         document.getElementById('modalTitle').textContent = '添加物品';
@@ -196,9 +148,8 @@ const CRUD = {
         document.getElementById('itemModal').classList.add('active');
     },
 
-    // 编辑物品
-    editItem(id) {
-        const item = Storage.getItem(id);
+    async editItem(id) {
+        const item = await Storage.getItem(id);
         if (!item) return;
 
         this.currentItemId = id;
@@ -208,15 +159,19 @@ const CRUD = {
         document.getElementById('itemCategory').value = item.category;
         document.getElementById('itemStatus').value = item.status;
         document.getElementById('itemView').value = item.viewId;
-        this.updateLayerSelect(item.viewId);
+        await this.updateLayerSelect(item.viewId);
         document.getElementById('itemLayer').value = item.layerId || '';
         document.getElementById('itemDescription').value = item.description || '';
         document.getElementById('itemNote').value = item.note || '';
-        document.getElementById('itemModal').classList.add('active');
+        
+        // 先关闭详情弹窗，再打开编辑弹窗
+        document.getElementById('detailModal').classList.remove('active');
+        setTimeout(() => {
+            document.getElementById('itemModal').classList.add('active');
+        }, 50);
     },
 
-    // 提交物品表单
-    submitItemForm() {
+    async submitItemForm() {
         const itemId = document.getElementById('itemId').value;
         const itemData = {
             name: document.getElementById('itemName').value.trim(),
@@ -234,11 +189,9 @@ const CRUD = {
         }
 
         if (itemId) {
-            // 编辑
-            Storage.updateItem(parseInt(itemId), itemData);
+            await Storage.updateItem(parseInt(itemId), itemData);
         } else {
-            // 新增
-            const newItem = Storage.addItem({
+            const newItem = await Storage.addItem({
                 ...itemData,
                 hasBlock: false,
                 block: null
@@ -247,10 +200,9 @@ const CRUD = {
         }
 
         document.getElementById('itemModal').classList.remove('active');
-        Render.updateStats();
-        Search.renderItemList();
+        await Render.updateStats();
+        await Search.renderItemList();
 
-        // 询问是否添加色块
         if (!itemId) {
             setTimeout(() => {
                 if (confirm('物品已创建，是否添加位置色块？')) {
@@ -260,9 +212,8 @@ const CRUD = {
         }
     },
 
-    // 删除物品
-    deleteItem(id) {
-        const item = Storage.getItem(id);
+    async deleteItem(id) {
+        const item = await Storage.getItem(id);
         if (!item) return;
 
         let confirmMsg = `确定删除"${item.name}"吗？`;
@@ -271,90 +222,47 @@ const CRUD = {
         }
 
         if (confirm(confirmMsg)) {
-            Storage.deleteItem(id);
+            await Storage.deleteItem(id);
             document.getElementById('detailModal').classList.remove('active');
-            Render.renderView(Layer.currentViewId, Layer.currentLayerId);
-            Render.updateStats();
-            Search.renderItemList();
+            await Render.renderView(Layer.currentViewId, Layer.currentLayerId);
+            await Render.updateStats();
+            await Search.renderItemList();
         }
     },
 
     // ==================== 色块管理 ====================
 
-    // 打开色块编辑弹窗
-// js/crud.js 的 openBlockModal 方法
-
-openBlockModal(itemId) {
-    const item = Storage.getItem(itemId);
-    if (!item) return;
-
-    this.currentItemId = itemId;
-    document.getElementById('blockItemId').value = itemId;
-
-    // 如果已有色块，加载现有配置
-    if (item.hasBlock && item.block) {
-        const shapeBtn = document.querySelector(`.shape-btn[data-shape="${item.block.appearance.shape}"]`);
-        if (shapeBtn) shapeBtn.click();
-        document.getElementById('blockColor').value = item.block.appearance.color;
-        document.getElementById('blockColorHex').value = item.block.appearance.color;
-    } else {
-        // ✅ 修复：添加容错处理
-        let defaultColor = '#4A90E2';  // 默认蓝色
-
-        if (typeof CATEGORY_COLORS !== 'undefined') {
-            defaultColor = CATEGORY_COLORS[item.category] || '#4A90E2';
-        } else if (window.CATEGORY_COLORS) {
-            defaultColor = window.CATEGORY_COLORS[item.category] || '#4A90E2';
-        }
-
-        document.querySelector('.shape-btn[data-shape="rectangle"]').click();
-        document.getElementById('blockColor').value = defaultColor;
-        document.getElementById('blockColorHex').value = defaultColor;
-    }
-
-    document.getElementById('blockModal').classList.add('active');
-},
-
-    // 编辑色块（从右键菜单）- 改为删除后重新添加
-    editBlock(itemId) {
-        const item = Storage.getItem(itemId);
+    async openBlockModal(itemId) {
+        const item = await Storage.getItem(itemId);
         if (!item) return;
 
-        if (confirm('编辑色块需要先删除现有色块，确定继续吗？')) {
-            Storage.deleteBlock(itemId);
-            this.openBlockModal(itemId);
+        this.currentItemId = itemId;
+        document.getElementById('blockItemId').value = itemId;
+
+        if (item.hasBlock && item.block) {
+            const shapeBtn = document.querySelector(`.shape-btn[data-shape="${item.block.appearance.shape}"]`);
+            if (shapeBtn) shapeBtn.click();
+            document.getElementById('blockColor').value = item.block.appearance.color;
+            document.getElementById('blockColorHex').value = item.block.appearance.color;
+        } else {
+            document.querySelector('.shape-btn[data-shape="rectangle"]').click();
+            document.getElementById('blockColor').value = '#4A90E2';
+            document.getElementById('blockColorHex').value = '#4A90E2';
         }
+
+        document.getElementById('blockModal').classList.add('active');
     },
 
-    // 删除色块（保留物品）
-    deleteBlock(itemId) {
-        const item = Storage.getItem(itemId);
-        if (!item) return;
-
-        if (confirm(`确定删除"${item.name}"的位置色块吗？\n\n物品信息将保留，只是不再在视图中显示。`)) {
-            Storage.deleteBlock(itemId);
-            Render.renderView(Layer.currentViewId, Layer.currentLayerId);
-            Render.updateStats();
-            Search.renderItemList();
-        }
-    },
-
-    // ✅ 删除：getSizeKey() 方法（不再需要）
-    // ✅ 删除：updateBlockPreview() 方法（不再需要）
-
-    // 确认放置色块（在当前视图中心生成）
-    confirmBlockPlace() {
+    async confirmBlockPlace() {
         const itemId = this.currentItemId;
         if (!itemId) return;
 
         const shape = document.querySelector('.shape-btn.active').dataset.shape;
         const color = document.getElementById('blockColor').value;
-        // ✅ 使用默认大小 M（60x45）
         const sizeConfig = { width: 60, height: 45 };
 
-        // 获取当前视图和层
         const view = VIEW_CONFIG.find(v => v.id === Layer.currentViewId);
-        const layers = Storage.getLayersByView(Layer.currentViewId);
+        const layers = await Storage.getLayersByView(Layer.currentViewId);
         const layerId = layers[0]?.id;
 
         if (!view || !layerId) {
@@ -362,14 +270,12 @@ openBlockModal(itemId) {
             return;
         }
 
-        // 计算视图中心位置
         const viewWidth = view.width * 5;
         const viewHeight = view.height * 5;
         const centerX = Math.max(0, (viewWidth / 2) - (sizeConfig.width / 2));
         const centerY = Math.max(0, (viewHeight / 2) - (sizeConfig.height / 2));
 
-        // 保存色块配置
-        Storage.setBlock(itemId, {
+        await Storage.setBlock(itemId, {
             appearance: {
                 shape: shape,
                 color: color,
@@ -378,145 +284,196 @@ openBlockModal(itemId) {
             position: { x: centerX, y: centerY }
         });
 
-        // 更新物品所在视图和层
-        Storage.updateItem(itemId, {
+        await Storage.updateItem(itemId, {
             viewId: Layer.currentViewId,
             layerId: layerId
         });
 
-        // 关闭弹窗
         document.getElementById('blockModal').classList.remove('active');
-
-        // 刷新视图
-        Render.renderView(Layer.currentViewId, Layer.currentLayerId);
-        Render.updateStats();
-        Search.renderItemList();
+        await Render.renderView(Layer.currentViewId, Layer.currentLayerId);
+        await Render.updateStats();
+        await Search.renderItemList();
 
         alert('色块已添加！请拖拽到目标位置，拖动边缘可缩放');
     },
 
-    // ✅ 删除：openPlaceModal() 方法（不再需要）
+    async deleteBlock(itemId) {
+        const item = await Storage.getItem(itemId);
+        if (!item) return;
 
-// ==================== 配置管理（新增）====================
+        if (confirm(`确定删除"${item.name}"的位置色块吗？`)) {
+            await Storage.deleteBlock(itemId);
+            await Render.renderView(Layer.currentViewId, Layer.currentLayerId);
+            await Render.updateStats();
+            await Search.renderItemList();
+        }
+    },
 
-// 打开配置管理弹窗
-openManageModal() {
-    this.renderCategoryList();
-    document.getElementById('categoryModal').classList.add('active');
-},
+    // ==================== 配置管理 ====================
 
-// 渲染分类列表
-renderCategoryList() {
-    const container = document.getElementById('categoryList');
-    if (!container) return;
-
-    container.innerHTML = CATEGORIES.map(cat => `
-        <div class="category-item" data-category="${cat}">
-            <span>${cat}</span>
-            <div class="category-actions">
-                <button class="btn btn-small btn-secondary" onclick="CRUD.renameCategory('${cat}')">重命名</button>
-                <button class="btn btn-small" style="background: #E74C3C;" onclick="CRUD.deleteCategory('${cat}')">删除</button>
-            </div>
-        </div>
-    `).join('');
-},
-
-// 添加分类
-addCategory() {
-    const name = document.getElementById('newCategoryName').value.trim();
-    if (!name) {
-        alert('请输入分类名称');
-        return;
-    }
-
-    const result = Storage.addCategory(name);
-    if (result.success) {
-        document.getElementById('newCategoryName').value = '';
+    openManageModal() {
         this.renderCategoryList();
-        Render.updateCategoryFilter();  // ✅ 更新搜索筛选
-        this.initCategorySelect();      // ✅ 更新物品表单分类下拉框
-        alert('添加成功');
-    } else {
-        alert(result.message);
-    }
-},
+        document.getElementById('categoryModal').classList.add('active');
+    },
 
-// 重命名分类
-renameCategory(oldName) {
-    const newName = prompt('请输入新名称:', oldName);
-    if (newName && newName.trim() && newName !== oldName) {
-        const result = Storage.renameCategory(oldName, newName.trim());
+    renderCategoryList() {
+        const container = document.getElementById('categoryList');
+        if (!container) return;
+
+        container.innerHTML = CATEGORIES.map(cat => `
+            <div class="category-item" style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border-primary);">
+                <span>${cat}</span>
+                <div style="display: flex; gap: 8px;">
+                    <button class="btn btn-small btn-secondary" onclick="CRUD.renameCategory('${cat}')">重命名</button>
+                    <button class="btn btn-small btn-danger" onclick="CRUD.deleteCategory('${cat}')">删除</button>
+                </div>
+            </div>
+        `).join('');
+    },
+
+    async addCategory() {
+        const name = document.getElementById('newCategoryName').value.trim();
+        if (!name) {
+            alert('请输入分类名称');
+            return;
+        }
+
+        const result = await Storage.addCategory(name);
         if (result.success) {
+            document.getElementById('newCategoryName').value = '';
+            CATEGORIES = await Storage.loadCategories();
+            Render.updateCategoryFilter();
+            this.initCategorySelect();
             this.renderCategoryList();
-            Render.updateCategoryFilter();  // ✅ 更新搜索筛选
-            this.initCategorySelect();      // ✅ 更新物品表单分类下拉框
-            alert(result.message);
+            alert('添加成功');
         } else {
             alert(result.message);
         }
-    }
-},
+    },
 
-// 删除分类
-deleteCategory(name) {
-    const result = Storage.deleteCategory(name);
-    if (result.success) {
-        this.renderCategoryList();
-        Render.updateCategoryFilter();  // ✅ 更新搜索筛选
-        this.initCategorySelect();      // ✅ 更新物品表单分类下拉框
-        alert('删除成功');
-    } else {
+    async renameCategory(oldName) {
+        const newName = prompt('请输入新名称:', oldName);
+        if (newName && newName.trim() && newName !== oldName) {
+            const result = await Storage.renameCategory(oldName, newName.trim());
+            if (result.success) {
+                CATEGORIES = await Storage.loadCategories();
+                Render.updateCategoryFilter();
+                this.initCategorySelect();
+                this.renderCategoryList();
+            }
+            alert(result.message);
+        }
+    },
+
+    async deleteCategory(name) {
+        const result = await Storage.deleteCategory(name);
+        if (result.success) {
+            CATEGORIES = await Storage.loadCategories();
+            Render.updateCategoryFilter();
+            this.initCategorySelect();
+            this.renderCategoryList();
+        }
         alert(result.message);
-    }
-},
+    },
 
     // ==================== 物品详情 ====================
 
-    // 显示物品详情
-    showItemDetail(id) {
-        const item = Storage.getItem(id);
+    async showItemDetail(id) {
+        const item = await Storage.getItem(id);
         if (!item) return;
 
         this.currentItemId = id;
         const view = VIEW_CONFIG.find(v => v.id === item.viewId);
-        const layers = Storage.getLayersByView(item.viewId);
-        const layer = layers.find(l => l.id === item.layerId);
+        const layer = item.layerId ? { name: '第一层' } : null;
+
+        const statusColor = item.status === '在位' ? '#10b981' : item.status === '带走' ? '#f59e0b' : '#ef4444';
 
         document.getElementById('detailTitle').textContent = item.name;
         document.getElementById('detailContent').innerHTML = `
-            <div style="margin-bottom: 15px;">
-                <strong style="color: var(--accent-gold);">分类：</strong> ${item.category}
-            </div>
-            <div style="margin-bottom: 15px;">
-                <strong style="color: var(--accent-gold);">状态：</strong> 
-                <span style="color: ${item.status === '在位' ? '#2d5016' : item.status === '带走' ? '#8b7508' : '#8b3a3a'};">
-                    ${item.status}
-                </span>
-            </div>
-            <div style="margin-bottom: 15px;">
-                <strong style="color: var(--accent-gold);">位置：</strong> ${view ? view.name : '-'} → ${layer ? layer.name : '-'}
-            </div>
-            <div style="margin-bottom: 15px;">
-                <strong style="color: var(--accent-gold);">简介：</strong> ${item.description || '无'}
-            </div>
-            <div style="margin-bottom: 15px;">
-                <strong style="color: var(--accent-gold);">备注：</strong> ${item.note || '无'}
-            </div>
-            <div style="margin-bottom: 15px;">
-                <strong style="color: var(--accent-gold);">色块：</strong> ${item.hasBlock ? '已设置' : '未设置'}
+            <div style="display: grid; gap: 12px;">
+                <div><strong style="color: var(--accent-violet);">分类：</strong> ${item.category}</div>
+                <div><strong style="color: var(--accent-violet);">状态：</strong> <span style="color: ${statusColor};">${item.status}</span></div>
+                <div><strong style="color: var(--accent-violet);">位置：</strong> ${view ? view.name : '-'} → ${layer ? layer.name : '-'}</div>
+                <div><strong style="color: var(--accent-violet);">简介：</strong> ${item.description || '无'}</div>
+                <div><strong style="color: var(--accent-violet);">备注：</strong> ${item.note || '无'}</div>
+                <div><strong style="color: var(--accent-violet);">色块：</strong> ${item.hasBlock ? '已设置' : '未设置'}</div>
+                
+                <div style="margin-top: 8px; padding-top: 12px; border-top: 1px solid var(--border-primary);">
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox" id="chkLabelEnabled" ${item.labelEnabled ? 'checked' : ''} 
+                            onchange="CRUD.toggleLabel(this.checked)" style="width: 16px; height: 16px; accent-color: var(--brand-indigo);">
+                        <span style="color: var(--text-secondary);">显示引线标注</span>
+                    </label>
+                    <div id="labelOptions" style="margin-top: 8px; display: ${item.labelEnabled ? 'flex' : 'none'}; gap: 8px; flex-wrap: wrap;">
+                        <span style="color: var(--text-tertiary); font-size: 12px; align-self: center;">锚点：</span>
+                        <button class="btn btn-small ${(item.labelPosition?.anchor === 'right' || !item.labelPosition) ? 'btn-primary' : 'btn-secondary'}" 
+                            onclick="CRUD.setLabelAnchor('right')">右</button>
+                        <button class="btn btn-small ${item.labelPosition?.anchor === 'bottom' ? 'btn-primary' : 'btn-secondary'}" 
+                            onclick="CRUD.setLabelAnchor('bottom')">下</button>
+                        <button class="btn btn-small ${item.labelPosition?.anchor === 'left' ? 'btn-primary' : 'btn-secondary'}" 
+                            onclick="CRUD.setLabelAnchor('left')">左</button>
+                        <button class="btn btn-small ${item.labelPosition?.anchor === 'top' ? 'btn-primary' : 'btn-secondary'}" 
+                            onclick="CRUD.setLabelAnchor('top')">上</button>
+                        ${item.hasBlock ? '' : '<span style="color: var(--text-muted); font-size: 11px; align-self: center;">（无色块时显示在视图中心）</span>'}
+                    </div>
+                </div>
             </div>
         `;
 
         document.getElementById('detailModal').classList.add('active');
     },
 
-    // ==================== 状态切换 ====================
+    // ==================== 引线标注控制 ====================
 
-    // 切换物品状态
-    toggleItemStatus(id, newStatus) {
-        Storage.updateItem(id, { status: newStatus });
-        Render.renderView(Layer.currentViewId, Layer.currentLayerId);
-        Render.updateStats();
-        Search.renderItemList();
+    async toggleLabel(enabled) {
+        const itemId = this.currentItemId;
+        if (!itemId) return;
+
+        const item = await Storage.getItem(itemId);
+        if (!item) return;
+
+        item.labelEnabled = enabled;
+        if (enabled && !item.labelPosition) {
+            item.labelPosition = { anchor: 'right', offsetX: 0, offsetY: 0 };
+        }
+
+        await Storage.updateItem(itemId, { 
+            labelEnabled: enabled,
+            labelPosition: item.labelPosition 
+        });
+
+        // 切换选项显示
+        const optionsDiv = document.getElementById('labelOptions');
+        if (optionsDiv) {
+            optionsDiv.style.display = enabled ? 'flex' : 'none';
+        }
+
+        // 重新渲染视图
+        await Render.renderView(Layer.currentViewId, Layer.currentLayerId);
+    },
+
+    async setLabelAnchor(anchor) {
+        const itemId = this.currentItemId;
+        if (!itemId) return;
+
+        const item = await Storage.getItem(itemId);
+        if (!item) return;
+
+        item.labelPosition = item.labelPosition || { anchor: 'right', offsetX: 0, offsetY: 0 };
+        item.labelPosition.anchor = anchor;
+
+        await Storage.updateItem(itemId, { labelPosition: item.labelPosition });
+
+        // 更新按钮样式
+        const btns = document.querySelectorAll('#labelOptions .btn-small');
+        btns.forEach(btn => {
+            btn.classList.remove('btn-primary');
+            btn.classList.add('btn-secondary');
+        });
+        event.target.classList.remove('btn-secondary');
+        event.target.classList.add('btn-primary');
+
+        // 重新渲染视图
+        await Render.renderView(Layer.currentViewId, Layer.currentLayerId);
     }
 };
