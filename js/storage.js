@@ -224,6 +224,8 @@ const Storage = {
             items[index].updatedAt = Date.now();
             localStorage.setItem(this.KEYS.ITEMS, JSON.stringify(items));
             this._saveLastUpdate();
+            // 重新加载确保内存和 localStorage 同步
+            await this.loadItems();
             return items[index];
         }
         return null;
@@ -576,21 +578,7 @@ const Storage = {
     // ==================== 导出导入 ====================
 
     async exportData() {
-        if (this._mode === 'backend') {
-            try {
-                const data = await this._request('GET', '/backup');
-                const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `物品备份_${new Date().toISOString().split('T')[0]}.json`;
-                a.click();
-                URL.revokeObjectURL(url);
-                return;
-            } catch (e) {
-                alert('导出失败: ' + e.message);
-            }
-        }
+        // 获取完整数据
         const backup = {
             version: '1.1',
             exportDate: new Date().toISOString(),
@@ -600,6 +588,19 @@ const Storage = {
             views: await this.loadViews(),
             categories: await this.loadCategories()
         };
+
+        if (this._mode === 'backend') {
+            try {
+                // 保存到后端 data/exports 目录
+                const result = await this._request('POST', '/backup/save', backup);
+                return result;
+            } catch (e) {
+                alert('保存备份失败: ' + e.message);
+                throw e;
+            }
+        }
+
+        // 本地模式：下载文件
         const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -607,6 +608,49 @@ const Storage = {
         a.download = `物品备份_${new Date().toISOString().split('T')[0]}.json`;
         a.click();
         URL.revokeObjectURL(url);
+        return { success: true, message: '备份已下载' };
+    },
+
+    // 获取 exports 目录中的备份列表
+    async getBackupList() {
+        if (this._mode !== 'backend') {
+            return { success: false, backups: [], latest: null };
+        }
+        try {
+            return await this._request('GET', '/backup/list');
+        } catch (e) {
+            console.error('获取备份列表失败:', e);
+            return { success: false, backups: [], latest: null };
+        }
+    },
+
+    // 加载最新备份
+    async loadLatestBackup() {
+        if (this._mode !== 'backend') {
+            alert('本地模式不支持自动加载备份');
+            return { success: false, message: '本地模式不支持此功能' };
+        }
+        try {
+            const result = await this._request('GET', '/backup/load-latest');
+            if (result.success) {
+                await this._syncFromBackend();
+            }
+            return result;
+        } catch (e) {
+            return { success: false, message: e.message };
+        }
+    },
+
+    // 查看最新备份（不导入）
+    async previewLatestBackup() {
+        if (this._mode !== 'backend') {
+            return null;
+        }
+        try {
+            return await this._request('GET', '/backup/latest');
+        } catch (e) {
+            return null;
+        }
     },
 
     async importData(file, callback) {

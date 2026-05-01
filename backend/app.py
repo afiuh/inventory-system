@@ -388,6 +388,116 @@ def export_backup():
     return jsonify(data)
 
 
+@app.route('/api/backup/save', methods=['POST'])
+def save_backup():
+    """保存备份到 data/exports 目录"""
+    data = request.json
+    if not data:
+        return jsonify({'success': False, 'message': '无数据'}), 400
+    
+    # 生成文件名
+    filename = f"物品备份_{datetime.now().strftime('%Y-%m-%d_%H%M%S')}.json"
+    exports_dir = os.path.join(BASE_DIR, 'data', 'exports')
+    os.makedirs(exports_dir, exist_ok=True)
+    
+    filepath = os.path.join(exports_dir, filename)
+    try:
+        with open(filepath, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        return jsonify({
+            'success': True, 
+            'message': f'备份已保存: {filename}',
+            'filename': filename
+        })
+    except Exception as e:
+        return jsonify({'success': False, 'message': f'保存失败: {str(e)}'}), 500
+
+
+@app.route('/api/backup/list', methods=['GET'])
+def list_backups():
+    """获取 exports 目录中的备份列表"""
+    exports_dir = os.path.join(BASE_DIR, 'data', 'exports')
+    os.makedirs(exports_dir, exist_ok=True)
+    
+    backup_files = [f for f in os.listdir(exports_dir) if f.endswith('.json')]
+    # 按修改时间排序（最新的在前）
+    backup_files.sort(key=lambda f: os.path.getmtime(os.path.join(exports_dir, f)), reverse=True)
+    
+    backups = []
+    for filename in backup_files:
+        filepath = os.path.join(exports_dir, filename)
+        backups.append({
+            'filename': filename,
+            'size': os.path.getsize(filepath),
+            'modified': datetime.fromtimestamp(os.path.getmtime(filepath)).strftime('%Y-%m-%d %H:%M:%S')
+        })
+    
+    return jsonify({
+        'success': True,
+        'backups': backups,
+        'latest': backups[0]['filename'] if backups else None
+    })
+
+
+@app.route('/api/backup/load-latest', methods=['GET'])
+def load_latest_backup():
+    """自动读取 exports 目录中的最新备份"""
+    exports_dir = os.path.join(BASE_DIR, 'data', 'exports')
+    os.makedirs(exports_dir, exist_ok=True)
+    
+    backup_files = [f for f in os.listdir(exports_dir) if f.endswith('.json')]
+    if not backup_files:
+        return jsonify({'success': False, 'message': '没有找到备份文件'}), 404
+    
+    # 按修改时间排序，取最新的
+    backup_files.sort(key=lambda f: os.path.getmtime(os.path.join(exports_dir, f)), reverse=True)
+    latest_backup = backup_files[0]
+    filepath = os.path.join(exports_dir, latest_backup)
+    
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            backup_data = json.load(f)
+        
+        # 导入到数据库
+        if database.import_all_data(backup_data):
+            return jsonify({
+                'success': True, 
+                'message': f'已加载最新备份: {latest_backup}',
+                'filename': latest_backup,
+                'data': backup_data
+            })
+        return jsonify({'success': False, 'message': '导入数据库失败'}), 500
+    except Exception as e:
+        return jsonify({'success': False, 'message': f'读取失败: {str(e)}'}), 500
+
+
+@app.route('/api/backup/latest', methods=['GET'])
+def get_latest_backup():
+    """获取最新备份内容（不导入，仅查看）"""
+    exports_dir = os.path.join(BASE_DIR, 'data', 'exports')
+    os.makedirs(exports_dir, exist_ok=True)
+    
+    backup_files = [f for f in os.listdir(exports_dir) if f.endswith('.json')]
+    if not backup_files:
+        return jsonify({'success': False, 'message': '没有找到备份文件'}), 404
+    
+    # 按修改时间排序，取最新的
+    backup_files.sort(key=lambda f: os.path.getmtime(os.path.join(exports_dir, f)), reverse=True)
+    latest_backup = backup_files[0]
+    filepath = os.path.join(exports_dir, latest_backup)
+    
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            backup_data = json.load(f)
+        return jsonify({
+            'success': True,
+            'filename': latest_backup,
+            'data': backup_data
+        })
+    except Exception as e:
+        return jsonify({'success': False, 'message': f'读取失败: {str(e)}'}), 500
+
+
 @app.route('/api/backup', methods=['POST'])
 def import_backup():
     """导入备份"""

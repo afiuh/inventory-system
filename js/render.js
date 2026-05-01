@@ -415,13 +415,9 @@ const Render = {
         block.style.width = `${size.width}px`;
         block.style.height = `${size.height}px`;
 
-        const containerWidth = container.offsetWidth;
-        const containerHeight = container.offsetHeight;
-        const maxX = containerWidth - size.width;
-        const maxY = containerHeight - size.height;
-
-        const x = Math.max(0, Math.min(item.block.position.x, maxX));
-        const y = Math.max(0, Math.min(item.block.position.y, maxY));
+        // 直接使用保存的位置，不做边界限制（避免刷新后位置变化）
+        const x = item.block.position.x;
+        const y = item.block.position.y;
 
         block.style.left = `${x}px`;
         block.style.top = `${y}px`;
@@ -452,21 +448,17 @@ const Render = {
     },
 
     addResizeHandles(blockEl, shape) {
-        if (shape === 'circle') {
-            ['nw', 'ne', 'sw', 'se'].forEach(pos => {
-                const handle = document.createElement('div');
-                handle.className = `resize-handle ${pos}`;
-                handle.dataset.handle = pos;
-                blockEl.appendChild(handle);
-            });
-        } else {
-            ['n', 's', 'e', 'w'].forEach(pos => {
-                const handle = document.createElement('div');
-                handle.className = `resize-handle ${pos}`;
-                handle.dataset.handle = pos;
-                blockEl.appendChild(handle);
-            });
-        }
+        // 圆形使用四边中心（n/s/e/w），矩形使用四角（nw/ne/sw/se）
+        const positions = shape === 'circle'
+            ? ['n', 's', 'e', 'w']
+            : ['n', 's', 'e', 'w', 'nw', 'ne', 'sw', 'se'];
+
+        positions.forEach(pos => {
+            const handle = document.createElement('div');
+            handle.className = `resize-handle ${pos}`;
+            handle.dataset.handle = pos;
+            blockEl.appendChild(handle);
+        });
     },
 
     // ==================== 色块事件绑定 ====================

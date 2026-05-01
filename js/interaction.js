@@ -50,6 +50,9 @@ const Interaction = {
 
         blockEl.style.zIndex = 1000;
         blockEl.style.cursor = 'grabbing';
+
+        // 阻止默认拖拽行为，避免冲突
+        e.preventDefault();
     },
 
     startResize(e, blockEl, item, handle) {

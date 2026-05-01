@@ -542,12 +542,19 @@ h1 {
     display: block;
 }
 
-/* 圆形色块 - 只显示对角拖拽点 */
+/* 圆形色块 - 只显示四边拖拽点（在圆内可点击） */
+.item-block.circle .resize-handle.nw,
+.item-block.circle .resize-handle.ne,
+.item-block.circle .resize-handle.sw,
+.item-block.circle .resize-handle.se {
+    display: none !important;
+}
+
 .item-block.circle .resize-handle.n,
 .item-block.circle .resize-handle.s,
 .item-block.circle .resize-handle.e,
 .item-block.circle .resize-handle.w {
-    display: none !important;
+    display: block !important;
 }
 
 /* 色块文字 */

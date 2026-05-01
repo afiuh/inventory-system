@@ -59,12 +59,49 @@ const CRUD = {
             Borrow.openBorrowModal();
         });
 
-        document.getElementById('btnExport').addEventListener('click', () => {
-            Storage.exportData();
+        document.getElementById('btnExport').addEventListener('click', async () => {
+            try {
+                const result = await Storage.exportData();
+                if (result && result.success) {
+                    alert(result.message || '备份已保存到 data/exports 目录');
+                }
+            } catch (e) {
+                alert('导出失败: ' + e.message);
+            }
         });
 
-        document.getElementById('btnImport').addEventListener('click', () => {
+        document.getElementById('btnImport').addEventListener('click', async () => {
+            // 检查后端模式，优先加载最新备份
+            if (Storage.getMode() === 'backend') {
+                const latest = await Storage.previewLatestBackup();
+                if (latest && latest.success) {
+                    if (confirm(`发现最新备份: ${latest.filename}\n物品数量: ${latest.data.items?.length || 0}件\n是否加载此备份？\n\n点击"确定"加载备份，点击"取消"手动选择文件。`)) {
+                        const result = await Storage.loadLatestBackup();
+                        alert(result.message);
+                        if (result.success) location.reload();
+                        return;
+                    }
+                }
+            }
+            // 手动选择文件
             document.getElementById('importFile').click();
+        });
+
+        document.getElementById('btnLoadLatest').addEventListener('click', async () => {
+            if (Storage.getMode() !== 'backend') {
+                alert('此功能仅在后端模式下可用');
+                return;
+            }
+            const latest = await Storage.previewLatestBackup();
+            if (!latest || !latest.success) {
+                alert('没有找到备份文件');
+                return;
+            }
+            if (confirm(`加载备份: ${latest.filename}\n物品数量: ${latest.data.items?.length || 0}件\n\n当前数据将被替换，是否继续？`)) {
+                const result = await Storage.loadLatestBackup();
+                alert(result.message);
+                if (result.success) location.reload();
+            }
         });
 
         document.getElementById('importFile').addEventListener('change', (e) => {

@@ -1,0 +1,6519 @@
+{
+  "version": "1.1",
+  "exportDate": "2026-04-30T14:56:50.023Z",
+  "items": [
+    {
+      "block": {
+        "appearance": {
+          "color": "#4a90e2",
+          "shape": "rectangle",
+          "size": {
+            "height": 45,
+            "width": 60
+          }
+        },
+        "position": {
+          "x": 209,
+          "y": 29
+        }
+      },
+      "category": "驱蚊类",
+      "createdAt": "2026-04-30 22:47:08",
+      "description": "",
+      "hasBlock": true,
+      "id": 10002,
+      "labelEnabled": true,
+      "labelPosition": {
+        "anchor": "right",
+        "offsetX": -32.00000686645507,
+        "offsetY": 24.999996948242185,
+        "startOffsetX": -15,
+        "startOffsetY": -8
+      },
+      "layerId": "layer_desk_1",
+      "name": "电蚊香加热器",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "2026-04-30 22:56:47",
+      "viewId": "desk"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4a90e2",
+          "shape": "rectangle",
+          "size": {
+            "height": 30,
+            "width": 60
+          }
+        },
+        "position": {
+          "x": 223,
+          "y": 14
+        }
+      },
+      "category": "电子类",
+      "createdAt": "2026-04-30 22:44:04",
+      "description": "",
+      "hasBlock": true,
+      "id": 10001,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_desk_1",
+      "name": "插排2",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "2026-04-30 22:47:33",
+      "viewId": "desk"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4a90e2",
+          "shape": "rectangle",
+          "size": {
+            "height": 85,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 0,
+          "y": 131
+        }
+      },
+      "category": "电子类",
+      "createdAt": "2026-04-30 22:33:26",
+      "description": "",
+      "hasBlock": true,
+      "id": 10000,
+      "labelEnabled": true,
+      "labelPosition": {
+        "anchor": "right",
+        "offsetX": 14.999996948242188,
+        "offsetY": -72.00000305175782,
+        "startOffsetX": -16,
+        "startOffsetY": 7
+      },
+      "layerId": "layer_desk_1",
+      "name": "平板",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "2026-04-30 22:36:40",
+      "viewId": "desk"
+    },
+    {
+      "block": null,
+      "category": "装东西类",
+      "createdAt": "1736000000000",
+      "description": "电热水壶",
+      "hasBlock": false,
+      "id": 217,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_desk_1",
+      "name": "银色开水壶",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "2026-04-30 22:36:35",
+      "viewId": "desk"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 40,
+            "width": 50
+          }
+        },
+        "position": {
+          "x": 95,
+          "y": 370
+        }
+      },
+      "category": "装东西类",
+      "createdAt": "1736000000000",
+      "description": "电脑包",
+      "hasBlock": true,
+      "id": 216,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "电脑包",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 30,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 370
+        }
+      },
+      "category": "装东西类",
+      "createdAt": "1736000000000",
+      "description": "随身包",
+      "hasBlock": true,
+      "id": 215,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "小随身包",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 55,
+            "width": 45
+          }
+        },
+        "position": {
+          "x": 265,
+          "y": 310
+        }
+      },
+      "category": "装东西类",
+      "createdAt": "1736000000000",
+      "description": "书包",
+      "hasBlock": true,
+      "id": 214,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "黑书包",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 55,
+            "width": 45
+          }
+        },
+        "position": {
+          "x": 210,
+          "y": 310
+        }
+      },
+      "category": "装东西类",
+      "createdAt": "1736000000000",
+      "description": "书包",
+      "hasBlock": true,
+      "id": 213,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "灰书包",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 40,
+            "width": 50
+          }
+        },
+        "position": {
+          "x": 260,
+          "y": 380
+        }
+      },
+      "category": "装东西类",
+      "createdAt": "1736000000000",
+      "description": "编织袋",
+      "hasBlock": true,
+      "id": 212,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_underbed_1",
+      "name": "2 个大编织袋",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "underbed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 30,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 215,
+          "y": 380
+        }
+      },
+      "category": "装东西类",
+      "createdAt": "1736000000000",
+      "description": "垃圾袋",
+      "hasBlock": true,
+      "id": 211,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_underbed_1",
+      "name": "5 卷垃圾袋",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "underbed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 35,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 160,
+          "y": 310
+        }
+      },
+      "category": "装东西类",
+      "createdAt": "1736000000000",
+      "description": "收纳包",
+      "hasBlock": true,
+      "id": 210,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "紫色中包",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 40,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 305,
+          "y": 314
+        }
+      },
+      "category": "装东西类",
+      "createdAt": "1736000000000",
+      "description": "饮料",
+      "hasBlock": true,
+      "id": 209,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet2_1",
+      "name": "茶派",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1774300259564",
+      "viewId": "cabinet2"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "circle",
+          "size": {
+            "height": 50,
+            "width": 50
+          }
+        },
+        "position": {
+          "x": 155,
+          "y": 380
+        }
+      },
+      "category": "装东西类",
+      "createdAt": "1736000000000",
+      "description": "水桶",
+      "hasBlock": true,
+      "id": 208,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_underbed_1",
+      "name": "粉色水桶",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "underbed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "circle",
+          "size": {
+            "height": 50,
+            "width": 50
+          }
+        },
+        "position": {
+          "x": 95,
+          "y": 380
+        }
+      },
+      "category": "装东西类",
+      "createdAt": "1736000000000",
+      "description": "水盆",
+      "hasBlock": true,
+      "id": 207,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_underbed_1",
+      "name": "灰色水盆",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "underbed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "circle",
+          "size": {
+            "height": 35,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 936,
+          "y": 91
+        }
+      },
+      "category": "装东西类",
+      "createdAt": "1736000000000",
+      "description": "水杯",
+      "hasBlock": true,
+      "id": 206,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_desk_1",
+      "name": "蓝色喝水杯",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "2026-04-30 22:43:04",
+      "viewId": "desk"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 50,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 380
+        }
+      },
+      "category": "个人卫生类",
+      "createdAt": "1736000000000",
+      "description": "洗发水",
+      "hasBlock": true,
+      "id": 205,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_underbed_1",
+      "name": "洗头膏",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "underbed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 25,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 95,
+          "y": 560
+        }
+      },
+      "category": "个人卫生类",
+      "createdAt": "1736000000000",
+      "description": "电动剃须刀",
+      "hasBlock": true,
+      "id": 204,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "电动刮胡刀",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 35,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 560
+        }
+      },
+      "category": "个人卫生类",
+      "createdAt": "1736000000000",
+      "description": "身体乳",
+      "hasBlock": true,
+      "id": 203,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "大白罐保湿霜",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 20,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 270,
+          "y": 520
+        }
+      },
+      "category": "个人卫生类",
+      "createdAt": "1736000000000",
+      "description": "香皂",
+      "hasBlock": true,
+      "id": 202,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "两个舒肤加香皂",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 15,
+            "width": 20
+          }
+        },
+        "position": {
+          "x": 240,
+          "y": 520
+        }
+      },
+      "category": "个人卫生类",
+      "createdAt": "1736000000000",
+      "description": "护唇用品",
+      "hasBlock": true,
+      "id": 201,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "润唇膏",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 30,
+            "width": 20
+          }
+        },
+        "position": {
+          "x": 210,
+          "y": 520
+        }
+      },
+      "category": "个人卫生类",
+      "createdAt": "1736000000000",
+      "description": "口腔喷雾",
+      "hasBlock": true,
+      "id": 200,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "ora 口腔清新喷雾",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 30,
+            "width": 25
+          }
+        },
+        "position": {
+          "x": 175,
+          "y": 520
+        }
+      },
+      "category": "个人卫生类",
+      "createdAt": "1736000000000",
+      "description": "止汗露",
+      "hasBlock": true,
+      "id": 199,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "妮维雅香水走珠夜",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 25,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 135,
+          "y": 520
+        }
+      },
+      "category": "个人卫生类",
+      "createdAt": "1736000000000",
+      "description": "防晒霜",
+      "hasBlock": true,
+      "id": 198,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "两个 Dr.G 防晒膏",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 35,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 95,
+          "y": 520
+        }
+      },
+      "category": "个人卫生类",
+      "createdAt": "1736000000000",
+      "description": "洁面乳",
+      "hasBlock": true,
+      "id": 197,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "米粹洗面奶",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "circle",
+          "size": {
+            "height": 35,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 520
+        }
+      },
+      "category": "个人卫生类",
+      "createdAt": "1736000000000",
+      "description": "化妆镜",
+      "hasBlock": true,
+      "id": 196,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "镜子",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 20,
+            "width": 25
+          }
+        },
+        "position": {
+          "x": 275,
+          "y": 490
+        }
+      },
+      "category": "个人卫生类",
+      "createdAt": "1736000000000",
+      "description": "牙刷头收纳盒",
+      "hasBlock": true,
+      "id": 195,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "电动牙刷头盒",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 10,
+            "width": 20
+          }
+        },
+        "position": {
+          "x": 245,
+          "y": 490
+        }
+      },
+      "category": "个人卫生类",
+      "createdAt": "1736000000000",
+      "description": "掏耳勺",
+      "hasBlock": true,
+      "id": 194,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "耳勺",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 20,
+            "width": 25
+          }
+        },
+        "position": {
+          "x": 210,
+          "y": 490
+        }
+      },
+      "category": "个人卫生类",
+      "createdAt": "1736000000000",
+      "description": "牙刷头收纳",
+      "hasBlock": true,
+      "id": 193,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "牙头盒",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 20,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 170,
+          "y": 490
+        }
+      },
+      "category": "个人卫生类",
+      "createdAt": "1736000000000",
+      "description": "刷牙牙膏",
+      "hasBlock": true,
+      "id": 192,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "牙膏",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 35,
+            "width": 25
+          }
+        },
+        "position": {
+          "x": 135,
+          "y": 490
+        }
+      },
+      "category": "个人卫生类",
+      "createdAt": "1736000000000",
+      "description": "电动牙刷",
+      "hasBlock": true,
+      "id": 191,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "电动牙刷",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 25,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 90,
+          "y": 490
+        }
+      },
+      "category": "个人卫生类",
+      "createdAt": "1736000000000",
+      "description": "指甲护理",
+      "hasBlock": true,
+      "id": 190,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "指甲工具盒",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 20,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 490
+        }
+      },
+      "category": "个人卫生类",
+      "createdAt": "1736000000000",
+      "description": "剃须刀",
+      "hasBlock": true,
+      "id": 189,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "刮胡刀",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 40,
+            "width": 50
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 330
+        }
+      },
+      "category": "个人卫生类",
+      "createdAt": "1736000000000",
+      "description": "洗澡浴巾",
+      "hasBlock": true,
+      "id": 188,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_underbed_1",
+      "name": "一块浴巾",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "underbed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 30,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 245,
+          "y": 280
+        }
+      },
+      "category": "个人卫生类",
+      "createdAt": "1736000000000",
+      "description": "洗脸毛巾",
+      "hasBlock": true,
+      "id": 187,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_underbed_1",
+      "name": "两块擦脸毛巾",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "underbed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 50,
+            "width": 50
+          }
+        },
+        "position": {
+          "x": 185,
+          "y": 280
+        }
+      },
+      "category": "日用品",
+      "createdAt": "1736000000000",
+      "description": "称重用具",
+      "hasBlock": true,
+      "id": 186,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_underbed_1",
+      "name": "体重秤",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "underbed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#20B2AA",
+          "shape": "rectangle",
+          "size": {
+            "height": 60,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 145,
+          "y": 280
+        }
+      },
+      "category": "雨类",
+      "createdAt": "1736000000000",
+      "description": "防雨用具",
+      "hasBlock": true,
+      "id": 185,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_underbed_1",
+      "name": "雨伞",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "underbed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#20B2AA",
+          "shape": "rectangle",
+          "size": {
+            "height": 50,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 100,
+          "y": 310
+        }
+      },
+      "category": "雨类",
+      "createdAt": "1736000000000",
+      "description": "防雨用具",
+      "hasBlock": true,
+      "id": 184,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "雨衣",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#228B22",
+          "shape": "rectangle",
+          "size": {
+            "height": 40,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 120,
+          "y": 460
+        }
+      },
+      "category": "驱蚊类",
+      "createdAt": "1736000000000",
+      "description": "驱蚊花露水",
+      "hasBlock": true,
+      "id": 183,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "花露水",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#228B22",
+          "shape": "rectangle",
+          "size": {
+            "height": 35,
+            "width": 25
+          }
+        },
+        "position": {
+          "x": 85,
+          "y": 460
+        }
+      },
+      "category": "驱蚊类",
+      "createdAt": "1736000000000",
+      "description": "驱蚊液",
+      "hasBlock": true,
+      "id": 182,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "避蚊胺",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#228B22",
+          "shape": "rectangle",
+          "size": {
+            "height": 15,
+            "width": 25
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 460
+        }
+      },
+      "category": "驱蚊类",
+      "createdAt": "1736000000000",
+      "description": "点火用",
+      "hasBlock": true,
+      "id": 181,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "打火机",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#228B22",
+          "shape": "circle",
+          "size": {
+            "height": 40,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 95,
+          "y": 280
+        }
+      },
+      "category": "驱蚊类",
+      "createdAt": "1736000000000",
+      "description": "盘式蚊香",
+      "hasBlock": true,
+      "id": 180,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_underbed_1",
+      "name": "圈蚊香",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "underbed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#228B22",
+          "shape": "rectangle",
+          "size": {
+            "height": 20,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 280
+        }
+      },
+      "category": "驱蚊类",
+      "createdAt": "1736000000000",
+      "description": "线香蚊香",
+      "hasBlock": true,
+      "id": 179,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_underbed_1",
+      "name": "根蚊香",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "underbed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 30,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 310
+        }
+      },
+      "category": "睡眠类",
+      "createdAt": "1736000000000",
+      "description": "枕套",
+      "hasBlock": true,
+      "id": 178,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "换洗枕头罩",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 198,
+            "width": 60
+          }
+        },
+        "position": {
+          "x": 0,
+          "y": 137
+        }
+      },
+      "category": "睡眠类",
+      "createdAt": "1736000000000",
+      "description": "睡眠枕头",
+      "hasBlock": true,
+      "id": 177,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_bed_1",
+      "name": "枕头",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1774432674274",
+      "viewId": "bed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 15,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 110,
+          "y": 430
+        }
+      },
+      "category": "睡眠类",
+      "createdAt": "1736000000000",
+      "description": "睡眠眼罩",
+      "hasBlock": true,
+      "id": 176,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "眼罩",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 15,
+            "width": 20
+          }
+        },
+        "position": {
+          "x": 80,
+          "y": 430
+        }
+      },
+      "category": "睡眠类",
+      "createdAt": "1736000000000",
+      "description": "备用耳塞",
+      "hasBlock": true,
+      "id": 175,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "备用耳塞",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 64,
+            "width": 116
+          }
+        },
+        "position": {
+          "x": 205,
+          "y": 135
+        }
+      },
+      "category": "睡眠类",
+      "createdAt": "1736000000000",
+      "description": "睡眠耳塞",
+      "hasBlock": true,
+      "id": 174,
+      "labelEnabled": false,
+      "labelPosition": {
+        "anchor": "right",
+        "offsetX": 0,
+        "offsetY": 0
+      },
+      "layerId": "layer_bed_1",
+      "name": "耳塞",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "2026-04-26 22:23:22",
+      "viewId": "bed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 70,
+            "width": 90
+          }
+        },
+        "position": {
+          "x": 426,
+          "y": 302
+        }
+      },
+      "category": "睡眠类",
+      "createdAt": "1736000000000",
+      "description": "冬季被子",
+      "hasBlock": true,
+      "id": 173,
+      "labelEnabled": true,
+      "labelPosition": {
+        "anchor": "right",
+        "offsetX": 137.99999313354488,
+        "offsetY": -25.99998779296874
+      },
+      "layerId": "layer_bed_1",
+      "name": "小棉被",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "2026-04-30 22:20:55",
+      "viewId": "bed"
+    },
+    {
+      "block": null,
+      "category": "睡眠类",
+      "createdAt": "1736000000000",
+      "description": "夏季被子",
+      "hasBlock": false,
+      "id": 172,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_bed_1",
+      "name": "夏凉被",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1774432466746",
+      "viewId": "bed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 652,
+            "width": 1473
+          }
+        },
+        "position": {
+          "x": -21,
+          "y": -76
+        }
+      },
+      "category": "睡眠类",
+      "createdAt": "1736000000000",
+      "description": "夏季凉席",
+      "hasBlock": true,
+      "id": 171,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_1774432510794",
+      "name": "艾草凉席",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1774432647273",
+      "viewId": "bed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 574,
+            "width": 1323
+          }
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "category": "睡眠类",
+      "createdAt": "1736000000000",
+      "description": "床铺床单",
+      "hasBlock": true,
+      "id": 170,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_1774432514986",
+      "name": "床单",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1774432629410",
+      "viewId": "bed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 561,
+            "width": 1323
+          }
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "category": "睡眠类",
+      "createdAt": "1736000000000",
+      "description": "床铺床垫",
+      "hasBlock": true,
+      "id": 169,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_1774432611116",
+      "name": "4cm 床垫",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1774432619451",
+      "viewId": "bed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 25,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 205,
+          "y": 400
+        }
+      },
+      "category": "有用的小物件",
+      "createdAt": "1736000000000",
+      "description": "刀具收纳盒",
+      "hasBlock": true,
+      "id": 168,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "蝴蝶刀盒",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 20,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 160,
+          "y": 400
+        }
+      },
+      "category": "有用的小物件",
+      "createdAt": "1736000000000",
+      "description": "眼镜收纳盒",
+      "hasBlock": true,
+      "id": 167,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "眼镜壳",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 15,
+            "width": 25
+          }
+        },
+        "position": {
+          "x": 125,
+          "y": 400
+        }
+      },
+      "category": "有用的小物件",
+      "createdAt": "1736000000000",
+      "description": "梳子",
+      "hasBlock": true,
+      "id": 166,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "小梳子",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 20,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 85,
+          "y": 400
+        }
+      },
+      "category": "有用的小物件",
+      "createdAt": "1736000000000",
+      "description": "便携纸巾",
+      "hasBlock": true,
+      "id": 165,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "两小包卫生纸",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 30,
+            "width": 25
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 400
+        }
+      },
+      "category": "有用的小物件",
+      "createdAt": "1736000000000",
+      "description": "个人照片",
+      "hasBlock": true,
+      "id": 164,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "证件照",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 25,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 280,
+          "y": 370
+        }
+      },
+      "category": "有用的小物件",
+      "createdAt": "1736000000000",
+      "description": "红包",
+      "hasBlock": true,
+      "id": 163,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "105 的红包",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 20,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 240,
+          "y": 370
+        }
+      },
+      "category": "有用的小物件",
+      "createdAt": "1736000000000",
+      "description": "银行卡",
+      "hasBlock": true,
+      "id": 162,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "农业银行卡",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 20,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 200,
+          "y": 370
+        }
+      },
+      "category": "有用的小物件",
+      "createdAt": "1736000000000",
+      "description": "银行卡",
+      "hasBlock": true,
+      "id": 161,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "邮政银行卡",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 20,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 160,
+          "y": 370
+        }
+      },
+      "category": "有用的小物件",
+      "createdAt": "1736000000000",
+      "description": "校园卡",
+      "hasBlock": true,
+      "id": 160,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "学生卡",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 20,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 120,
+          "y": 370
+        }
+      },
+      "category": "有用的小物件",
+      "createdAt": "1736000000000",
+      "description": "学生证件",
+      "hasBlock": true,
+      "id": 159,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "学生证",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 15,
+            "width": 20
+          }
+        },
+        "position": {
+          "x": 90,
+          "y": 370
+        }
+      },
+      "category": "有用的小物件",
+      "createdAt": "1736000000000",
+      "description": "手机 SIM 卡",
+      "hasBlock": true,
+      "id": 158,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "联通手机卡",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4682B4",
+          "shape": "rectangle",
+          "size": {
+            "height": 20,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 370
+        }
+      },
+      "category": "有用的小物件",
+      "createdAt": "1736000000000",
+      "description": "重要证件",
+      "hasBlock": true,
+      "id": 157,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "身份证",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 50,
+            "width": 67
+          }
+        },
+        "position": {
+          "x": 135,
+          "y": 365
+        }
+      },
+      "category": "历史物",
+      "createdAt": "1736000000000",
+      "description": "酒类",
+      "hasBlock": true,
+      "id": 156,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet2_1",
+      "name": "一瓶酒",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1774352141604",
+      "viewId": "cabinet2"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 25,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 110,
+          "y": 260
+        }
+      },
+      "category": "历史物",
+      "createdAt": "1736000000000",
+      "description": "游泳用品",
+      "hasBlock": true,
+      "id": 155,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "泳裤",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 40,
+            "width": 50
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 260
+        }
+      },
+      "category": "历史物",
+      "createdAt": "1736000000000",
+      "description": "床上用品",
+      "hasBlock": true,
+      "id": 154,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "两个床单",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 20,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 80,
+          "y": 320
+        }
+      },
+      "category": "历史物",
+      "createdAt": "1736000000000",
+      "description": "体育用具",
+      "hasBlock": true,
+      "id": 153,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet1_1",
+      "name": "气针断掉的气筒",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "cabinet1"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "circle",
+          "size": {
+            "height": 50,
+            "width": 50
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 220
+        }
+      },
+      "category": "历史物",
+      "createdAt": "1736000000000",
+      "description": "体育用品",
+      "hasBlock": true,
+      "id": 152,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_underbed_1",
+      "name": "排球",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "underbed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 30,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 340
+        }
+      },
+      "category": "历史物",
+      "createdAt": "1736000000000",
+      "description": "重要文件",
+      "hasBlock": true,
+      "id": 151,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "录取通知书",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#696969",
+          "shape": "circle",
+          "size": {
+            "height": 30,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 175,
+          "y": 310
+        }
+      },
+      "category": "工具类",
+      "createdAt": "1736000000000",
+      "description": "办公胶带",
+      "hasBlock": true,
+      "id": 150,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "2 个宽胶带",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#696969",
+          "shape": "irregular",
+          "size": {
+            "height": 25,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 260,
+          "y": 280
+        }
+      },
+      "category": "工具类",
+      "createdAt": "1736000000000",
+      "description": "维修工具",
+      "hasBlock": true,
+      "id": 149,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet1_1",
+      "name": "钳子",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "cabinet1"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#696969",
+          "shape": "circle",
+          "size": {
+            "height": 30,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 220,
+          "y": 280
+        }
+      },
+      "category": "工具类",
+      "createdAt": "1736000000000",
+      "description": "测量工具",
+      "hasBlock": true,
+      "id": 148,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet1_1",
+      "name": "卷尺",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "cabinet1"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#696969",
+          "shape": "rectangle",
+          "size": {
+            "height": 55,
+            "width": 45
+          }
+        },
+        "position": {
+          "x": 275,
+          "y": 200
+        }
+      },
+      "category": "工具类",
+      "createdAt": "1736000000000",
+      "description": "实验用服装",
+      "hasBlock": true,
+      "id": 147,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "实验服",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#696969",
+          "shape": "rectangle",
+          "size": {
+            "height": 25,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 175,
+          "y": 280
+        }
+      },
+      "category": "工具类",
+      "createdAt": "1736000000000",
+      "description": "防护用具",
+      "hasBlock": true,
+      "id": 146,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet1_1",
+      "name": "两包防护手套",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "cabinet1"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#696969",
+          "shape": "rectangle",
+          "size": {
+            "height": 25,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 130,
+          "y": 280
+        }
+      },
+      "category": "工具类",
+      "createdAt": "1736000000000",
+      "description": "收纳钩",
+      "hasBlock": true,
+      "id": 145,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet1_1",
+      "name": "一袋黑色钩子",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "cabinet1"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#696969",
+          "shape": "rectangle",
+          "size": {
+            "height": 15,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 80,
+          "y": 280
+        }
+      },
+      "category": "工具类",
+      "createdAt": "1736000000000",
+      "description": "维修工具",
+      "hasBlock": true,
+      "id": 144,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet1_1",
+      "name": "锉刀",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "cabinet1"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#696969",
+          "shape": "rectangle",
+          "size": {
+            "height": 15,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 135,
+          "y": 310
+        }
+      },
+      "category": "工具类",
+      "createdAt": "1736000000000",
+      "description": "办公用品",
+      "hasBlock": true,
+      "id": 143,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "美工刀",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#696969",
+          "shape": "irregular",
+          "size": {
+            "height": 35,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 95,
+          "y": 310
+        }
+      },
+      "category": "工具类",
+      "createdAt": "1736000000000",
+      "description": "办公用品",
+      "hasBlock": true,
+      "id": 142,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "剪刀",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#696969",
+          "shape": "rectangle",
+          "size": {
+            "height": 20,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 310
+        }
+      },
+      "category": "工具类",
+      "createdAt": "1736000000000",
+      "description": "办公用品",
+      "hasBlock": true,
+      "id": 141,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "订书机",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 50,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 230,
+          "y": 200
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "薄衣物",
+      "hasBlock": true,
+      "id": 140,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "阔腿黑牛仔裤",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 40,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 185,
+          "y": 200
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "薄衣物",
+      "hasBlock": true,
+      "id": 139,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "白蓝 V 领短袖",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 25,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 130,
+          "y": 280
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "小衣物",
+      "hasBlock": true,
+      "id": 138,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "鞋垫包",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 25,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 90,
+          "y": 280
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "小衣物",
+      "hasBlock": true,
+      "id": 137,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "内裤包",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 25,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 280
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "小衣物",
+      "hasBlock": true,
+      "id": 136,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "袜子包",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 35,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 140,
+          "y": 200
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "薄衣物",
+      "hasBlock": true,
+      "id": 135,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "咖啡色短裤",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 35,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 95,
+          "y": 200
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "薄衣物",
+      "hasBlock": true,
+      "id": 134,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "两条黑短裤",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 50,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 200
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "薄衣物",
+      "hasBlock": true,
+      "id": 133,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "普通长裤",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 35,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 295,
+          "y": 140
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "薄衣物",
+      "hasBlock": true,
+      "id": 132,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "冰丝短裤",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 50,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 250,
+          "y": 140
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "薄衣物",
+      "hasBlock": true,
+      "id": 131,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "冰丝长裤",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 40,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 200,
+          "y": 140
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "薄衣物",
+      "hasBlock": true,
+      "id": 130,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "两个巧克力色短袖",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 40,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 150,
+          "y": 140
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "薄衣物",
+      "hasBlock": true,
+      "id": 129,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "两个黑色 V 领短袖",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 40,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 100,
+          "y": 140
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "薄衣物",
+      "hasBlock": true,
+      "id": 128,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "亮灰色圆领短袖",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 50,
+            "width": 45
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 180
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "薄衣物",
+      "hasBlock": true,
+      "id": 127,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_top_1",
+      "name": "绿色外套",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_top"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 40,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 140
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "薄衣物",
+      "hasBlock": true,
+      "id": 126,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "墨绿色 V 领短袖",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 50,
+            "width": 45
+          }
+        },
+        "position": {
+          "x": 270,
+          "y": 115
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "薄衣物",
+      "hasBlock": true,
+      "id": 125,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_top_1",
+      "name": "白黄色外套",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_top"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 40,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 250,
+          "y": 90
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "薄衣物",
+      "hasBlock": true,
+      "id": 124,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "淡黄色无袖汗衫",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 40,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 200,
+          "y": 90
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "薄衣物",
+      "hasBlock": true,
+      "id": 123,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "黑白条纹短袖",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 40,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 150,
+          "y": 90
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "薄衣物",
+      "hasBlock": true,
+      "id": 122,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "白色圆领短袖",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 40,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 100,
+          "y": 90
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "薄衣物",
+      "hasBlock": true,
+      "id": 121,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "白色 V 领短袖",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 40,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 90
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "薄衣物",
+      "hasBlock": true,
+      "id": 120,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "白色无袖汗衫",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 50,
+            "width": 45
+          }
+        },
+        "position": {
+          "x": 330,
+          "y": 30
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "厚衣物",
+      "hasBlock": true,
+      "id": 119,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "黑色绒袄",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 55,
+            "width": 45
+          }
+        },
+        "position": {
+          "x": 215,
+          "y": 115
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "厚衣物",
+      "hasBlock": true,
+      "id": 118,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_top_1",
+      "name": "黑色白井杠外套",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_top"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 45,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 275,
+          "y": 30
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "厚衣物",
+      "hasBlock": true,
+      "id": 117,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "黑色秋裤",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 45,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 220,
+          "y": 30
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "厚衣物",
+      "hasBlock": true,
+      "id": 116,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "黑色绒毛秋衣",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 50,
+            "width": 45
+          }
+        },
+        "position": {
+          "x": 160,
+          "y": 115
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "厚衣物",
+      "hasBlock": true,
+      "id": 115,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_top_1",
+      "name": "黑色粗针织毛衣",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_top"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 50,
+            "width": 45
+          }
+        },
+        "position": {
+          "x": 105,
+          "y": 115
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "厚衣物",
+      "hasBlock": true,
+      "id": 114,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_top_1",
+      "name": "黑色细针织毛衣",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_top"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 50,
+            "width": 45
+          }
+        },
+        "position": {
+          "x": 165,
+          "y": 30
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "厚衣物",
+      "hasBlock": true,
+      "id": 113,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "黑色厚卫衣",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 55,
+            "width": 45
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 115
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "厚衣物",
+      "hasBlock": true,
+      "id": 112,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_top_1",
+      "name": "黑色白细条杠外套",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_top"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 50,
+            "width": 45
+          }
+        },
+        "position": {
+          "x": 110,
+          "y": 30
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "厚衣物",
+      "hasBlock": true,
+      "id": 111,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "灰色厚卫衣",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 50,
+            "width": 45
+          }
+        },
+        "position": {
+          "x": 270,
+          "y": 50
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "厚衣物",
+      "hasBlock": true,
+      "id": 110,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_top_1",
+      "name": "灰色 V 领毛衣",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_top"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 55,
+            "width": 45
+          }
+        },
+        "position": {
+          "x": 215,
+          "y": 50
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "厚衣物",
+      "hasBlock": true,
+      "id": 109,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_top_1",
+      "name": "黑绿色牛仔褂",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_top"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 50,
+            "width": 45
+          }
+        },
+        "position": {
+          "x": 160,
+          "y": 50
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "厚衣物",
+      "hasBlock": true,
+      "id": 108,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_top_1",
+      "name": "黑白条纹长袖",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_top"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 55,
+            "width": 45
+          }
+        },
+        "position": {
+          "x": 105,
+          "y": 50
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "厚衣物",
+      "hasBlock": true,
+      "id": 107,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_top_1",
+      "name": "白黑褂",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_top"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#D2691E",
+          "shape": "rectangle",
+          "size": {
+            "height": 55,
+            "width": 45
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      },
+      "category": "衣物类",
+      "createdAt": "1736000000000",
+      "description": "厚衣物",
+      "hasBlock": true,
+      "id": 106,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_top_1",
+      "name": "纯白长褂",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_top"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#20B2AA",
+          "shape": "rectangle",
+          "size": {
+            "height": 20,
+            "width": 25
+          }
+        },
+        "position": {
+          "x": 115,
+          "y": 250
+        }
+      },
+      "category": "物品清洁类",
+      "createdAt": "1736000000000",
+      "description": "分装湿巾",
+      "hasBlock": true,
+      "id": 105,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "分装湿巾",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#20B2AA",
+          "shape": "rectangle",
+          "size": {
+            "height": 20,
+            "width": 25
+          }
+        },
+        "position": {
+          "x": 80,
+          "y": 250
+        }
+      },
+      "category": "物品清洁类",
+      "createdAt": "1736000000000",
+      "description": "便携湿巾",
+      "hasBlock": true,
+      "id": 104,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "小包湿巾",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#20B2AA",
+          "shape": "rectangle",
+          "size": {
+            "height": 15,
+            "width": 20
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 250
+        }
+      },
+      "category": "物品清洁类",
+      "createdAt": "1736000000000",
+      "description": "眼镜清洁布",
+      "hasBlock": true,
+      "id": 103,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "眼睛布",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#20B2AA",
+          "shape": "rectangle",
+          "size": {
+            "height": 20,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 265,
+          "y": 160
+        }
+      },
+      "category": "物品清洁类",
+      "createdAt": "1736000000000",
+      "description": "清洁海绵",
+      "hasBlock": true,
+      "id": 102,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_underbed_1",
+      "name": "使用中清洁擦",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "underbed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#20B2AA",
+          "shape": "rectangle",
+          "size": {
+            "height": 20,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 225,
+          "y": 160
+        }
+      },
+      "category": "物品清洁类",
+      "createdAt": "1736000000000",
+      "description": "清洁海绵",
+      "hasBlock": true,
+      "id": 101,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_underbed_1",
+      "name": "2 张待用清洁擦",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "underbed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#20B2AA",
+          "shape": "rectangle",
+          "size": {
+            "height": 25,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 185,
+          "y": 160
+        }
+      },
+      "category": "物品清洁类",
+      "createdAt": "1736000000000",
+      "description": "厨房清洁巾",
+      "hasBlock": true,
+      "id": 100,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_underbed_1",
+      "name": "擦厨具的毛巾",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "underbed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#20B2AA",
+          "shape": "rectangle",
+          "size": {
+            "height": 25,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 145,
+          "y": 160
+        }
+      },
+      "category": "物品清洁类",
+      "createdAt": "1736000000000",
+      "description": "清洁毛巾",
+      "hasBlock": true,
+      "id": 99,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_underbed_1",
+      "name": "擦桌子的毛巾",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "underbed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#20B2AA",
+          "shape": "rectangle",
+          "size": {
+            "height": 30,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 100,
+          "y": 160
+        }
+      },
+      "category": "物品清洁类",
+      "createdAt": "1736000000000",
+      "description": "备用毛巾",
+      "hasBlock": true,
+      "id": 98,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_underbed_1",
+      "name": "3 块待用小方毛巾",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "underbed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#20B2AA",
+          "shape": "rectangle",
+          "size": {
+            "height": 30,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 160
+        }
+      },
+      "category": "物品清洁类",
+      "createdAt": "1736000000000",
+      "description": "被子夹收纳",
+      "hasBlock": true,
+      "id": 97,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_underbed_1",
+      "name": "5 个被子夹包",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "underbed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#20B2AA",
+          "shape": "rectangle",
+          "size": {
+            "height": 40,
+            "width": 50
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 30
+        }
+      },
+      "category": "物品清洁类",
+      "createdAt": "1736000000000",
+      "description": "衣架收纳",
+      "hasBlock": true,
+      "id": 96,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_wardrobe_bottom_1",
+      "name": "20 个晾衣架的包",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#20B2AA",
+          "shape": "rectangle",
+          "size": {
+            "height": 50,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 235,
+          "y": 50
+        }
+      },
+      "category": "物品清洁类",
+      "createdAt": "1736000000000",
+      "description": "衣物清洁",
+      "hasBlock": true,
+      "id": 95,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_underbed_1",
+      "name": "洗衣粉",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "underbed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#20B2AA",
+          "shape": "rectangle",
+          "size": {
+            "height": 50,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 190,
+          "y": 50
+        }
+      },
+      "category": "物品清洁类",
+      "createdAt": "1736000000000",
+      "description": "厨房清洁",
+      "hasBlock": true,
+      "id": 94,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_underbed_1",
+      "name": "洗洁精",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "underbed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#20B2AA",
+          "shape": "rectangle",
+          "size": {
+            "height": 25,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 145,
+          "y": 50
+        }
+      },
+      "category": "物品清洁类",
+      "createdAt": "1736000000000",
+      "description": "清洁湿巾",
+      "hasBlock": true,
+      "id": 93,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_underbed_1",
+      "name": "普通湿巾",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "underbed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#20B2AA",
+          "shape": "rectangle",
+          "size": {
+            "height": 25,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 100,
+          "y": 50
+        }
+      },
+      "category": "物品清洁类",
+      "createdAt": "1736000000000",
+      "description": "消毒湿巾",
+      "hasBlock": true,
+      "id": 92,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_underbed_1",
+      "name": "酒精湿巾",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "underbed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#20B2AA",
+          "shape": "circle",
+          "size": {
+            "height": 40,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      },
+      "category": "物品清洁类",
+      "createdAt": "1736000000000",
+      "description": "卫生用纸",
+      "hasBlock": true,
+      "id": 91,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_underbed_1",
+      "name": "五卷卫生纸",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "underbed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#DC143C",
+          "shape": "rectangle",
+          "size": {
+            "height": 25,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 245,
+          "y": 215
+        }
+      },
+      "category": "药品",
+      "createdAt": "1736000000000",
+      "description": "感冒用药",
+      "hasBlock": true,
+      "id": 90,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "消积颗粒",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#DC143C",
+          "shape": "rectangle",
+          "size": {
+            "height": 15,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 205,
+          "y": 215
+        }
+      },
+      "category": "药品",
+      "createdAt": "1736000000000",
+      "description": "医用棉签",
+      "hasBlock": true,
+      "id": 89,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "棉签",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#DC143C",
+          "shape": "rectangle",
+          "size": {
+            "height": 35,
+            "width": 25
+          }
+        },
+        "position": {
+          "x": 170,
+          "y": 215
+        }
+      },
+      "category": "药品",
+      "createdAt": "1736000000000",
+      "description": "皮肤用药",
+      "hasBlock": true,
+      "id": 88,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "碘水喷雾",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#DC143C",
+          "shape": "rectangle",
+          "size": {
+            "height": 20,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 130,
+          "y": 215
+        }
+      },
+      "category": "药品",
+      "createdAt": "1736000000000",
+      "description": "皮肤用药",
+      "hasBlock": true,
+      "id": 87,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "酮康锉乳膏",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#DC143C",
+          "shape": "rectangle",
+          "size": {
+            "height": 25,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 90,
+          "y": 215
+        }
+      },
+      "category": "药品",
+      "createdAt": "1736000000000",
+      "description": "皮肤用药",
+      "hasBlock": true,
+      "id": 86,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "云南白药",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#DC143C",
+          "shape": "rectangle",
+          "size": {
+            "height": 20,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 215
+        }
+      },
+      "category": "药品",
+      "createdAt": "1736000000000",
+      "description": "皮肤用药",
+      "hasBlock": true,
+      "id": 85,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "夫西地乳膏",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#DC143C",
+          "shape": "rectangle",
+          "size": {
+            "height": 25,
+            "width": 25
+          }
+        },
+        "position": {
+          "x": 265,
+          "y": 180
+        }
+      },
+      "category": "药品",
+      "createdAt": "1736000000000",
+      "description": "维生素补剂",
+      "hasBlock": true,
+      "id": 84,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "维生素 B1 片",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#DC143C",
+          "shape": "rectangle",
+          "size": {
+            "height": 30,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 225,
+          "y": 180
+        }
+      },
+      "category": "药品",
+      "createdAt": "1736000000000",
+      "description": "维生素补剂",
+      "hasBlock": true,
+      "id": 83,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "复合维生素",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#DC143C",
+          "shape": "rectangle",
+          "size": {
+            "height": 30,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 185,
+          "y": 180
+        }
+      },
+      "category": "药品",
+      "createdAt": "1736000000000",
+      "description": "维生素补剂",
+      "hasBlock": true,
+      "id": 82,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "血橙 B 族维生素",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#DC143C",
+          "shape": "rectangle",
+          "size": {
+            "height": 25,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 140,
+          "y": 180
+        }
+      },
+      "category": "药品",
+      "createdAt": "1736000000000",
+      "description": "失眠用药",
+      "hasBlock": true,
+      "id": 81,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "安神补心丸",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#DC143C",
+          "shape": "rectangle",
+          "size": {
+            "height": 25,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 95,
+          "y": 180
+        }
+      },
+      "category": "药品",
+      "createdAt": "1736000000000",
+      "description": "失眠用药",
+      "hasBlock": true,
+      "id": 80,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "夜心舒褪黑素",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#DC143C",
+          "shape": "rectangle",
+          "size": {
+            "height": 25,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 180
+        }
+      },
+      "category": "药品",
+      "createdAt": "1736000000000",
+      "description": "失眠用药",
+      "hasBlock": true,
+      "id": 79,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "长兴牌褪黑素片",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#228B22",
+          "shape": "rectangle",
+          "size": {
+            "height": 25,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 605,
+          "y": 170
+        }
+      },
+      "category": "食品类",
+      "createdAt": "1736000000000",
+      "description": "清凉薄荷糖",
+      "hasBlock": true,
+      "id": 78,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet2_1",
+      "name": "薄荷糖",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1774352126037",
+      "viewId": "cabinet2"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#228B22",
+          "shape": "rectangle",
+          "size": {
+            "height": 40,
+            "width": 50
+          }
+        },
+        "position": {
+          "x": 80,
+          "y": 270
+        }
+      },
+      "category": "食品类",
+      "createdAt": "1736000000000",
+      "description": "食用大米",
+      "hasBlock": true,
+      "id": 77,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet2_1",
+      "name": "两斤大米",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "cabinet2"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#228B22",
+          "shape": "rectangle",
+          "size": {
+            "height": 30,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 84,
+          "y": 179
+        }
+      },
+      "category": "食品类",
+      "createdAt": "1736000000000",
+      "description": "枸杞饮品",
+      "hasBlock": true,
+      "id": 76,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet2_1",
+      "name": "枸杞液包",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1774300257900",
+      "viewId": "cabinet2"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#228B22",
+          "shape": "rectangle",
+          "size": {
+            "height": 55,
+            "width": 45
+          }
+        },
+        "position": {
+          "x": 175,
+          "y": 20
+        }
+      },
+      "category": "食品类",
+      "createdAt": "1736000000000",
+      "description": "蛋白质粉",
+      "hasBlock": true,
+      "id": 75,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet2_1",
+      "name": "蛋白粉",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "cabinet2"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#228B22",
+          "shape": "rectangle",
+          "size": {
+            "height": 50,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 130,
+          "y": 20
+        }
+      },
+      "category": "食品类",
+      "createdAt": "1736000000000",
+      "description": "饮用牛奶",
+      "hasBlock": true,
+      "id": 74,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet2_1",
+      "name": "牛奶",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "cabinet2"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#228B22",
+          "shape": "rectangle",
+          "size": {
+            "height": 40,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 80,
+          "y": 20
+        }
+      },
+      "category": "食品类",
+      "createdAt": "1736000000000",
+      "description": "营养补剂",
+      "hasBlock": true,
+      "id": 73,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet2_1",
+      "name": "补剂",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "cabinet2"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 35,
+            "width": 25
+          }
+        },
+        "position": {
+          "x": 190,
+          "y": 140
+        }
+      },
+      "category": "书纸类",
+      "createdAt": "1736000000000",
+      "description": "小笔记本",
+      "hasBlock": true,
+      "id": 72,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "小红本",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 25,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 145,
+          "y": 140
+        }
+      },
+      "category": "书纸类",
+      "createdAt": "1736000000000",
+      "description": "草稿用纸",
+      "hasBlock": true,
+      "id": 71,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "草稿纸",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 25,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 100,
+          "y": 140
+        }
+      },
+      "category": "书纸类",
+      "createdAt": "1736000000000",
+      "description": "实验用纸",
+      "hasBlock": true,
+      "id": 70,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "实验报告纸",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 30,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 140
+        }
+      },
+      "category": "书纸类",
+      "createdAt": "1736000000000",
+      "description": "试卷收纳夹",
+      "hasBlock": true,
+      "id": 69,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "试卷夹",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 45,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 365,
+          "y": 10
+        }
+      },
+      "category": "书纸类",
+      "createdAt": "1736000000000",
+      "description": "历史书籍",
+      "hasBlock": true,
+      "id": 68,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_shelf_bottom_1",
+      "name": "万历十五年",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "shelf_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 45,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 320,
+          "y": 10
+        }
+      },
+      "category": "书纸类",
+      "createdAt": "1736000000000",
+      "description": "历史书籍",
+      "hasBlock": true,
+      "id": 67,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_shelf_bottom_1",
+      "name": "成为雍正",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "shelf_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 45,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 275,
+          "y": 10
+        }
+      },
+      "category": "书纸类",
+      "createdAt": "1736000000000",
+      "description": "古文选集",
+      "hasBlock": true,
+      "id": 66,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_shelf_top_1",
+      "name": "古文观止",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "shelf_top"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 40,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 275,
+          "y": 10
+        }
+      },
+      "category": "书纸类",
+      "createdAt": "1736000000000",
+      "description": "佛经",
+      "hasBlock": true,
+      "id": 65,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_shelf_bottom_1",
+      "name": "心经",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "shelf_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 45,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 230,
+          "y": 10
+        }
+      },
+      "category": "书纸类",
+      "createdAt": "1736000000000",
+      "description": "经济学著作",
+      "hasBlock": true,
+      "id": 64,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_shelf_bottom_1",
+      "name": "资本论",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "shelf_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 45,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 230,
+          "y": 10
+        }
+      },
+      "category": "书纸类",
+      "createdAt": "1736000000000",
+      "description": "数学科普",
+      "hasBlock": true,
+      "id": 63,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_shelf_top_1",
+      "name": "什么是数学",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "shelf_top"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 45,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 320,
+          "y": 10
+        }
+      },
+      "category": "书纸类",
+      "createdAt": "1736000000000",
+      "description": "毛选第四卷",
+      "hasBlock": true,
+      "id": 62,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_shelf_middle_1",
+      "name": "毛泽东选集卷四",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "shelf_middle"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 45,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 275,
+          "y": 10
+        }
+      },
+      "category": "书纸类",
+      "createdAt": "1736000000000",
+      "description": "毛选第三卷",
+      "hasBlock": true,
+      "id": 61,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_shelf_middle_1",
+      "name": "毛泽东选集卷三",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "shelf_middle"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 45,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 230,
+          "y": 10
+        }
+      },
+      "category": "书纸类",
+      "createdAt": "1736000000000",
+      "description": "毛选第二卷",
+      "hasBlock": true,
+      "id": 60,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_shelf_middle_1",
+      "name": "毛泽东选集卷二",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "shelf_middle"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 45,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 185,
+          "y": 10
+        }
+      },
+      "category": "书纸类",
+      "createdAt": "1736000000000",
+      "description": "毛选第一卷",
+      "hasBlock": true,
+      "id": 59,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_shelf_middle_1",
+      "name": "毛泽东选集卷一",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "shelf_middle"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 45,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 185,
+          "y": 10
+        }
+      },
+      "category": "书纸类",
+      "createdAt": "1736000000000",
+      "description": "传播学书籍",
+      "hasBlock": true,
+      "id": 58,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_shelf_bottom_1",
+      "name": "弱传播",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "shelf_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 45,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 140,
+          "y": 10
+        }
+      },
+      "category": "书纸类",
+      "createdAt": "1736000000000",
+      "description": "历史书籍",
+      "hasBlock": true,
+      "id": 57,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_shelf_bottom_1",
+      "name": "大唐气象下",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "shelf_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 45,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 95,
+          "y": 10
+        }
+      },
+      "category": "书纸类",
+      "createdAt": "1736000000000",
+      "description": "历史书籍",
+      "hasBlock": true,
+      "id": 56,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_shelf_bottom_1",
+      "name": "大唐气象中",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "shelf_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 45,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 10
+        }
+      },
+      "category": "书纸类",
+      "createdAt": "1736000000000",
+      "description": "历史书籍",
+      "hasBlock": true,
+      "id": 55,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_shelf_bottom_1",
+      "name": "大唐气象上",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "shelf_bottom"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 45,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 140,
+          "y": 10
+        }
+      },
+      "category": "书纸类",
+      "createdAt": "1736000000000",
+      "description": "西游记系列",
+      "hasBlock": true,
+      "id": 54,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_shelf_middle_1",
+      "name": "西游 胜局",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "shelf_middle"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 45,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 95,
+          "y": 10
+        }
+      },
+      "category": "书纸类",
+      "createdAt": "1736000000000",
+      "description": "西游记系列",
+      "hasBlock": true,
+      "id": 53,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_shelf_middle_1",
+      "name": "西游 入局",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "shelf_middle"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 45,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 10
+        }
+      },
+      "category": "书纸类",
+      "createdAt": "1736000000000",
+      "description": "西游记系列",
+      "hasBlock": true,
+      "id": 52,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_shelf_middle_1",
+      "name": "西游 布局",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "shelf_middle"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 45,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 185,
+          "y": 10
+        }
+      },
+      "category": "书纸类",
+      "createdAt": "1736000000000",
+      "description": "作文范文",
+      "hasBlock": true,
+      "id": 51,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_shelf_top_1",
+      "name": "英语四级作文",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "shelf_top"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 45,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 140,
+          "y": 10
+        }
+      },
+      "category": "书纸类",
+      "createdAt": "1736000000000",
+      "description": "考试真题",
+      "hasBlock": true,
+      "id": 50,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_shelf_top_1",
+      "name": "英语四级真题",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "shelf_top"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 45,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 95,
+          "y": 10
+        }
+      },
+      "category": "书纸类",
+      "createdAt": "1736000000000",
+      "description": "英语学习资料",
+      "hasBlock": true,
+      "id": 49,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_shelf_top_1",
+      "name": "英语四级听力训练",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "shelf_top"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#8B4513",
+          "shape": "rectangle",
+          "size": {
+            "height": 45,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 10
+        }
+      },
+      "category": "书纸类",
+      "createdAt": "1736000000000",
+      "description": "书法字帖",
+      "hasBlock": true,
+      "id": 48,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_shelf_top_1",
+      "name": "意大利斜体字帖",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "shelf_top"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#9370DB",
+          "shape": "circle",
+          "size": {
+            "height": 30,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 901,
+          "y": 104
+        }
+      },
+      "category": "文具",
+      "createdAt": "1736000000000",
+      "description": "收纳筒，自动铅笔*1 黑油笔*3，锉刀笔*1，涂卡笔*1，打火机*1，2B铅*1，0.7mm的铅*1，电位笔*1",
+      "hasBlock": true,
+      "id": 47,
+      "labelEnabled": true,
+      "labelPosition": {
+        "anchor": "right",
+        "offsetX": -3.7384033248599735e-05,
+        "offsetY": 41.9999969482422
+      },
+      "layerId": "layer_desk_1",
+      "name": "透明笔筒",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "2026-04-30 22:48:56",
+      "viewId": "desk"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#9370DB",
+          "shape": "rectangle",
+          "size": {
+            "height": 25,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 155,
+          "y": 110
+        }
+      },
+      "category": "文具",
+      "createdAt": "1736000000000",
+      "description": "笔芯收纳袋",
+      "hasBlock": true,
+      "id": 46,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "黑红笔芯袋",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#9370DB",
+          "shape": "rectangle",
+          "size": {
+            "height": 10,
+            "width": 15
+          }
+        },
+        "position": {
+          "x": 130,
+          "y": 110
+        }
+      },
+      "category": "文具",
+      "createdAt": "1736000000000",
+      "description": "小橡皮擦",
+      "hasBlock": true,
+      "id": 45,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "一杯小橡皮",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#9370DB",
+          "shape": "rectangle",
+          "size": {
+            "height": 12,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 90,
+          "y": 110
+        }
+      },
+      "category": "文具",
+      "createdAt": "1736000000000",
+      "description": "记号笔",
+      "hasBlock": true,
+      "id": 44,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "黑色记号笔",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#9370DB",
+          "shape": "rectangle",
+          "size": {
+            "height": 10,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 110
+        }
+      },
+      "category": "文具",
+      "createdAt": "1736000000000",
+      "description": "备用自动铅笔",
+      "hasBlock": true,
+      "id": 43,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "四支 0.7 的自动铅笔",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#9370DB",
+          "shape": "circle",
+          "size": {
+            "height": 30,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 270,
+          "y": 80
+        }
+      },
+      "category": "文具",
+      "createdAt": "1736000000000",
+      "description": "绘图圆规",
+      "hasBlock": true,
+      "id": 42,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "圆规",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#9370DB",
+          "shape": "rectangle",
+          "size": {
+            "height": 15,
+            "width": 20
+          }
+        },
+        "position": {
+          "x": 235,
+          "y": 80
+        }
+      },
+      "category": "文具",
+      "createdAt": "1736000000000",
+      "description": "橡皮擦",
+      "hasBlock": true,
+      "id": 41,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "一杯橡皮",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#9370DB",
+          "shape": "rectangle",
+          "size": {
+            "height": 15,
+            "width": 25
+          }
+        },
+        "position": {
+          "x": 200,
+          "y": 80
+        }
+      },
+      "category": "文具",
+      "createdAt": "1736000000000",
+      "description": "涂卡专用铅芯",
+      "hasBlock": true,
+      "id": 40,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "涂卡铅",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#9370DB",
+          "shape": "rectangle",
+          "size": {
+            "height": 20,
+            "width": 25
+          }
+        },
+        "position": {
+          "x": 165,
+          "y": 80
+        }
+      },
+      "category": "文具",
+      "createdAt": "1736000000000",
+      "description": "0.5mm 铅芯",
+      "hasBlock": true,
+      "id": 39,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "一盒 0.5 的铅",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#9370DB",
+          "shape": "rectangle",
+          "size": {
+            "height": 20,
+            "width": 25
+          }
+        },
+        "position": {
+          "x": 130,
+          "y": 80
+        }
+      },
+      "category": "文具",
+      "createdAt": "1736000000000",
+      "description": "0.7mm 铅芯",
+      "hasBlock": true,
+      "id": 38,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "一盒 0.7 的铅",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#9370DB",
+          "shape": "rectangle",
+          "size": {
+            "height": 10,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 90,
+          "y": 80
+        }
+      },
+      "category": "文具",
+      "createdAt": "1736000000000",
+      "description": "考试涂卡笔",
+      "hasBlock": true,
+      "id": 37,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "两支涂卡笔",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#9370DB",
+          "shape": "rectangle",
+          "size": {
+            "height": 10,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 80
+        }
+      },
+      "category": "文具",
+      "createdAt": "1736000000000",
+      "description": "黑色签字笔",
+      "hasBlock": true,
+      "id": 36,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "两支黑油笔",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": null,
+      "category": "文具",
+      "createdAt": "1736000000000",
+      "description": "0.7mm 自动铅笔",
+      "hasBlock": false,
+      "id": 35,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_desk_1",
+      "name": "自动铅笔 0.7",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "2026-04-30 22:23:42",
+      "viewId": "desk"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#228B22",
+          "shape": "rectangle",
+          "size": {
+            "height": 35,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 185,
+          "y": 210
+        }
+      },
+      "category": "调料",
+      "createdAt": "1736000000000",
+      "description": "调味粉",
+      "hasBlock": true,
+      "id": 34,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet2_1",
+      "name": "十三香",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "cabinet2"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#228B22",
+          "shape": "rectangle",
+          "size": {
+            "height": 40,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 912,
+          "y": 48
+        }
+      },
+      "category": "调料",
+      "createdAt": "1736000000000",
+      "description": "调味酱",
+      "hasBlock": true,
+      "id": 33,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet2_1",
+      "name": "熟酱",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1774352155828",
+      "viewId": "cabinet2"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#228B22",
+          "shape": "rectangle",
+          "size": {
+            "height": 25,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 352,
+          "y": 170
+        }
+      },
+      "category": "调料",
+      "createdAt": "1736000000000",
+      "description": "食用盐",
+      "hasBlock": true,
+      "id": 32,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet2_1",
+      "name": "两包盐",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1774352129300",
+      "viewId": "cabinet2"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#228B22",
+          "shape": "rectangle",
+          "size": {
+            "height": 30,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 281,
+          "y": 185
+        }
+      },
+      "category": "调料",
+      "createdAt": "1736000000000",
+      "description": "红糖",
+      "hasBlock": true,
+      "id": 31,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet2_1",
+      "name": "一包红糖",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1774352130197",
+      "viewId": "cabinet2"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#228B22",
+          "shape": "rectangle",
+          "size": {
+            "height": 50,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 147,
+          "y": 116
+        }
+      },
+      "category": "调料",
+      "createdAt": "1736000000000",
+      "description": "食用醋",
+      "hasBlock": true,
+      "id": 30,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet2_1",
+      "name": "山西陈醋",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1774300258316",
+      "viewId": "cabinet2"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#228B22",
+          "shape": "rectangle",
+          "size": {
+            "height": 45,
+            "width": 78
+          }
+        },
+        "position": {
+          "x": 270,
+          "y": 86
+        }
+      },
+      "category": "调料",
+      "createdAt": "1736000000000",
+      "description": "芝麻香油",
+      "hasBlock": true,
+      "id": 29,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet2_1",
+      "name": "香油",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1774352128437",
+      "viewId": "cabinet2"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#228B22",
+          "shape": "rectangle",
+          "size": {
+            "height": 55,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 526,
+          "y": 87
+        }
+      },
+      "category": "调料",
+      "createdAt": "1736000000000",
+      "description": "调味酱油",
+      "hasBlock": true,
+      "id": 28,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet2_1",
+      "name": "海天酱油",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1774352126933",
+      "viewId": "cabinet2"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#228B22",
+          "shape": "rectangle",
+          "size": {
+            "height": 60,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 707,
+          "y": 95
+        }
+      },
+      "category": "调料",
+      "createdAt": "1736000000000",
+      "description": "食用油",
+      "hasBlock": true,
+      "id": 27,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet2_1",
+      "name": "金龙鱼豆油",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1774352153396",
+      "viewId": "cabinet2"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#696969",
+          "shape": "rectangle",
+          "size": {
+            "height": 10,
+            "width": 60
+          }
+        },
+        "position": {
+          "x": 150,
+          "y": 220
+        }
+      },
+      "category": "厨具",
+      "createdAt": "1736000000000",
+      "description": "收纳箱盖子",
+      "hasBlock": true,
+      "id": 26,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet1_1",
+      "name": "塑料箱盖",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "cabinet1"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#696969",
+          "shape": "rectangle",
+          "size": {
+            "height": 50,
+            "width": 60
+          }
+        },
+        "position": {
+          "x": 80,
+          "y": 220
+        }
+      },
+      "category": "厨具",
+      "createdAt": "1736000000000",
+      "description": "厨具收纳箱",
+      "hasBlock": true,
+      "id": 25,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet1_1",
+      "name": "厨具小箱",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "cabinet1"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#696969",
+          "shape": "rectangle",
+          "size": {
+            "height": 40,
+            "width": 50
+          }
+        },
+        "position": {
+          "x": 379,
+          "y": 76
+        }
+      },
+      "category": "厨具",
+      "createdAt": "1736000000000",
+      "description": "鸡蛋收纳盒",
+      "hasBlock": true,
+      "id": 24,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet2_1",
+      "name": "鸡蛋装盒",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1774352127684",
+      "viewId": "cabinet2"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#696969",
+          "shape": "rectangle",
+          "size": {
+            "height": 15,
+            "width": 30
+          }
+        },
+        "position": {
+          "x": 250,
+          "y": 160
+        }
+      },
+      "category": "厨具",
+      "createdAt": "1736000000000",
+      "description": "金属勺子",
+      "hasBlock": true,
+      "id": 23,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet1_1",
+      "name": "铁制勺子",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "cabinet1"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#696969",
+          "shape": "rectangle",
+          "size": {
+            "height": 15,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 200,
+          "y": 160
+        }
+      },
+      "category": "厨具",
+      "createdAt": "1736000000000",
+      "description": "金属筷子",
+      "hasBlock": true,
+      "id": 22,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet1_1",
+      "name": "铁制筷子",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "cabinet1"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#696969",
+          "shape": "circle",
+          "size": {
+            "height": 50,
+            "width": 50
+          }
+        },
+        "position": {
+          "x": 160,
+          "y": 100
+        }
+      },
+      "category": "厨具",
+      "createdAt": "1736000000000",
+      "description": "洗漱小盆",
+      "hasBlock": true,
+      "id": 21,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_underbed_1",
+      "name": "塑料小盆",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "underbed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#696969",
+          "shape": "rectangle",
+          "size": {
+            "height": 30,
+            "width": 50
+          }
+        },
+        "position": {
+          "x": 140,
+          "y": 160
+        }
+      },
+      "category": "厨具",
+      "createdAt": "1736000000000",
+      "description": "厨房菜刀",
+      "hasBlock": true,
+      "id": 20,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet1_1",
+      "name": "菜刀",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "cabinet1"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#696969",
+          "shape": "rectangle",
+          "size": {
+            "height": 40,
+            "width": 50
+          }
+        },
+        "position": {
+          "x": 80,
+          "y": 160
+        }
+      },
+      "category": "厨具",
+      "createdAt": "1736000000000",
+      "description": "切菜板",
+      "hasBlock": true,
+      "id": 19,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet1_1",
+      "name": "塑料菜板",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "cabinet1"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#696969",
+          "shape": "circle",
+          "size": {
+            "height": 40,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 190,
+          "y": 100
+        }
+      },
+      "category": "厨具",
+      "createdAt": "1736000000000",
+      "description": "厨房漏勺",
+      "hasBlock": true,
+      "id": 18,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet1_1",
+      "name": "漏勺",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "cabinet1"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#696969",
+          "shape": "rectangle",
+          "size": {
+            "height": 20,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 140,
+          "y": 100
+        }
+      },
+      "category": "厨具",
+      "createdAt": "1736000000000",
+      "description": "电锅电源线",
+      "hasBlock": true,
+      "id": 17,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet1_1",
+      "name": "供电线",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "cabinet1"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#696969",
+          "shape": "circle",
+          "size": {
+            "height": 50,
+            "width": 50
+          }
+        },
+        "position": {
+          "x": 80,
+          "y": 100
+        }
+      },
+      "category": "厨具",
+      "createdAt": "1736000000000",
+      "description": "小型电煮锅",
+      "hasBlock": true,
+      "id": 16,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_cabinet1_1",
+      "name": "600w 小电锅",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "cabinet1"
+    },
+    {
+      "block": null,
+      "category": "电子类",
+      "createdAt": "1736000000000",
+      "description": "游戏控制器",
+      "hasBlock": false,
+      "id": 15,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_desk_1",
+      "name": "游戏手柄",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "2026-04-30 22:23:46",
+      "viewId": "desk"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4A90E2",
+          "shape": "rectangle",
+          "size": {
+            "height": 40,
+            "width": 50
+          }
+        },
+        "position": {
+          "x": 100,
+          "y": 100
+        }
+      },
+      "category": "电子类",
+      "createdAt": "1736000000000",
+      "description": "网络路由器",
+      "hasBlock": true,
+      "id": 14,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_underbed_1",
+      "name": "路由器",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "underbed"
+    },
+    {
+      "block": null,
+      "category": "电子类",
+      "createdAt": "1736000000000",
+      "description": "计算器",
+      "hasBlock": false,
+      "id": 13,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_desk_1",
+      "name": "简易计算机",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "2026-04-30 22:28:03",
+      "viewId": "desk"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4A90E2",
+          "shape": "circle",
+          "size": {
+            "height": 40,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 200,
+          "y": 50
+        }
+      },
+      "category": "电子类",
+      "createdAt": "1736000000000",
+      "description": "英语听力专用",
+      "hasBlock": true,
+      "id": 12,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "听力耳机",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4A90E2",
+          "shape": "circle",
+          "size": {
+            "height": 35,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 150,
+          "y": 50
+        }
+      },
+      "category": "电子类",
+      "createdAt": "1736000000000",
+      "description": "无线蓝牙耳机",
+      "hasBlock": true,
+      "id": 11,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "蓝牙耳机",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": null,
+      "category": "电子类",
+      "createdAt": "1736000000000",
+      "description": "手机充电线",
+      "hasBlock": false,
+      "id": 10,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "充电线",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1774432456266",
+      "viewId": "drawer"
+    },
+    {
+      "block": null,
+      "category": "电子类",
+      "createdAt": "1736000000000",
+      "description": "智能手机",
+      "hasBlock": false,
+      "id": 9,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_bed_1",
+      "name": "手机",
+      "note": "随身携带",
+      "status": "带走",
+      "updatedAt": "1774432454074",
+      "viewId": "bed"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4A90E2",
+          "shape": "circle",
+          "size": {
+            "height": 35,
+            "width": 35
+          }
+        },
+        "position": {
+          "x": 871,
+          "y": 279
+        }
+      },
+      "category": "电子类",
+      "createdAt": "1736000000000",
+      "description": "白色鼠标",
+      "hasBlock": true,
+      "id": 8,
+      "labelEnabled": true,
+      "labelPosition": {
+        "anchor": "right",
+        "offsetX": 10.999962615966751,
+        "offsetY": -6.000003051757801
+      },
+      "layerId": "layer_desk_1",
+      "name": "白鼠标",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "2026-04-30 22:32:48",
+      "viewId": "desk"
+    },
+    {
+      "block": null,
+      "category": "电子类",
+      "createdAt": "1736000000000",
+      "description": "笔筒笔座",
+      "hasBlock": false,
+      "id": 7,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_desk_1",
+      "name": "笔座",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "2026-04-30 22:27:55",
+      "viewId": "desk"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4A90E2",
+          "shape": "rectangle",
+          "size": {
+            "height": 15,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      },
+      "category": "电子类",
+      "createdAt": "1736000000000",
+      "description": "数位板配套笔",
+      "hasBlock": true,
+      "id": 6,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_drawer_1",
+      "name": "数位笔",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "1736000000000",
+      "viewId": "drawer"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4A90E2",
+          "shape": "rectangle",
+          "size": {
+            "height": 30,
+            "width": 70
+          }
+        },
+        "position": {
+          "x": 606,
+          "y": 23
+        }
+      },
+      "category": "电子类",
+      "createdAt": "1736000000000",
+      "description": "绘图数位板",
+      "hasBlock": true,
+      "id": 5,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_desk_1",
+      "name": "数位版",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "2026-04-30 22:31:57",
+      "viewId": "desk"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4A90E2",
+          "shape": "circle",
+          "size": {
+            "height": 40,
+            "width": 40
+          }
+        },
+        "position": {
+          "x": 110,
+          "y": 1
+        }
+      },
+      "category": "电子类",
+      "createdAt": "1736000000000",
+      "description": "学习台灯",
+      "hasBlock": true,
+      "id": 4,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_desk_1",
+      "name": "台灯",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "2026-04-30 22:30:49",
+      "viewId": "desk"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4A90E2",
+          "shape": "rectangle",
+          "size": {
+            "height": 30,
+            "width": 60
+          }
+        },
+        "position": {
+          "x": 528,
+          "y": 0
+        }
+      },
+      "category": "电子类",
+      "createdAt": "1736000000000",
+      "description": "电源插排",
+      "hasBlock": true,
+      "id": 3,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_desk_1",
+      "name": "插排1",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "2026-04-30 22:30:28",
+      "viewId": "desk"
+    },
+    {
+      "block": null,
+      "category": "电子类",
+      "createdAt": "1736000000000",
+      "description": "笔记本电源",
+      "hasBlock": false,
+      "id": 2,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_desk_1",
+      "name": "电源",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "2026-04-30 22:31:20",
+      "viewId": "desk"
+    },
+    {
+      "block": {
+        "appearance": {
+          "color": "#4A90E2",
+          "shape": "rectangle",
+          "size": {
+            "height": 245,
+            "width": 478
+          }
+        },
+        "position": {
+          "x": 354,
+          "y": 60
+        }
+      },
+      "category": "电子类",
+      "createdAt": "1736000000000",
+      "description": "笔记本电脑",
+      "hasBlock": true,
+      "id": 1,
+      "labelEnabled": false,
+      "labelPosition": null,
+      "layerId": "layer_desk_1",
+      "name": "笔记本",
+      "note": "",
+      "status": "在位",
+      "updatedAt": "2026-04-30 22:32:26",
+      "viewId": "desk"
+    }
+  ],
+  "layers": [
+    {
+      "createdAt": "1736000000000",
+      "id": "layer_bed_1",
+      "name": "第一层",
+      "order": 0,
+      "viewId": "bed"
+    },
+    {
+      "createdAt": "1774432510794",
+      "id": "layer_1774432510794",
+      "name": "第二层",
+      "order": 1,
+      "viewId": "bed"
+    },
+    {
+      "createdAt": "1774432514986",
+      "id": "layer_1774432514986",
+      "name": "第三层",
+      "order": 2,
+      "viewId": "bed"
+    },
+    {
+      "createdAt": "1774432611116",
+      "id": "layer_1774432611116",
+      "name": "第四层",
+      "order": 3,
+      "viewId": "bed"
+    },
+    {
+      "createdAt": "1736000000000",
+      "id": "layer_cabinet1_1",
+      "name": "第一层",
+      "order": 0,
+      "viewId": "cabinet1"
+    },
+    {
+      "createdAt": "1736000000000",
+      "id": "layer_cabinet2_1",
+      "name": "第一层",
+      "order": 0,
+      "viewId": "cabinet2"
+    },
+    {
+      "createdAt": "1736000000000",
+      "id": "layer_desk_1",
+      "name": "第一层",
+      "order": 0,
+      "viewId": "desk"
+    },
+    {
+      "createdAt": "1736000000000",
+      "id": "layer_drawer_1",
+      "name": "第一层",
+      "order": 0,
+      "viewId": "drawer"
+    },
+    {
+      "createdAt": "1736000000000",
+      "id": "layer_shelf_bottom_1",
+      "name": "第一层",
+      "order": 0,
+      "viewId": "shelf_bottom"
+    },
+    {
+      "createdAt": "1736000000000",
+      "id": "layer_shelf_middle_1",
+      "name": "第一层",
+      "order": 0,
+      "viewId": "shelf_middle"
+    },
+    {
+      "createdAt": "1736000000000",
+      "id": "layer_shelf_top_1",
+      "name": "第一层",
+      "order": 0,
+      "viewId": "shelf_top"
+    },
+    {
+      "createdAt": "1736000000000",
+      "id": "layer_underbed_1",
+      "name": "第一层",
+      "order": 0,
+      "viewId": "underbed"
+    },
+    {
+      "createdAt": "1736000000000",
+      "id": "layer_wardrobe_bottom_1",
+      "name": "第一层",
+      "order": 0,
+      "viewId": "wardrobe_bottom"
+    },
+    {
+      "createdAt": "1736000000000",
+      "id": "layer_wardrobe_top_1",
+      "name": "第一层",
+      "order": 0,
+      "viewId": "wardrobe_top"
+    }
+  ],
+  "borrows": [],
+  "views": [
+    {
+      "createdAt": null,
+      "group": "bed",
+      "height": 190,
+      "id": "bed",
+      "name": "床铺全景",
+      "updatedAt": null,
+      "width": 90
+    },
+    {
+      "createdAt": null,
+      "group": "cabinet",
+      "height": 180,
+      "id": "cabinet1",
+      "name": "立柜 1",
+      "updatedAt": null,
+      "width": 60
+    },
+    {
+      "createdAt": null,
+      "group": "cabinet",
+      "height": 180,
+      "id": "cabinet2",
+      "name": "立柜 2",
+      "updatedAt": null,
+      "width": 60
+    },
+    {
+      "createdAt": null,
+      "group": "desk",
+      "height": 60,
+      "id": "desk",
+      "name": "书桌桌面",
+      "updatedAt": null,
+      "width": 120
+    },
+    {
+      "createdAt": null,
+      "group": "desk",
+      "height": 30,
+      "id": "drawer",
+      "name": "抽屉",
+      "updatedAt": null,
+      "width": 40
+    },
+    {
+      "createdAt": null,
+      "group": "shelf",
+      "height": 40,
+      "id": "shelf_bottom",
+      "name": "书架下层",
+      "updatedAt": null,
+      "width": 100
+    },
+    {
+      "createdAt": null,
+      "group": "shelf",
+      "height": 40,
+      "id": "shelf_middle",
+      "name": "书架中层",
+      "updatedAt": null,
+      "width": 100
+    },
+    {
+      "createdAt": null,
+      "group": "shelf",
+      "height": 40,
+      "id": "shelf_top",
+      "name": "书架上层",
+      "updatedAt": null,
+      "width": 100
+    },
+    {
+      "createdAt": null,
+      "group": "bed",
+      "height": 60,
+      "id": "underbed",
+      "name": "床下地面",
+      "updatedAt": null,
+      "width": 90
+    },
+    {
+      "createdAt": null,
+      "group": "wardrobe",
+      "height": 80,
+      "id": "wardrobe_bottom",
+      "name": "衣柜下层",
+      "updatedAt": null,
+      "width": 120
+    },
+    {
+      "createdAt": null,
+      "group": "wardrobe",
+      "height": 100,
+      "id": "wardrobe_top",
+      "name": "衣柜挂衣区",
+      "updatedAt": null,
+      "width": 120
+    }
+  ],
+  "categories": [
+    "个人卫生类",
+    "书纸类",
+    "其他",
+    "历史物",
+    "厨具",
+    "工具类",
+    "文具",
+    "有用的小物件",
+    "物品清洁类",
+    "电子类",
+    "睡眠类",
+    "药品",
+    "衣物类",
+    "装东西类",
+    "调料",
+    "雨类",
+    "食品类",
+    "驱蚊类"
+  ]
+}
