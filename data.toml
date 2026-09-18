@@ -87,21 +87,17 @@ id = "underbed"
 name = "床下地面"
 size = [90.0, 60.0]
 
-# ═══ 物品 ═══
-
-# ── 床铺全景（6 件）──
-
 [[item]]
 name = "4cm 床垫"
 view = "bed"
 layer = 4
-pos = [41.9, 96.7]
-size = 75.4
+pos = [32.9, 82.7]
+size = 16.399999618530273
 shape = "box"
 desc = "床铺床垫"
 category = "睡眠类"
-status = "在位"
 condition = "正常"
+status = "在位"
 
 [[item]]
 name = "床单"

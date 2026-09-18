@@ -108,12 +108,7 @@ impl Viewer {
         let t3 = std::time::Instant::now();
         let total = (t1 - t0) + (t3 - t2);
         if total > std::time::Duration::from_millis(100) {
-            eprintln!(
-                "[perf] 慢渲染: load={:?} parse={:?} total={:?}",
-                t1 - t0,
-                t3 - t2,
-                total
-            );
+            eprintln!("[perf] 慢渲染: load={:?} parse={:?} total={:?}", t1 - t0, t3 - t2, total);
         }
 
         let size = tree.size();
@@ -341,14 +336,35 @@ fn watch_file(
     path: &PathBuf,
     proxy: EventLoopProxy<UserEvent>,
 ) -> Result<notify::RecommendedWatcher> {
+    // 关键：**监听父目录**，而不是文件本身。
+    // inotify 的 watch 绑定在 inode 上——core::save 用"写 tmp + rename"原子替换文件，
+    // rename 后旧 inode 被丢弃，watch 随之失效 → 后续所有修改都收不到事件（实测：连续修改 0 次渲染）。
+    // 监听目录则不受文件替换影响。
+    let file_name = path.file_name().map(|s| s.to_os_string());
+    let dir = path
+        .parent()
+        .filter(|p| !p.as_os_str().is_empty())
+        .map(|p| p.to_path_buf())
+        .unwrap_or_else(|| PathBuf::from("."));
+
     let mut watcher = notify::recommended_watcher(move |res: notify::Result<notify::Event>| {
-        // 只监听单个文件：任何事件都视为"数据可能已变"，直接触发重渲染。
-        // （不过滤事件类型——rename/权限变更等在不同后端下类型不一，过滤会丢更新）
-        if res.is_ok() {
-            let _ = proxy.send_event(UserEvent::DataChanged);
+        if let Ok(ev) = res {
+            // ⚠️ 必须忽略 Access 事件：viewer 自己 load() 读文件就会产生 Access(Open)，
+            // 若不过滤则形成自激循环（读文件 → 事件 → 渲染 → 读文件 → …）→ 100% CPU 空转。
+            if matches!(ev.kind, notify::EventKind::Access(_)) {
+                return;
+            }
+            // 目录里可能有其他文件变动：只处理目标文件相关的事件
+            let hit = match &file_name {
+                Some(name) => ev.paths.iter().any(|p| p.file_name() == Some(name.as_os_str())),
+                None => true,
+            };
+            if hit {
+                let _ = proxy.send_event(UserEvent::DataChanged);
+            }
         }
     })?;
-    watcher.watch(path, RecursiveMode::NonRecursive)?;
+    watcher.watch(&dir, RecursiveMode::NonRecursive)?;
     Ok(watcher)
 }
 
