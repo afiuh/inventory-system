@@ -193,8 +193,14 @@ fn nudge(app: &mut App, dx: f32, dy: f32) -> Result<()> {
     item.pos[1] = round1((item.pos[1] + dy).max(0.0));
     let pos = item.pos;
     let name = item.name.clone();
+    let t = std::time::Instant::now();
     save(&app.data_path, &app.data).context("写回数据失败")?;
-    app.message = Some(format!("{name} → ({:.1}, {:.1})", pos[0], pos[1]));
+    app.message = Some(format!(
+        "{name} → ({:.1}, {:.1}) · 写盘 {}ms",
+        pos[0],
+        pos[1],
+        t.elapsed().as_millis()
+    ));
     Ok(())
 }
 
@@ -207,8 +213,12 @@ fn scale(app: &mut App, factor: f32) -> Result<()> {
     item.size = round1((item.size * factor).clamp(0.5, 200.0));
     let size = item.size;
     let name = item.name.clone();
+    let t = std::time::Instant::now();
     save(&app.data_path, &app.data).context("写回数据失败")?;
-    app.message = Some(format!("{name} 大小 → {size:.1}"));
+    app.message = Some(format!(
+        "{name} 大小 → {size:.1} · 写盘 {}ms",
+        t.elapsed().as_millis()
+    ));
     Ok(())
 }
 

@@ -285,15 +285,11 @@ pub fn load(path: &Path) -> Result<Data, CoreError> {
 /// 策略：读入现有文档 → 逐数组对比 → 未变项搬原文（保注释/格式），
 /// 变化/新增项重建，多余项删除 → 临时文件 + rename 落盘。
 pub fn save(path: &Path, data: &Data) -> Result<(), CoreError> {
-    let t0 = std::time::Instant::now();
     let existing = if path.exists() { fs::read_to_string(path)? } else { String::new() };
-    let t1 = std::time::Instant::now();
     let mut doc: DocumentMut = existing.parse()?;
-    let t2 = std::time::Instant::now();
 
     // 旧值（用于差异对比）——直接用原始文本反序列化，避免 doc.to_string() 的重复序列化
     let old: Data = toml_edit::de::from_str(&existing).unwrap_or_default();
-    let t3 = std::time::Instant::now();
 
     // meta
     if doc.get("meta").is_none() {
@@ -304,22 +300,13 @@ pub fn save(path: &Path, data: &Data) -> Result<(), CoreError> {
     }
 
     sync_array(&mut doc, "dimension", "key", &old.dimensions, &data.dimensions, |d| d.key.as_str())?;
-    let t4 = std::time::Instant::now();
     sync_array(&mut doc, "view", "id", &old.views, &data.views, |v| v.id.as_str())?;
     sync_array(&mut doc, "item", "name", &old.items, &data.items, |i| i.name.as_str())?;
-    let t5 = std::time::Instant::now();
 
     // 原子写：临时文件 + rename（状态可见律：多进程读，写入必须原子）
     let tmp = path.with_extension("toml.tmp");
-    let text = doc.to_string();
-    let t6 = std::time::Instant::now();
-    fs::write(&tmp, text)?;
+    fs::write(&tmp, doc.to_string())?;
     fs::rename(&tmp, path)?;
-    let t7 = std::time::Instant::now();
-    eprintln!(
-        "[save-perf] read={:?} parse={:?} de={:?} sync_dim={:?} sync_view+item={:?} ser={:?} write={:?}",
-        t1 - t0, t2 - t1, t3 - t2, t4 - t3, t5 - t4, t6 - t5, t7 - t6
-    );
     Ok(())
 }
 
