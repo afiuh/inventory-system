@@ -1,0 +1,2680 @@
+# 物品管理系统 · 数据文件
+# 说明：cm 坐标（物品 pos 为中心点）；形状自带比例，size 为长边
+# 迁移自：物品备份_2026-03-25.json（原系统 v1.0）
+
+[meta]
+version = 2
+
+# ═══ 维度定义（驱动 TUI 列与校验）═══
+
+[[dimension]]
+key = "location"
+name = "位置"
+kind = "tree"
+
+[[dimension]]
+key = "category"
+name = "分类"
+kind = "enum"
+values = ["电子类", "厨具", "调料", "文具", "书纸类", "食品类", "药品", "物品清洁类", "衣物类", "工具类", "历史物", "有用的小物件", "睡眠类", "驱蚊类", "雨类", "装东西类", "个人卫生类", "其他"]
+
+[[dimension]]
+key = "status"
+name = "去向"
+kind = "enum"
+values = ["在位", "带走", "借出"]
+
+[[dimension]]
+key = "condition"
+name = "状态"
+kind = "enum"
+values = ["正常", "待补充", "待维护"]
+
+# ═══ 视图 ═══
+
+[[view]]
+id = "bed"
+name = "床铺全景"
+size = [90.0, 190.0]
+
+[[view]]
+id = "desk"
+name = "书桌桌面"
+size = [120.0, 60.0]
+
+[[view]]
+id = "drawer"
+name = "抽屉"
+size = [40.0, 30.0]
+
+[[view]]
+id = "cabinet1"
+name = "立柜 1"
+size = [60.0, 180.0]
+
+[[view]]
+id = "cabinet2"
+name = "立柜 2"
+size = [60.0, 180.0]
+
+[[view]]
+id = "wardrobe_top"
+name = "衣柜挂衣区"
+size = [120.0, 100.0]
+
+[[view]]
+id = "wardrobe_bottom"
+name = "衣柜下层"
+size = [120.0, 80.0]
+
+[[view]]
+id = "shelf_top"
+name = "书架上层"
+size = [100.0, 40.0]
+
+[[view]]
+id = "shelf_middle"
+name = "书架中层"
+size = [100.0, 40.0]
+
+[[view]]
+id = "shelf_bottom"
+name = "书架下层"
+size = [100.0, 40.0]
+
+[[view]]
+id = "underbed"
+name = "床下地面"
+size = [90.0, 60.0]
+
+# ═══ 物品 ═══
+
+# ── 床铺全景（6 件）──
+
+[[item]]
+name = "4cm 床垫"
+view = "bed"
+layer = 4
+pos = [41.9, 96.7]
+size = 75.4
+shape = "box"
+desc = "床铺床垫"
+category = "睡眠类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "床单"
+view = "bed"
+layer = 3
+pos = [41.9, 97.1]
+size = 75.4
+shape = "box"
+desc = "床铺床单"
+category = "睡眠类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "艾草凉席"
+view = "bed"
+layer = 2
+pos = [45.0, 95.0]
+size = 84.0
+shape = "box"
+desc = "夏季凉席"
+category = "睡眠类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "小棉被"
+view = "bed"
+layer = 1
+pos = [26.7, 86.7]
+size = 5.1
+shape = "box"
+desc = "冬季被子"
+category = "睡眠类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "耳塞"
+view = "bed"
+layer = 1
+pos = [4.9, 85.7]
+size = 1.5
+shape = "box"
+desc = "睡眠耳塞"
+category = "睡眠类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "枕头"
+view = "bed"
+layer = 1
+pos = [5.9, 94.2]
+size = 11.3
+shape = "box"
+desc = "睡眠枕头"
+category = "睡眠类"
+status = "在位"
+condition = "正常"
+
+# ── 书桌桌面（13 件）──
+
+[[item]]
+name = "笔记本"
+view = "desk"
+layer = 1
+pos = [106.7, 43.0]
+size = 20.6
+shape = "box"
+desc = "笔记本电脑"
+category = "电子类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "电源"
+view = "desk"
+layer = 1
+pos = [51.5, 20.3]
+size = 12.9
+shape = "box"
+desc = "笔记本电源"
+category = "电子类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "插排"
+view = "desk"
+layer = 1
+pos = [68.3, 19.0]
+size = 15.5
+shape = "box"
+desc = "电源插排"
+category = "电子类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "台灯"
+view = "desk"
+layer = 1
+pos = [8.2, 8.7]
+size = 10.3
+shape = "round"
+desc = "学习台灯"
+category = "电子类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "数位版"
+view = "desk"
+layer = 1
+pos = [30.9, 37.1]
+size = 18.1
+shape = "box"
+desc = "绘图数位板"
+category = "电子类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "笔座"
+view = "desk"
+layer = 1
+pos = [77.9, 14.5]
+size = 9.0
+shape = "round"
+desc = "笔筒笔座"
+category = "电子类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "白鼠标"
+view = "desk"
+layer = 1
+pos = [49.6, 30.0]
+size = 9.0
+shape = "round"
+desc = "白色鼠标"
+category = "电子类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "简易计算机"
+view = "desk"
+layer = 1
+pos = [78.6, 33.2]
+size = 15.5
+shape = "box"
+desc = "计算器"
+category = "电子类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "游戏手柄"
+view = "desk"
+layer = 1
+pos = [67.0, 30.6]
+size = 12.9
+shape = "blob"
+desc = "游戏控制器"
+category = "电子类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "自动铅笔 0.7"
+view = "desk"
+layer = 1
+pos = [85.0, 16.5]
+size = 7.7
+shape = "box"
+desc = "0.7mm 自动铅笔"
+category = "文具"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "笔筒"
+view = "desk"
+layer = 1
+pos = [86.3, 30.6]
+size = 10.3
+shape = "round"
+desc = "笔收纳筒"
+category = "文具"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "蓝色喝水杯"
+view = "desk"
+layer = 1
+pos = [85.7, 40.3]
+size = 9.0
+shape = "round"
+desc = "水杯"
+category = "装东西类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "银色开水壶"
+view = "desk"
+layer = 1
+pos = [86.3, 51.3]
+size = 10.3
+shape = "round"
+desc = "电热水壶"
+category = "装东西类"
+status = "在位"
+condition = "正常"
+
+# ── 抽屉（74 件）──
+
+[[item]]
+name = "数位笔"
+view = "drawer"
+layer = 1
+pos = [15.0, 3.3]
+size = 1.8
+shape = "box"
+desc = "数位板配套笔"
+category = "电子类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "蓝牙耳机"
+view = "drawer"
+layer = 1
+pos = [19.3, 3.8]
+size = 1.5
+shape = "round"
+desc = "无线蓝牙耳机"
+category = "电子类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "听力耳机"
+view = "drawer"
+layer = 1
+pos = [21.7, 3.9]
+size = 1.8
+shape = "round"
+desc = "英语听力专用"
+category = "电子类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "两支黑油笔"
+view = "drawer"
+layer = 1
+pos = [14.8, 4.5]
+size = 1.5
+shape = "box"
+desc = "黑色签字笔"
+category = "文具"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "两支涂卡笔"
+view = "drawer"
+layer = 1
+pos = [16.6, 4.5]
+size = 1.5
+shape = "box"
+desc = "考试涂卡笔"
+category = "文具"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "一盒 0.7 的铅"
+view = "drawer"
+layer = 1
+pos = [18.2, 4.8]
+size = 1.5
+shape = "box"
+desc = "0.7mm 铅芯"
+category = "文具"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "一盒 0.5 的铅"
+view = "drawer"
+layer = 1
+pos = [19.8, 4.8]
+size = 1.5
+shape = "box"
+desc = "0.5mm 铅芯"
+category = "文具"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "涂卡铅"
+view = "drawer"
+layer = 1
+pos = [21.3, 4.7]
+size = 1.5
+shape = "box"
+desc = "涂卡专用铅芯"
+category = "文具"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "一杯橡皮"
+view = "drawer"
+layer = 1
+pos = [22.8, 4.7]
+size = 1.5
+shape = "box"
+desc = "橡皮擦"
+category = "文具"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "圆规"
+view = "drawer"
+layer = 1
+pos = [24.5, 5.0]
+size = 1.5
+shape = "round"
+desc = "绘图圆规"
+category = "文具"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "四支 0.7 的自动铅笔"
+view = "drawer"
+layer = 1
+pos = [14.8, 5.9]
+size = 1.5
+shape = "box"
+desc = "备用自动铅笔"
+category = "文具"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "黑色记号笔"
+view = "drawer"
+layer = 1
+pos = [16.6, 5.9]
+size = 1.5
+shape = "box"
+desc = "记号笔"
+category = "文具"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "一杯小橡皮"
+view = "drawer"
+layer = 1
+pos = [18.0, 5.9]
+size = 1.5
+shape = "box"
+desc = "小橡皮擦"
+category = "文具"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "黑红笔芯袋"
+view = "drawer"
+layer = 1
+pos = [19.7, 6.2]
+size = 1.8
+shape = "box"
+desc = "笔芯收纳袋"
+category = "文具"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "试卷夹"
+view = "drawer"
+layer = 1
+pos = [15.0, 7.6]
+size = 1.8
+shape = "box"
+desc = "试卷收纳夹"
+category = "书纸类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "实验报告纸"
+view = "drawer"
+layer = 1
+pos = [17.1, 7.5]
+size = 1.5
+shape = "box"
+desc = "实验用纸"
+category = "书纸类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "草稿纸"
+view = "drawer"
+layer = 1
+pos = [19.1, 7.5]
+size = 1.5
+shape = "box"
+desc = "草稿用纸"
+category = "书纸类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "小红本"
+view = "drawer"
+layer = 1
+pos = [20.9, 7.7]
+size = 1.5
+shape = "box"
+desc = "小笔记本"
+category = "书纸类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "长兴牌褪黑素片"
+view = "drawer"
+layer = 1
+pos = [14.9, 9.3]
+size = 1.5
+shape = "box"
+desc = "失眠用药"
+category = "药品"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "夜心舒褪黑素"
+view = "drawer"
+layer = 1
+pos = [16.9, 9.3]
+size = 1.5
+shape = "box"
+desc = "失眠用药"
+category = "药品"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "安神补心丸"
+view = "drawer"
+layer = 1
+pos = [18.9, 9.3]
+size = 1.5
+shape = "box"
+desc = "失眠用药"
+category = "药品"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "血橙 B 族维生素"
+view = "drawer"
+layer = 1
+pos = [20.8, 9.4]
+size = 1.5
+shape = "box"
+desc = "维生素补剂"
+category = "药品"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "复合维生素"
+view = "drawer"
+layer = 1
+pos = [22.5, 9.4]
+size = 1.5
+shape = "box"
+desc = "维生素补剂"
+category = "药品"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "维生素 B1 片"
+view = "drawer"
+layer = 1
+pos = [24.2, 9.3]
+size = 1.5
+shape = "box"
+desc = "维生素补剂"
+category = "药品"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "夫西地乳膏"
+view = "drawer"
+layer = 1
+pos = [14.8, 10.7]
+size = 1.5
+shape = "box"
+desc = "皮肤用药"
+category = "药品"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "云南白药"
+view = "drawer"
+layer = 1
+pos = [16.6, 10.8]
+size = 1.5
+shape = "box"
+desc = "皮肤用药"
+category = "药品"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "酮康锉乳膏"
+view = "drawer"
+layer = 1
+pos = [18.3, 10.7]
+size = 1.5
+shape = "box"
+desc = "皮肤用药"
+category = "药品"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "碘水喷雾"
+view = "drawer"
+layer = 1
+pos = [20.0, 11.0]
+size = 1.5
+shape = "box"
+desc = "皮肤用药"
+category = "药品"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "棉签"
+view = "drawer"
+layer = 1
+pos = [21.7, 10.6]
+size = 1.5
+shape = "box"
+desc = "医用棉签"
+category = "药品"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "消积颗粒"
+view = "drawer"
+layer = 1
+pos = [23.4, 10.8]
+size = 1.5
+shape = "box"
+desc = "感冒用药"
+category = "药品"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "眼睛布"
+view = "drawer"
+layer = 1
+pos = [14.6, 12.1]
+size = 1.5
+shape = "box"
+desc = "眼镜清洁布"
+category = "物品清洁类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "小包湿巾"
+view = "drawer"
+layer = 1
+pos = [16.0, 12.2]
+size = 1.5
+shape = "box"
+desc = "便携湿巾"
+category = "物品清洁类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "分装湿巾"
+view = "drawer"
+layer = 1
+pos = [17.6, 12.2]
+size = 1.5
+shape = "box"
+desc = "分装湿巾"
+category = "物品清洁类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "袜子包"
+view = "drawer"
+layer = 1
+pos = [14.8, 13.7]
+size = 1.5
+shape = "box"
+desc = "小衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "内裤包"
+view = "drawer"
+layer = 1
+pos = [16.6, 13.7]
+size = 1.5
+shape = "box"
+desc = "小衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "鞋垫包"
+view = "drawer"
+layer = 1
+pos = [18.3, 13.7]
+size = 1.5
+shape = "box"
+desc = "小衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "订书机"
+view = "drawer"
+layer = 1
+pos = [14.9, 14.9]
+size = 1.5
+shape = "box"
+desc = "办公用品"
+category = "工具类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "剪刀"
+view = "drawer"
+layer = 1
+pos = [16.8, 15.2]
+size = 1.5
+shape = "blob"
+desc = "办公用品"
+category = "工具类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "美工刀"
+view = "drawer"
+layer = 1
+pos = [18.6, 14.8]
+size = 1.5
+shape = "box"
+desc = "办公用品"
+category = "工具类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "2 个宽胶带"
+view = "drawer"
+layer = 1
+pos = [20.3, 15.1]
+size = 1.5
+shape = "round"
+desc = "办公胶带"
+category = "工具类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "录取通知书"
+view = "drawer"
+layer = 1
+pos = [15.0, 16.4]
+size = 1.8
+shape = "box"
+desc = "重要文件"
+category = "历史物"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "身份证"
+view = "drawer"
+layer = 1
+pos = [14.8, 17.5]
+size = 1.5
+shape = "box"
+desc = "重要证件"
+category = "有用的小物件"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "联通手机卡"
+view = "drawer"
+layer = 1
+pos = [16.4, 17.4]
+size = 1.5
+shape = "box"
+desc = "手机 SIM 卡"
+category = "有用的小物件"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "学生证"
+view = "drawer"
+layer = 1
+pos = [17.9, 17.5]
+size = 1.5
+shape = "box"
+desc = "学生证件"
+category = "有用的小物件"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "学生卡"
+view = "drawer"
+layer = 1
+pos = [19.7, 17.5]
+size = 1.5
+shape = "box"
+desc = "校园卡"
+category = "有用的小物件"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "邮政银行卡"
+view = "drawer"
+layer = 1
+pos = [21.4, 17.5]
+size = 1.5
+shape = "box"
+desc = "银行卡"
+category = "有用的小物件"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "农业银行卡"
+view = "drawer"
+layer = 1
+pos = [23.2, 17.5]
+size = 1.5
+shape = "box"
+desc = "银行卡"
+category = "有用的小物件"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "105 的红包"
+view = "drawer"
+layer = 1
+pos = [25.1, 17.6]
+size = 1.5
+shape = "box"
+desc = "红包"
+category = "有用的小物件"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "证件照"
+view = "drawer"
+layer = 1
+pos = [14.7, 19.1]
+size = 1.5
+shape = "box"
+desc = "个人照片"
+category = "有用的小物件"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "两小包卫生纸"
+view = "drawer"
+layer = 1
+pos = [16.4, 18.9]
+size = 1.5
+shape = "box"
+desc = "便携纸巾"
+category = "有用的小物件"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "小梳子"
+view = "drawer"
+layer = 1
+pos = [18.0, 18.7]
+size = 1.5
+shape = "box"
+desc = "梳子"
+category = "有用的小物件"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "眼镜壳"
+view = "drawer"
+layer = 1
+pos = [19.8, 18.9]
+size = 1.5
+shape = "box"
+desc = "眼镜收纳盒"
+category = "有用的小物件"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "蝴蝶刀盒"
+view = "drawer"
+layer = 1
+pos = [21.9, 19.0]
+size = 1.8
+shape = "box"
+desc = "刀具收纳盒"
+category = "有用的小物件"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "备用耳塞"
+view = "drawer"
+layer = 1
+pos = [15.9, 20.1]
+size = 1.5
+shape = "box"
+desc = "备用耳塞"
+category = "睡眠类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "眼罩"
+view = "drawer"
+layer = 1
+pos = [17.5, 20.1]
+size = 1.5
+shape = "box"
+desc = "睡眠眼罩"
+category = "睡眠类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "打火机"
+view = "drawer"
+layer = 1
+pos = [14.7, 21.4]
+size = 1.5
+shape = "box"
+desc = "点火用"
+category = "驱蚊类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "避蚊胺"
+view = "drawer"
+layer = 1
+pos = [16.3, 21.8]
+size = 1.5
+shape = "box"
+desc = "驱蚊液"
+category = "驱蚊类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "花露水"
+view = "drawer"
+layer = 1
+pos = [17.9, 21.9]
+size = 1.8
+shape = "box"
+desc = "驱蚊花露水"
+category = "驱蚊类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "刮胡刀"
+view = "drawer"
+layer = 1
+pos = [14.8, 22.8]
+size = 1.5
+shape = "box"
+desc = "剃须刀"
+category = "个人卫生类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "指甲工具盒"
+view = "drawer"
+layer = 1
+pos = [16.7, 22.9]
+size = 1.5
+shape = "box"
+desc = "指甲护理"
+category = "个人卫生类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "电动牙刷"
+view = "drawer"
+layer = 1
+pos = [18.5, 23.1]
+size = 1.5
+shape = "box"
+desc = "电动牙刷"
+category = "个人卫生类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "牙膏"
+view = "drawer"
+layer = 1
+pos = [20.1, 22.8]
+size = 1.5
+shape = "box"
+desc = "刷牙牙膏"
+category = "个人卫生类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "牙头盒"
+view = "drawer"
+layer = 1
+pos = [21.8, 22.8]
+size = 1.5
+shape = "box"
+desc = "牙刷头收纳"
+category = "个人卫生类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "耳勺"
+view = "drawer"
+layer = 1
+pos = [23.2, 22.6]
+size = 1.5
+shape = "box"
+desc = "掏耳勺"
+category = "个人卫生类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "电动牙刷头盒"
+view = "drawer"
+layer = 1
+pos = [24.6, 22.8]
+size = 1.5
+shape = "box"
+desc = "牙刷头收纳盒"
+category = "个人卫生类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "镜子"
+view = "drawer"
+layer = 1
+pos = [14.9, 24.5]
+size = 1.5
+shape = "round"
+desc = "化妆镜"
+category = "个人卫生类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "米粹洗面奶"
+view = "drawer"
+layer = 1
+pos = [16.8, 24.5]
+size = 1.5
+shape = "box"
+desc = "洁面乳"
+category = "个人卫生类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "两个 Dr.G 防晒膏"
+view = "drawer"
+layer = 1
+pos = [18.6, 24.2]
+size = 1.5
+shape = "box"
+desc = "防晒霜"
+category = "个人卫生类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "妮维雅香水走珠夜"
+view = "drawer"
+layer = 1
+pos = [20.2, 24.4]
+size = 1.5
+shape = "box"
+desc = "止汗露"
+category = "个人卫生类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "ora 口腔清新喷雾"
+view = "drawer"
+layer = 1
+pos = [21.7, 24.4]
+size = 1.5
+shape = "box"
+desc = "口腔喷雾"
+category = "个人卫生类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "润唇膏"
+view = "drawer"
+layer = 1
+pos = [23.0, 24.0]
+size = 1.5
+shape = "box"
+desc = "护唇用品"
+category = "个人卫生类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "两个舒肤加香皂"
+view = "drawer"
+layer = 1
+pos = [24.5, 24.1]
+size = 1.5
+shape = "box"
+desc = "香皂"
+category = "个人卫生类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "大白罐保湿霜"
+view = "drawer"
+layer = 1
+pos = [14.9, 26.2]
+size = 1.5
+shape = "box"
+desc = "身体乳"
+category = "个人卫生类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "电动刮胡刀"
+view = "drawer"
+layer = 1
+pos = [16.8, 26.0]
+size = 1.5
+shape = "box"
+desc = "电动剃须刀"
+category = "个人卫生类"
+status = "在位"
+condition = "正常"
+
+# ── 立柜 1（15 件）──
+
+[[item]]
+name = "600w 小电锅"
+view = "cabinet1"
+layer = 1
+pos = [9.3, 66.1]
+size = 12.6
+shape = "round"
+desc = "小型电煮锅"
+category = "厨具"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "供电线"
+view = "cabinet1"
+layer = 1
+pos = [23.1, 62.4]
+size = 10.0
+shape = "box"
+desc = "电锅电源线"
+category = "厨具"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "漏勺"
+view = "cabinet1"
+layer = 1
+pos = [35.7, 64.9]
+size = 10.0
+shape = "round"
+desc = "厨房漏勺"
+category = "厨具"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "塑料菜板"
+view = "cabinet1"
+layer = 1
+pos = [9.3, 80.0]
+size = 12.6
+shape = "box"
+desc = "切菜板"
+category = "厨具"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "菜刀"
+view = "cabinet1"
+layer = 1
+pos = [24.3, 78.7]
+size = 12.6
+shape = "box"
+desc = "厨房菜刀"
+category = "厨具"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "铁制筷子"
+view = "cabinet1"
+layer = 1
+pos = [38.2, 76.8]
+size = 10.0
+shape = "box"
+desc = "金属筷子"
+category = "厨具"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "铁制勺子"
+view = "cabinet1"
+layer = 1
+pos = [49.5, 76.8]
+size = 7.5
+shape = "box"
+desc = "金属勺子"
+category = "厨具"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "厨具小箱"
+view = "cabinet1"
+layer = 1
+pos = [10.5, 96.3]
+size = 15.1
+shape = "box"
+desc = "厨具收纳箱"
+category = "厨具"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "塑料箱盖"
+view = "cabinet1"
+layer = 1
+pos = [28.1, 91.3]
+size = 15.1
+shape = "box"
+desc = "收纳箱盖子"
+category = "厨具"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "锉刀"
+view = "cabinet1"
+layer = 1
+pos = [8.0, 107.0]
+size = 10.0
+shape = "box"
+desc = "维修工具"
+category = "工具类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "一袋黑色钩子"
+view = "cabinet1"
+layer = 1
+pos = [20.0, 108.2]
+size = 8.8
+shape = "box"
+desc = "收纳钩"
+category = "工具类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "两包防护手套"
+view = "cabinet1"
+layer = 1
+pos = [31.3, 108.2]
+size = 8.8
+shape = "box"
+desc = "防护用具"
+category = "工具类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "卷尺"
+view = "cabinet1"
+layer = 1
+pos = [41.9, 108.8]
+size = 7.5
+shape = "round"
+desc = "测量工具"
+category = "工具类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "钳子"
+view = "cabinet1"
+layer = 1
+pos = [52.6, 108.2]
+size = 8.8
+shape = "blob"
+desc = "维修工具"
+category = "工具类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "气针断掉的气筒"
+view = "cabinet1"
+layer = 1
+pos = [8.0, 117.6]
+size = 10.0
+shape = "box"
+desc = "体育用具"
+category = "历史物"
+status = "在位"
+condition = "正常"
+
+# ── 立柜 2（17 件）──
+
+[[item]]
+name = "鸡蛋装盒"
+view = "cabinet2"
+layer = 1
+pos = [23.2, 82.4]
+size = 3.1
+shape = "box"
+desc = "鸡蛋收纳盒"
+category = "厨具"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "金龙鱼豆油"
+view = "cabinet2"
+layer = 1
+pos = [43.3, 84.2]
+size = 3.7
+shape = "box"
+desc = "食用油"
+category = "调料"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "海天酱油"
+view = "cabinet2"
+layer = 1
+pos = [31.9, 83.6]
+size = 3.4
+shape = "box"
+desc = "调味酱油"
+category = "调料"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "香油"
+view = "cabinet2"
+layer = 1
+pos = [17.3, 83.2]
+size = 4.9
+shape = "box"
+desc = "芝麻香油"
+category = "调料"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "山西陈醋"
+view = "cabinet2"
+layer = 1
+pos = [8.3, 85.2]
+size = 3.1
+shape = "box"
+desc = "食用醋"
+category = "调料"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "一包红糖"
+view = "cabinet2"
+layer = 1
+pos = [16.8, 88.9]
+size = 2.5
+shape = "box"
+desc = "红糖"
+category = "调料"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "两包盐"
+view = "cabinet2"
+layer = 1
+pos = [21.0, 87.8]
+size = 2.2
+shape = "box"
+desc = "食用盐"
+category = "调料"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "熟酱"
+view = "cabinet2"
+layer = 1
+pos = [55.9, 80.7]
+size = 2.5
+shape = "box"
+desc = "调味酱"
+category = "调料"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "十三香"
+view = "cabinet2"
+layer = 1
+pos = [10.5, 90.6]
+size = 2.2
+shape = "box"
+desc = "调味粉"
+category = "调料"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "补剂"
+view = "cabinet2"
+layer = 1
+pos = [4.2, 78.9]
+size = 2.5
+shape = "box"
+desc = "营养补剂"
+category = "食品类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "牛奶"
+view = "cabinet2"
+layer = 1
+pos = [7.2, 79.3]
+size = 3.1
+shape = "box"
+desc = "饮用牛奶"
+category = "食品类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "蛋白粉"
+view = "cabinet2"
+layer = 1
+pos = [10.3, 79.4]
+size = 3.4
+shape = "box"
+desc = "蛋白质粉"
+category = "食品类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "枸杞液包"
+view = "cabinet2"
+layer = 1
+pos = [4.3, 88.5]
+size = 2.2
+shape = "box"
+desc = "枸杞饮品"
+category = "食品类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "两斤大米"
+view = "cabinet2"
+layer = 1
+pos = [4.6, 94.5]
+size = 3.1
+shape = "box"
+desc = "食用大米"
+category = "食品类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "薄荷糖"
+view = "cabinet2"
+layer = 1
+pos = [36.6, 87.8]
+size = 1.9
+shape = "box"
+desc = "清凉薄荷糖"
+category = "食品类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "一瓶酒"
+view = "cabinet2"
+layer = 1
+pos = [8.5, 100.7]
+size = 4.2
+shape = "box"
+desc = "酒类"
+category = "历史物"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "茶派"
+view = "cabinet2"
+layer = 1
+pos = [17.9, 97.3]
+size = 2.5
+shape = "box"
+desc = "饮料"
+category = "装东西类"
+status = "在位"
+condition = "正常"
+
+# ── 衣柜挂衣区（11 件）──
+
+[[item]]
+name = "纯白长褂"
+view = "wardrobe_top"
+layer = 1
+pos = [12.7, 23.1]
+size = 23.7
+shape = "box"
+desc = "厚衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "白黑褂"
+view = "wardrobe_top"
+layer = 1
+pos = [36.3, 23.1]
+size = 23.7
+shape = "box"
+desc = "厚衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "黑白条纹长袖"
+view = "wardrobe_top"
+layer = 1
+pos = [60.0, 22.0]
+size = 21.5
+shape = "box"
+desc = "厚衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "黑绿色牛仔褂"
+view = "wardrobe_top"
+layer = 1
+pos = [83.7, 23.1]
+size = 23.7
+shape = "box"
+desc = "厚衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "灰色 V 领毛衣"
+view = "wardrobe_top"
+layer = 1
+pos = [107.3, 22.0]
+size = 21.5
+shape = "box"
+desc = "厚衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "黑色白细条杠外套"
+view = "wardrobe_top"
+layer = 1
+pos = [12.7, 51.1]
+size = 23.7
+shape = "box"
+desc = "厚衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "黑色细针织毛衣"
+view = "wardrobe_top"
+layer = 1
+pos = [36.3, 50.0]
+size = 21.5
+shape = "box"
+desc = "厚衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "黑色粗针织毛衣"
+view = "wardrobe_top"
+layer = 1
+pos = [60.0, 50.0]
+size = 21.5
+shape = "box"
+desc = "厚衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "黑色白井杠外套"
+view = "wardrobe_top"
+layer = 1
+pos = [83.7, 51.1]
+size = 23.7
+shape = "box"
+desc = "厚衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "白黄色外套"
+view = "wardrobe_top"
+layer = 1
+pos = [107.3, 50.0]
+size = 21.5
+shape = "box"
+desc = "薄衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "绿色外套"
+view = "wardrobe_top"
+layer = 1
+pos = [12.7, 78.0]
+size = 21.5
+shape = "box"
+desc = "薄衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+# ── 衣柜下层（32 件）──
+
+[[item]]
+name = "20 个晾衣架的包"
+view = "wardrobe_bottom"
+layer = 1
+pos = [33.2, 6.9]
+size = 9.7
+shape = "box"
+desc = "衣架收纳"
+category = "物品清洁类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "灰色厚卫衣"
+view = "wardrobe_bottom"
+layer = 1
+pos = [44.4, 7.9]
+size = 9.7
+shape = "box"
+desc = "厚衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "黑色厚卫衣"
+view = "wardrobe_bottom"
+layer = 1
+pos = [55.1, 7.9]
+size = 9.7
+shape = "box"
+desc = "厚衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "黑色绒毛秋衣"
+view = "wardrobe_bottom"
+layer = 1
+pos = [65.4, 7.4]
+size = 8.8
+shape = "box"
+desc = "厚衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "黑色秋裤"
+view = "wardrobe_bottom"
+layer = 1
+pos = [75.6, 7.4]
+size = 8.8
+shape = "box"
+desc = "厚衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "黑色绒袄"
+view = "wardrobe_bottom"
+layer = 1
+pos = [87.3, 7.9]
+size = 9.7
+shape = "box"
+desc = "厚衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "白色无袖汗衫"
+view = "wardrobe_bottom"
+layer = 1
+pos = [32.2, 18.6]
+size = 7.8
+shape = "box"
+desc = "薄衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "白色 V 领短袖"
+view = "wardrobe_bottom"
+layer = 1
+pos = [42.0, 18.6]
+size = 7.8
+shape = "box"
+desc = "薄衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "白色圆领短袖"
+view = "wardrobe_bottom"
+layer = 1
+pos = [51.7, 18.6]
+size = 7.8
+shape = "box"
+desc = "薄衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "黑白条纹短袖"
+view = "wardrobe_bottom"
+layer = 1
+pos = [61.5, 18.6]
+size = 7.8
+shape = "box"
+desc = "薄衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "淡黄色无袖汗衫"
+view = "wardrobe_bottom"
+layer = 1
+pos = [71.2, 18.6]
+size = 7.8
+shape = "box"
+desc = "薄衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "墨绿色 V 领短袖"
+view = "wardrobe_bottom"
+layer = 1
+pos = [32.2, 28.3]
+size = 7.8
+shape = "box"
+desc = "薄衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "亮灰色圆领短袖"
+view = "wardrobe_bottom"
+layer = 1
+pos = [42.0, 28.3]
+size = 7.8
+shape = "box"
+desc = "薄衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "两个黑色 V 领短袖"
+view = "wardrobe_bottom"
+layer = 1
+pos = [51.7, 28.3]
+size = 7.8
+shape = "box"
+desc = "薄衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "两个巧克力色短袖"
+view = "wardrobe_bottom"
+layer = 1
+pos = [61.5, 28.3]
+size = 7.8
+shape = "box"
+desc = "薄衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "冰丝长裤"
+view = "wardrobe_bottom"
+layer = 1
+pos = [70.7, 29.3]
+size = 9.7
+shape = "box"
+desc = "薄衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "冰丝短裤"
+view = "wardrobe_bottom"
+layer = 1
+pos = [79.5, 27.8]
+size = 6.8
+shape = "box"
+desc = "薄衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "普通长裤"
+view = "wardrobe_bottom"
+layer = 1
+pos = [31.8, 41.0]
+size = 9.7
+shape = "box"
+desc = "薄衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "两条黑短裤"
+view = "wardrobe_bottom"
+layer = 1
+pos = [40.5, 39.5]
+size = 6.8
+shape = "box"
+desc = "薄衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "咖啡色短裤"
+view = "wardrobe_bottom"
+layer = 1
+pos = [49.3, 39.5]
+size = 6.8
+shape = "box"
+desc = "薄衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "白蓝 V 领短袖"
+view = "wardrobe_bottom"
+layer = 1
+pos = [58.5, 40.0]
+size = 7.8
+shape = "box"
+desc = "薄衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "阔腿黑牛仔裤"
+view = "wardrobe_bottom"
+layer = 1
+pos = [66.8, 41.0]
+size = 9.7
+shape = "box"
+desc = "薄衣物"
+category = "衣物类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "实验服"
+view = "wardrobe_bottom"
+layer = 1
+pos = [76.6, 41.5]
+size = 10.7
+shape = "box"
+desc = "实验用服装"
+category = "工具类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "两个床单"
+view = "wardrobe_bottom"
+layer = 1
+pos = [33.2, 51.7]
+size = 9.7
+shape = "box"
+desc = "床上用品"
+category = "历史物"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "泳裤"
+view = "wardrobe_bottom"
+layer = 1
+pos = [43.0, 50.2]
+size = 5.8
+shape = "box"
+desc = "游泳用品"
+category = "历史物"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "换洗枕头罩"
+view = "wardrobe_bottom"
+layer = 1
+pos = [32.2, 60.4]
+size = 7.8
+shape = "box"
+desc = "枕套"
+category = "睡眠类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "雨衣"
+view = "wardrobe_bottom"
+layer = 1
+pos = [42.0, 62.4]
+size = 9.7
+shape = "box"
+desc = "防雨用具"
+category = "雨类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "紫色中包"
+view = "wardrobe_bottom"
+layer = 1
+pos = [53.7, 60.9]
+size = 7.8
+shape = "box"
+desc = "收纳包"
+category = "装东西类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "灰书包"
+view = "wardrobe_bottom"
+layer = 1
+pos = [63.9, 62.9]
+size = 10.7
+shape = "box"
+desc = "书包"
+category = "装东西类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "黑书包"
+view = "wardrobe_bottom"
+layer = 1
+pos = [74.6, 62.9]
+size = 10.7
+shape = "box"
+desc = "书包"
+category = "装东西类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "小随身包"
+view = "wardrobe_bottom"
+layer = 1
+pos = [31.8, 72.1]
+size = 6.8
+shape = "box"
+desc = "随身包"
+category = "装东西类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "电脑包"
+view = "wardrobe_bottom"
+layer = 1
+pos = [42.0, 73.1]
+size = 9.7
+shape = "box"
+desc = "电脑包"
+category = "装东西类"
+status = "在位"
+condition = "正常"
+
+# ── 书架上层（6 件）──
+
+[[item]]
+name = "意大利斜体字帖"
+view = "shelf_top"
+layer = 1
+pos = [9.3, 20.0]
+size = 16.3
+shape = "box"
+desc = "书法字帖"
+category = "书纸类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "英语四级听力训练"
+view = "shelf_top"
+layer = 1
+pos = [25.6, 20.0]
+size = 16.3
+shape = "box"
+desc = "英语学习资料"
+category = "书纸类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "英语四级真题"
+view = "shelf_top"
+layer = 1
+pos = [41.9, 20.0]
+size = 16.3
+shape = "box"
+desc = "考试真题"
+category = "书纸类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "英语四级作文"
+view = "shelf_top"
+layer = 1
+pos = [58.1, 20.0]
+size = 16.3
+shape = "box"
+desc = "作文范文"
+category = "书纸类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "什么是数学"
+view = "shelf_top"
+layer = 1
+pos = [74.4, 20.0]
+size = 16.3
+shape = "box"
+desc = "数学科普"
+category = "书纸类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "古文观止"
+view = "shelf_top"
+layer = 1
+pos = [90.7, 20.0]
+size = 16.3
+shape = "box"
+desc = "古文选集"
+category = "书纸类"
+status = "在位"
+condition = "正常"
+
+# ── 书架中层（7 件）──
+
+[[item]]
+name = "西游 布局"
+view = "shelf_middle"
+layer = 1
+pos = [8.4, 20.0]
+size = 13.9
+shape = "box"
+desc = "西游记系列"
+category = "书纸类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "西游 入局"
+view = "shelf_middle"
+layer = 1
+pos = [22.3, 20.0]
+size = 13.9
+shape = "box"
+desc = "西游记系列"
+category = "书纸类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "西游 胜局"
+view = "shelf_middle"
+layer = 1
+pos = [36.1, 20.0]
+size = 13.9
+shape = "box"
+desc = "西游记系列"
+category = "书纸类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "毛泽东选集卷一"
+view = "shelf_middle"
+layer = 1
+pos = [50.0, 20.0]
+size = 13.9
+shape = "box"
+desc = "毛选第一卷"
+category = "书纸类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "毛泽东选集卷二"
+view = "shelf_middle"
+layer = 1
+pos = [63.9, 20.0]
+size = 13.9
+shape = "box"
+desc = "毛选第二卷"
+category = "书纸类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "毛泽东选集卷三"
+view = "shelf_middle"
+layer = 1
+pos = [77.7, 20.0]
+size = 13.9
+shape = "box"
+desc = "毛选第三卷"
+category = "书纸类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "毛泽东选集卷四"
+view = "shelf_middle"
+layer = 1
+pos = [91.6, 20.0]
+size = 13.9
+shape = "box"
+desc = "毛选第四卷"
+category = "书纸类"
+status = "在位"
+condition = "正常"
+
+# ── 书架下层（8 件）──
+
+[[item]]
+name = "大唐气象上"
+view = "shelf_bottom"
+layer = 1
+pos = [7.7, 20.0]
+size = 12.1
+shape = "box"
+desc = "历史书籍"
+category = "书纸类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "大唐气象中"
+view = "shelf_bottom"
+layer = 1
+pos = [19.8, 20.0]
+size = 12.1
+shape = "box"
+desc = "历史书籍"
+category = "书纸类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "大唐气象下"
+view = "shelf_bottom"
+layer = 1
+pos = [31.9, 20.0]
+size = 12.1
+shape = "box"
+desc = "历史书籍"
+category = "书纸类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "弱传播"
+view = "shelf_bottom"
+layer = 1
+pos = [44.0, 20.0]
+size = 12.1
+shape = "box"
+desc = "传播学书籍"
+category = "书纸类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "资本论"
+view = "shelf_bottom"
+layer = 1
+pos = [56.0, 20.0]
+size = 12.1
+shape = "box"
+desc = "经济学著作"
+category = "书纸类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "心经"
+view = "shelf_bottom"
+layer = 1
+pos = [67.5, 19.3]
+size = 10.7
+shape = "box"
+desc = "佛经"
+category = "书纸类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "成为雍正"
+view = "shelf_bottom"
+layer = 1
+pos = [80.2, 20.0]
+size = 12.1
+shape = "box"
+desc = "历史书籍"
+category = "书纸类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "万历十五年"
+view = "shelf_bottom"
+layer = 1
+pos = [92.3, 20.0]
+size = 12.1
+shape = "box"
+desc = "历史书籍"
+category = "书纸类"
+status = "在位"
+condition = "正常"
+
+# ── 床下地面（25 件）──
+
+[[item]]
+name = "路由器"
+view = "underbed"
+layer = 1
+pos = [37.2, 12.9]
+size = 7.1
+shape = "box"
+desc = "网络路由器"
+category = "电子类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "塑料小盆"
+view = "underbed"
+layer = 1
+pos = [45.7, 13.7]
+size = 7.1
+shape = "round"
+desc = "洗漱小盆"
+category = "厨具"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "五卷卫生纸"
+view = "underbed"
+layer = 1
+pos = [29.4, 5.8]
+size = 5.7
+shape = "round"
+desc = "卫生用纸"
+category = "物品清洁类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "酒精湿巾"
+view = "underbed"
+layer = 1
+pos = [36.1, 4.8]
+size = 5.0
+shape = "box"
+desc = "消毒湿巾"
+category = "物品清洁类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "普通湿巾"
+view = "underbed"
+layer = 1
+pos = [42.5, 4.8]
+size = 5.0
+shape = "box"
+desc = "清洁湿巾"
+category = "物品清洁类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "洗洁精"
+view = "underbed"
+layer = 1
+pos = [48.9, 6.6]
+size = 7.1
+shape = "box"
+desc = "厨房清洁"
+category = "物品清洁类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "洗衣粉"
+view = "underbed"
+layer = 1
+pos = [55.7, 6.6]
+size = 7.1
+shape = "box"
+desc = "衣物清洁"
+category = "物品清洁类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "5 个被子夹包"
+view = "underbed"
+layer = 1
+pos = [29.4, 20.8]
+size = 5.7
+shape = "box"
+desc = "被子夹收纳"
+category = "物品清洁类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "3 块待用小方毛巾"
+view = "underbed"
+layer = 1
+pos = [36.1, 20.8]
+size = 5.0
+shape = "box"
+desc = "备用毛巾"
+category = "物品清洁类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "擦桌子的毛巾"
+view = "underbed"
+layer = 1
+pos = [42.2, 20.4]
+size = 4.3
+shape = "box"
+desc = "清洁毛巾"
+category = "物品清洁类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "擦厨具的毛巾"
+view = "underbed"
+layer = 1
+pos = [47.8, 20.4]
+size = 4.3
+shape = "box"
+desc = "厨房清洁巾"
+category = "物品清洁类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "2 张待用清洁擦"
+view = "underbed"
+layer = 1
+pos = [53.5, 20.1]
+size = 4.3
+shape = "box"
+desc = "清洁海绵"
+category = "物品清洁类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "使用中清洁擦"
+view = "underbed"
+layer = 1
+pos = [59.2, 20.1]
+size = 4.3
+shape = "box"
+desc = "清洁海绵"
+category = "物品清洁类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "排球"
+view = "underbed"
+layer = 1
+pos = [30.1, 30.7]
+size = 7.1
+shape = "round"
+desc = "体育用品"
+category = "历史物"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "根蚊香"
+view = "underbed"
+layer = 1
+pos = [29.0, 37.1]
+size = 5.0
+shape = "box"
+desc = "线香蚊香"
+category = "驱蚊类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "圈蚊香"
+view = "underbed"
+layer = 1
+pos = [35.8, 38.5]
+size = 5.7
+shape = "round"
+desc = "盘式蚊香"
+category = "驱蚊类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "雨伞"
+view = "underbed"
+layer = 1
+pos = [42.2, 39.9]
+size = 8.5
+shape = "box"
+desc = "防雨用具"
+category = "雨类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "体重秤"
+view = "underbed"
+layer = 1
+pos = [49.3, 39.2]
+size = 7.1
+shape = "box"
+desc = "称重用具"
+category = "日用品"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "两块擦脸毛巾"
+view = "underbed"
+layer = 1
+pos = [56.7, 37.8]
+size = 5.0
+shape = "box"
+desc = "洗脸毛巾"
+category = "个人卫生类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "一块浴巾"
+view = "underbed"
+layer = 1
+pos = [30.1, 45.6]
+size = 7.1
+shape = "box"
+desc = "洗澡浴巾"
+category = "个人卫生类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "洗头膏"
+view = "underbed"
+layer = 1
+pos = [29.0, 53.4]
+size = 7.1
+shape = "box"
+desc = "洗发水"
+category = "个人卫生类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "灰色水盆"
+view = "underbed"
+layer = 1
+pos = [36.5, 53.4]
+size = 7.1
+shape = "round"
+desc = "水盆"
+category = "装东西类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "粉色水桶"
+view = "underbed"
+layer = 1
+pos = [45.0, 53.4]
+size = 7.1
+shape = "round"
+desc = "水桶"
+category = "装东西类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "5 卷垃圾袋"
+view = "underbed"
+layer = 1
+pos = [52.5, 52.0]
+size = 5.0
+shape = "box"
+desc = "垃圾袋"
+category = "装东西类"
+status = "在位"
+condition = "正常"
+
+[[item]]
+name = "2 个大编织袋"
+view = "underbed"
+layer = 1
+pos = [59.9, 52.7]
+size = 7.1
+shape = "box"
+desc = "编织袋"
+category = "装东西类"
+status = "在位"
+condition = "正常"

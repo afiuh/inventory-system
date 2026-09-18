@@ -144,7 +144,7 @@ pub enum CoreError {
     #[error("IO 错误: {0}")]
     Io(#[from] std::io::Error),
     #[error("TOML 解析错误: {0}")]
-    De(#[from] toml_edit::de::Error),
+    De(String),
     #[error("TOML 序列化错误: {0}")]
     Ser(#[from] toml_edit::ser::Error),
     #[error("TOML 语法错误: {0}")]
@@ -275,7 +275,8 @@ pub fn check(data: &Data) -> Vec<Issue> {
 /// 读取数据文件
 pub fn load(path: &Path) -> Result<Data, CoreError> {
     let text = fs::read_to_string(path)?;
-    let data: Data = toml_edit::de::from_str(&text)?;
+    let data: Data = toml_edit::de::from_str(&text)
+        .map_err(|e| CoreError::De(e.message().to_owned()))?;
     Ok(data)
 }
 
