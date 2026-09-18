@@ -5,6 +5,7 @@ members = [
     "crates/render",
     "crates/viewer",
     "crates/cli",
+    "crates/tui",
 ]
 
 [workspace.package]

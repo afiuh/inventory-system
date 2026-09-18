@@ -122,7 +122,10 @@ fn main() -> Result<()> {
         Command::Check => cmd_check(path),
         Command::Render { view, out } => cmd_render(path, view, out),
         Command::Tui => {
-            bail!("TUI 尚未实现（下一步开发）");
+            let data = load(path)?;
+            drop(data);
+            inventory_tui::run(path.clone())?;
+            Ok(())
         }
     }
 }

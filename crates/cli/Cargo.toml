@@ -11,6 +11,7 @@ path = "src/main.rs"
 [dependencies]
 inventory-core = { path = "../core" }
 inventory-render = { path = "../render" }
+inventory-tui = { path = "../tui" }
 clap.workspace = true
 libc = "0.2"
 anyhow.workspace = true
