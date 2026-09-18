@@ -243,8 +243,27 @@ fn open_viewer(app: &mut App) {
         cmd.arg("--view").arg(&item.view);
         cmd.arg("--focus").arg(&item.name);
     }
+
+    // ⚠️ 重定向 viewer 的 stdout/stderr 到日志文件：
+    // viewer 的输出若写进 TUI 所在的终端，会覆盖 alternate screen（界面被日志冲掉）。
+    let log_path = std::env::temp_dir().join("inventory-viewer.log");
+    let log_hint = match std::fs::File::create(&log_path) {
+        Ok(f) => {
+            if let Ok(f2) = f.try_clone() {
+                cmd.stdout(f2);
+            }
+            cmd.stderr(f);
+            format!("（日志 {}）", log_path.display())
+        }
+        Err(_) => {
+            cmd.stdout(std::process::Stdio::null());
+            cmd.stderr(std::process::Stdio::null());
+            String::new()
+        }
+    };
+
     match cmd.spawn() {
-        Ok(_) => app.message = Some("已打开 viewer 窗口".into()),
+        Ok(_) => app.message = Some(format!("已打开 viewer 窗口{log_hint}")),
         Err(e) => app.message = Some(format!("启动 viewer 失败: {e}")),
     }
 }
