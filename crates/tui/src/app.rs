@@ -60,6 +60,17 @@ impl Column {
     }
 }
 
+/// 滑动窗口里的一个单位
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum Unit {
+    /// 维度栏
+    Dim,
+    /// 第 n 个深度列（0-based）
+    Column(usize),
+    /// 详情（仅当焦点在物品上时存在）
+    Detail,
+}
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum SearchMode {
     /// 列搜索（过滤当前列的候选）
@@ -436,20 +447,47 @@ impl App {
         }
     }
 
-    /// 调整列区视口，保证焦点列可见（visible = 当前能显示的列数）
+    /// 当前滑动窗口的单位序列
+    ///
+    /// 规则（用户定案）：整个 TUI 三列 —— 列一/列二 = 滑动窗口，列三 = 结果（永远最右）。
+    /// 详情不是独立列：**焦点在物品（结果栏）上时才加入窗口的最后一个单位**，焦点离开即消失。
+    pub fn units(&self) -> Vec<Unit> {
+        let mut units = vec![Unit::Dim];
+        for i in 0..self.columns.len() {
+            units.push(Unit::Column(i));
+        }
+        let on_result = self.focus > self.columns.len();
+        if on_result && !self.result.is_empty() {
+            units.push(Unit::Detail);
+        }
+        units
+    }
+
+    /// 焦点对应的单位索引（focus：0=维度栏，1..=N=列，N+1=结果栏）
+    pub fn focus_unit_index(&self) -> usize {
+        if self.focus == 0 {
+            0
+        } else if self.focus <= self.columns.len() {
+            self.focus
+        } else {
+            // 结果栏 → 最后一个单位（有物品时是详情）
+            self.units().len().saturating_sub(1)
+        }
+    }
+
+    /// 滑动视口：保证焦点单位可见（visible = 窗口容量，通常 2）
     pub fn ensure_visible(&mut self, visible: usize) {
         if visible == 0 {
             return;
         }
-        let total = 1 + self.columns.len(); // 维度栏 + 各深度列
-        // 结果栏（focus == total）不属于列区，按最后一列处理
-        let focus_in_cols = self.focus.min(total.saturating_sub(1));
-        if focus_in_cols < self.viewport_start {
-            self.viewport_start = focus_in_cols;
-        } else if focus_in_cols >= self.viewport_start + visible {
-            self.viewport_start = focus_in_cols + 1 - visible;
+        let units_len = self.units().len();
+        let fi = self.focus_unit_index();
+        if fi < self.viewport_start {
+            self.viewport_start = fi;
+        } else if fi >= self.viewport_start + visible {
+            self.viewport_start = fi + 1 - visible;
         }
-        let max_start = total.saturating_sub(visible);
+        let max_start = units_len.saturating_sub(visible);
         self.viewport_start = self.viewport_start.min(max_start);
     }
 
@@ -717,10 +755,11 @@ mod tests {
         app.ensure_visible(2);
         assert_eq!(app.viewport_start, 1, "焦点在右端时视口滑到 1（显示列 1、2）");
 
-        // 焦点在结果栏也不应越界（结果栏不属于列区）
+        // 焦点在结果栏（物品上）→ 详情加入窗口末尾，视口滑到 [最后一列, 详情]
         app.focus = app.columns.len() + 1;
         app.ensure_visible(2);
-        assert!(app.viewport_start <= 1);
+        assert_eq!(app.viewport_start, 2, "焦点在物品上时窗口滑到最右（含详情）");
+        assert_eq!(app.units().last(), Some(&Unit::Detail), "窗口末尾应是详情");
 
         // 焦点回到维度栏 → 视口回起点
         app.focus = 0;

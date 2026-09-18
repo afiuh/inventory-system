@@ -1,6 +1,6 @@
 //! TUI 渲染（ratatui）
 
-use crate::app::{App, SearchMode};
+use crate::app::{App, SearchMode, Unit};
 use ratatui::layout::{Constraint, Layout, Rect};
 use ratatui::style::{Color, Modifier, Style};
 use ratatui::text::{Line, Span};
@@ -23,55 +23,76 @@ pub fn draw(f: &mut Frame, app: &mut App) {
         return; // 终端尺寸为 0（最小化/未分配）时跳过
     }
 
-    // ── 宽度规划（契约：结果栏独占最右，剩余空间给两列滑动窗口）──
-    const DIM_W: u16 = 14; // 维度栏
-    const COL_W: u16 = 26; // 每个深度列
+    // ── 布局规则（用户定案）──
+    //   整个 TUI 三列：列一 / 列二 = 滑动窗口，列三 = 结果（永远最右）。
+    //   详情不是独立列：焦点在物品上时加入窗口末尾，焦点离开即消失。
+    const DIM_W: u16 = 14;
+    const COL_W: u16 = 26;
     const DETAIL_W: u16 = 30;
     const MIN_RESULT: u16 = 24;
-    const VISIBLE_UNITS: usize = 2; // 列区最多两栏（维度栏 / 深度列 同属列区）
+    const WINDOW: usize = 2; // 列一 + 列二
 
-    // 列区单位（维度栏 + 各深度列），滑动窗口显示最多 2 个
-    let total_units = 1 + app.columns.len();
-    let visible = total_units.min(VISIBLE_UNITS);
+    let units = app.units();
+    let visible = units.len().min(WINDOW);
     app.ensure_visible(visible);
-    let start = app.viewport_start.min(total_units.saturating_sub(visible));
+    let start = app.viewport_start.min(units.len().saturating_sub(visible));
+    let shown = &units[start..start + visible];
 
-    // 列区实际宽度
-    let col_area_w: u16 = (0..visible)
-        .map(|i| if start + i == 0 { DIM_W } else { COL_W })
+    // 空间不足时优先挤掉详情（保证结果栏）
+    let left_w: u16 = shown
+        .iter()
+        .map(|u| match u {
+            Unit::Dim => DIM_W,
+            Unit::Detail => DETAIL_W,
+            Unit::Column(_) => COL_W,
+        })
         .sum();
+    let detail_room = if shown.contains(&Unit::Detail) && area.width < left_w + MIN_RESULT {
+        false
+    } else {
+        true
+    };
 
-    // 详情列：有选中物品才出现（在结果左侧）
-    let mut detail_w = if app.show_detail && !app.result.is_empty() { DETAIL_W } else { 0 };
-    // 空间不足时先挤掉详情，保证结果栏
-    if area.width < col_area_w + detail_w + MIN_RESULT {
-        detail_w = 0;
-    }
-
-    // ── 布局：列区 | 详情 | 结果（结果独占剩余）──
+    // ── 约束：窗口单位… | 结果（独占剩余）──
     let mut constraints: Vec<Constraint> = Vec::new();
-    for u in start..start + visible {
-        constraints.push(Constraint::Length(if u == 0 { DIM_W } else { COL_W }));
-    }
-    if detail_w > 0 {
-        constraints.push(Constraint::Length(detail_w));
+    for u in shown {
+        let w = match u {
+            Unit::Dim => DIM_W,
+            Unit::Column(_) => COL_W,
+            Unit::Detail => {
+                if detail_room {
+                    DETAIL_W
+                } else {
+                    0
+                }
+            }
+        };
+        if w > 0 {
+            constraints.push(Constraint::Length(w));
+        }
     }
     constraints.push(Constraint::Min(MIN_RESULT));
     let chunks = Layout::horizontal(constraints).split(area);
 
     // ── 渲染 ──
     let mut ci = 0usize;
-    for u in start..start + visible {
-        if u == 0 {
-            draw_dim_bar(f, app, chunks[ci]);
-        } else {
-            draw_column(f, app, u - 1, chunks[ci]);
+    for u in shown {
+        match u {
+            Unit::Dim => {
+                draw_dim_bar(f, app, chunks[ci]);
+                ci += 1;
+            }
+            Unit::Column(idx) => {
+                draw_column(f, app, *idx, chunks[ci]);
+                ci += 1;
+            }
+            Unit::Detail => {
+                if detail_room {
+                    draw_detail(f, app, chunks[ci]);
+                    ci += 1;
+                }
+            }
         }
-        ci += 1;
-    }
-    if detail_w > 0 {
-        draw_detail(f, app, chunks[ci]);
-        ci += 1;
     }
     draw_results(f, app, chunks[ci]);
 
