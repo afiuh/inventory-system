@@ -387,13 +387,13 @@ condition = "正常"
 name = "一盒 0.7 的铅"
 view = "drawer"
 layer = 1
-pos = [18.2, 4.8]
-size = 1.5
+pos = [13.199999809265137, 11.800000190734863]
+size = 4.5
 shape = "box"
 desc = "0.7mm 铅芯"
+condition = "正常"
 category = "文具"
 status = "在位"
-condition = "正常"
 
 [[item]]
 name = "一盒 0.5 的铅"

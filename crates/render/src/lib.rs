@@ -114,7 +114,6 @@ pub fn render_view(data: &Data, view_id: &str, opts: &RenderOpts) -> Result<Stri
         svg,
         r##"<svg xmlns="http://www.w3.org/2000/svg" width="{w:.0}" height="{h:.0}" viewBox="0 0 {w:.0} {h:.0}">"##
     );
-    svg.push_str(&gradient_defs(&items, opts));
     let _ = write!(svg, r##"<rect width="{w:.0}" height="{h:.0}" fill="{}"/>"##, opts.theme.bg);
 
     // 视图范围底（浅色描边，标出 cm 边界）
@@ -170,7 +169,8 @@ fn render_item(out: &mut String, item: &Item, pad: f32, scale: f32, opts: &Rende
     let s = (item.size * scale).max(3.0);
 
     let color = color_for(item.attr(&opts.color_key).unwrap_or(""), &opts.theme);
-    let fill = format!("url(#{})", gradient_id(color));
+    // 纯色填充（渐变光栅化成本占 42%——性能优先；立体感靠描边与状态标记表达）
+    let fill = color.to_string();
 
     let dimmed = !opts.highlight.is_empty() && !opts.highlight.iter().any(|n| n == &item.name);
 
@@ -273,8 +273,6 @@ pub fn render_overview(data: &Data, opts: &RenderOpts) -> Result<String, RenderE
         svg,
         r##"<svg xmlns="http://www.w3.org/2000/svg" width="{w:.0}" height="{h:.0}" viewBox="0 0 {w:.0} {h:.0}">"##
     );
-    let all: Vec<&Item> = data.items.iter().collect();
-    svg.push_str(&gradient_defs(&all, opts));
     let _ = write!(svg, r##"<rect width="{w:.0}" height="{h:.0}" fill="{}"/>"##, opts.theme.bg);
 
     // 头部
@@ -370,8 +368,7 @@ pub fn render_overview(data: &Data, opts: &RenderOpts) -> Result<String, RenderE
             let cy = it.pos[1];
             let s = it.size.max(1.0);
             let color = color_for(it.attr(&opts.color_key).unwrap_or(""), &opts.theme);
-            let fill = format!("url(#{})", gradient_id(color));
-            svg.push_str(&shapes::draw(it.shape.as_deref(), cx, cy, s, &fill));
+            svg.push_str(&shapes::draw(it.shape.as_deref(), cx, cy, s, color));
             if opts.show_labels && s * k > 26.0 {
                 let name = truncate_chars(&it.name, 8);
                 let fs = (s * 0.22).clamp(0.8, 30.0);
@@ -407,7 +404,8 @@ fn gradient_id(color: &str) -> String {
     format!("g{}", color.trim_start_matches('#'))
 }
 
-/// 收集用到的颜色，生成渐变定义
+/// 收集用到的颜色，生成渐变定义（当前未启用——纯色填充性能优先）
+#[allow(dead_code)]
 fn gradient_defs(items: &[&Item], opts: &RenderOpts) -> String {
     let mut colors: HashSet<&str> = HashSet::new();
     for it in items {

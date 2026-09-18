@@ -47,6 +47,11 @@ struct Viewer {
     dragging: bool,
     last_cursor: (f64, f64),
 
+    /// 缓存的 usvg 配置（含系统字体库——只加载一次，是渲染性能的关键）
+    usvg_opts: resvg::usvg::Options<'static>,
+    /// 缓存的 SVG 树（数据变化时才重建；zoom/pan 复用）
+    cached_tree: Option<resvg::usvg::Tree>,
+
     _watcher: Option<notify::RecommendedWatcher>,
     proxy: EventLoopProxy<UserEvent>,
 }
@@ -58,8 +63,16 @@ impl Viewer {
         focus: Vec<String>,
         proxy: EventLoopProxy<UserEvent>,
     ) -> Self {
+        // 性能关键（bench 实测，desk 视图 950x512）：
+        // - load_system_fonts() 会让 parse 从 1.6ms 涨到 126ms（CJK 字体 fallback 查询）→ 不加载
+        // - 抗锯齿(GeometricPrecision) 光栅化 53ms vs OptimizeSpeed 16ms → 用后者
+        let mut usvg_opts = resvg::usvg::Options::default();
+        usvg_opts.shape_rendering = resvg::usvg::ShapeRendering::OptimizeSpeed;
+
         Self {
             proxy,
+            usvg_opts,
+            cached_tree: None,
             data_path,
             view_id,
             focus,
@@ -78,17 +91,31 @@ impl Viewer {
 
     /// 读数据 → render → 解析 SVG（返回 usvg Tree）
     fn build_tree(&mut self) -> Result<resvg::usvg::Tree> {
+        let t0 = std::time::Instant::now();
         let data = load(&self.data_path)
             .with_context(|| format!("读取数据失败: {}", self.data_path.display()))?;
+        let t1 = std::time::Instant::now();
 
         let opts = RenderOpts { highlight: self.focus.clone(), ..Default::default() };
         let svg = match &self.view_id {
             Some(id) => render_view(&data, id, &opts)?,
             None => render_overview(&data, &opts)?,
         };
+        let t2 = std::time::Instant::now();
 
-        let tree = resvg::usvg::Tree::from_str(&svg, &resvg::usvg::Options::default())
+        let tree = resvg::usvg::Tree::from_str(&svg, &self.usvg_opts)
             .context("SVG 解析失败（render 输出的 SVG 不合法）")?;
+        let t3 = std::time::Instant::now();
+        let total = (t1 - t0) + (t3 - t2);
+        if total > std::time::Duration::from_millis(100) {
+            eprintln!(
+                "[perf] 慢渲染: load={:?} parse={:?} total={:?}",
+                t1 - t0,
+                t3 - t2,
+                total
+            );
+        }
+
         let size = tree.size();
         self.svg_size = (size.width(), size.height());
         Ok(tree)
@@ -96,12 +123,17 @@ impl Viewer {
 
     /// 渲染到像素缓冲（窗口尺寸）
     fn render_pixels(&mut self) -> Result<()> {
-        let tree = self.build_tree()?;
+        // Tree 缓存：数据未变（zoom/pan）时复用，避免重复解析
+        if self.cached_tree.is_none() {
+            self.cached_tree = Some(self.build_tree()?);
+        }
 
         // 首次渲染（或按 0 复位）：此时 svg_size 已测量，fit 才准确
         if self.needs_fit {
             self.fit();
         }
+
+        let tree = self.cached_tree.as_ref().expect("tree 刚被填充");
 
         let window = match self.window.clone() {
             Some(w) => w,
@@ -222,9 +254,9 @@ impl ApplicationHandler<UserEvent> for Viewer {
     fn user_event(&mut self, _event_loop: &ActiveEventLoop, event: UserEvent) {
         match event {
             UserEvent::DataChanged => {
-                // 不防抖：resvg 渲染毫秒级，重复渲染无害；
-                // 而防抖会**丢弃**窗口内的后续事件（含最后一次更新）——那才是卡住的根因。
-                // winit 的 request_redraw 本身会合并同一帧内的多次请求。
+                // 数据变了 → 失效缓存的 tree，下次渲染重建
+                self.cached_tree = None;
+                // 不防抖：渲染成本已优化到毫秒级；防抖会丢弃窗口内事件（含最后一次更新）
                 self.request_redraw();
             }
         }
