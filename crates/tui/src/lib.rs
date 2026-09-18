@@ -83,6 +83,30 @@ fn sync_focus(app: &App, last: &mut Option<String>) {
 }
 
 fn handle_key(app: &mut App, key: KeyEvent) -> Result<()> {
+    // ── 详情列编辑态（Enter 进入，再 Enter 确定）──
+    if let Some(edit) = app.detail_edit.as_ref() {
+        let field = edit.field;
+        let is_text = field.is_text();
+        match key.code {
+            KeyCode::Enter => match app.confirm_detail_edit() {
+                Ok(()) => app.message = Some(format!("已更新「{}」", field.label())),
+                Err(e) => app.message = Some(format!("保存失败: {e}")),
+            },
+            KeyCode::Esc => {
+                app.cancel_detail_edit();
+                app.message = Some("已取消".into());
+            }
+            KeyCode::Backspace => app.detail_edit_backspace(),
+            KeyCode::Up if !is_text => app.cycle_detail_edit(-1),
+            KeyCode::Down if !is_text => app.cycle_detail_edit(1),
+            KeyCode::Char('k') if !is_text => app.cycle_detail_edit(-1),
+            KeyCode::Char('j') if !is_text => app.cycle_detail_edit(1),
+            KeyCode::Char(c) => app.detail_edit_push(c),
+            _ => {}
+        }
+        return Ok(());
+    }
+
     // ── 搜索模式 ──
     if let Some(mode) = app.search {
         match key.code {
@@ -153,6 +177,9 @@ fn handle_key(app: &mut App, key: KeyEvent) -> Result<()> {
         KeyCode::Enter => {
             if app.focus == 0 {
                 app.toggle_dim();
+            } else if app.on_detail() {
+                // 详情列：进入字段编辑（再 Enter 确定）
+                app.enter_detail_edit();
             } else {
                 app.toggle_select();
             }
@@ -184,6 +211,10 @@ fn handle_key(app: &mut App, key: KeyEvent) -> Result<()> {
 
         KeyCode::Tab => {
             app.show_detail = !app.show_detail;
+            // 隐藏详情列时焦点不能停在它上面 → 移到结果栏
+            if !app.show_detail && app.focus == app.columns.len() + 1 {
+                app.focus = app.columns.len() + 2;
+            }
         }
 
         _ => {}

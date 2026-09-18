@@ -1,6 +1,6 @@
 //! TUI 渲染（ratatui）
 
-use crate::app::{App, SearchMode, Unit};
+use crate::app::{App, DetailField, SearchMode, Unit};
 use ratatui::layout::{Constraint, Layout, Rect};
 use ratatui::style::{Color, Modifier, Style};
 use ratatui::text::{Line, Span};
@@ -251,23 +251,19 @@ fn draw_results(f: &mut Frame, app: &App, area: Rect) {
 }
 
 fn draw_detail(f: &mut Frame, app: &App, area: Rect) {
+    let focused = app.on_detail();
     let mut lines: Vec<Line> = Vec::new();
 
-    if let Some(dbg) = &app.debug {
+    if app.debug.is_some() {
         lines.push(Line::from(Span::styled(
             "── 调试模式 ──",
             Style::default().fg(C_ORANGE).add_modifier(Modifier::BOLD),
         )));
         lines.push(Line::from(Span::styled(
-            "←→↑↓ 移动  +/- 缩放",
+            "←→↑↓ 移动  +/- 缩放  Esc 退出",
             Style::default().fg(C_ORANGE),
         )));
-        lines.push(Line::from(Span::styled(
-            "Esc 退出调试",
-            Style::default().fg(C_DIM),
-        )));
         lines.push(Line::from(""));
-        let _ = dbg;
     }
 
     if let Some(item) = app.current_item() {
@@ -276,40 +272,36 @@ fn draw_detail(f: &mut Frame, app: &App, area: Rect) {
             Style::default().fg(C_FG).add_modifier(Modifier::BOLD),
         )));
         lines.push(Line::from(""));
-        let view = app
-            .data
-            .view(&item.view)
-            .map(|v| v.name.as_str())
-            .unwrap_or(item.view.as_str());
-        for (label, value) in [
-            ("分类", item.attr("category").unwrap_or("-")),
-            ("去向", item.attr("status").unwrap_or("-")),
-            ("状态", item.attr("condition").unwrap_or("-")),
-            ("层", &format!("第 {} 层", item.layer)),
-        ] {
+
+        // 可编辑字段（焦点在详情列时高亮当前字段；编辑态显示缓冲值）
+        for (i, field) in DetailField::ALL.iter().enumerate() {
+            let editing = app.detail_edit.as_ref().filter(|e| e.field == *field);
+            let value = match editing {
+                Some(e) => format!("{}█", e.buffer),
+                None => app.detail_value(*field),
+            };
+            let selected = focused && i == app.detail_cursor;
+            let value_style = if selected {
+                Style::default().bg(C_BLUE).fg(C_BG).add_modifier(Modifier::BOLD)
+            } else if editing.is_some() {
+                Style::default().fg(C_YELLOW).add_modifier(Modifier::BOLD)
+            } else {
+                Style::default().fg(C_FG)
+            };
             lines.push(Line::from(vec![
-                Span::styled(format!("{label}  "), Style::default().fg(C_DIM)),
-                Span::styled(value.to_string(), Style::default().fg(C_FG)),
+                Span::styled(format!("{}  ", field.label()), Style::default().fg(C_DIM)),
+                Span::styled(value, value_style),
             ]));
         }
-        lines.push(Line::from(vec![
-            Span::styled("位置  ", Style::default().fg(C_DIM)),
-            Span::styled(view.to_string(), Style::default().fg(C_FG)),
-        ]));
+
+        // 只读：坐标 + 大小（debug 模式管）
         lines.push(Line::from(vec![
             Span::styled("坐标  ", Style::default().fg(C_DIM)),
             Span::styled(
                 format!("({:.1}, {:.1}) 大小 {:.1}", item.pos[0], item.pos[1], item.size),
-                Style::default().fg(C_FG),
+                Style::default().fg(C_DIM),
             ),
         ]));
-        if let Some(desc) = &item.desc {
-            lines.push(Line::from(""));
-            lines.push(Line::from(Span::styled(
-                desc.clone(),
-                Style::default().fg(C_DIM),
-            )));
-        }
     } else {
         lines.push(Line::from(Span::styled(
             "（无选中物品）",
@@ -318,7 +310,7 @@ fn draw_detail(f: &mut Frame, app: &App, area: Rect) {
     }
 
     let p = Paragraph::new(lines)
-        .block(block("详情", false))
+        .block(block("详情", focused))
         .wrap(Wrap { trim: false });
     f.render_widget(p, area);
 }
@@ -331,7 +323,9 @@ fn draw_status(f: &mut Frame, app: &App, area: Rect) {
     let bar = Rect::new(area.x, y, area.width, 1);
 
     // ── 右侧：快捷键提示（**始终显示**，随模式变化）──
-    let keys = if app.debug.is_some() {
+    let keys = if app.detail_edit.is_some() {
+        "Enter 确定  Esc 取消  jk 换值（文本直接输入）"
+    } else if app.debug.is_some() {
         "←→↑↓ 移动  +/- 缩放  Esc 退出调试"
     } else if app.search.is_some() {
         "Enter 确认  Esc 取消"

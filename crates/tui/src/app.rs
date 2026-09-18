@@ -87,6 +87,56 @@ pub struct DebugState {
     pub item_name: String,
 }
 
+/// 详情列可编辑字段（顺序 = 显示顺序）
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum DetailField {
+    Name,
+    Category,
+    Status,
+    Condition,
+    Layer,
+    View,
+    Desc,
+}
+
+impl DetailField {
+    /// 显示顺序
+    pub const ALL: [DetailField; 7] = [
+        DetailField::Name,
+        DetailField::Category,
+        DetailField::Status,
+        DetailField::Condition,
+        DetailField::Layer,
+        DetailField::View,
+        DetailField::Desc,
+    ];
+
+    pub fn label(&self) -> &'static str {
+        match self {
+            DetailField::Name => "名称",
+            DetailField::Category => "分类",
+            DetailField::Status => "去向",
+            DetailField::Condition => "状态",
+            DetailField::Layer => "层",
+            DetailField::View => "位置",
+            DetailField::Desc => "描述",
+        }
+    }
+
+    /// 文本输入型（否则为枚举/数字选择型：jk 换值）
+    pub fn is_text(&self) -> bool {
+        matches!(self, DetailField::Name | DetailField::Desc)
+    }
+}
+
+/// 详情列编辑态（Enter 进入，再 Enter 确定）
+#[derive(Debug, Clone)]
+pub struct DetailEdit {
+    pub field: DetailField,
+    /// 编辑中的值（文本=输入缓冲；枚举/数字=当前候选）
+    pub buffer: String,
+}
+
 pub struct App {
     pub data: Data,
     pub data_path: PathBuf,
@@ -107,6 +157,10 @@ pub struct App {
 
     // ── 详情 ──
     pub show_detail: bool,
+    /// 详情列选中的字段索引
+    pub detail_cursor: usize,
+    /// 详情列编辑态（Enter 进入，再 Enter 确定）
+    pub detail_edit: Option<DetailEdit>,
 
     // ── 搜索 ──
     pub search: Option<SearchMode>,
@@ -136,6 +190,8 @@ impl App {
             result: Vec::new(),
             result_cursor: 0,
             show_detail: true,
+            detail_cursor: 0,
+            detail_edit: None,
             search: None,
             search_input: String::new(),
             debug: None,
@@ -404,6 +460,10 @@ impl App {
         if self.result_cursor >= self.result.len() {
             self.result_cursor = self.result.len().saturating_sub(1);
         }
+        // 无选中物品 → 焦点不能停在详情列/结果栏（兜底回最后一列）
+        if self.result.is_empty() && self.focus > self.columns.len() {
+            self.focus = self.columns.len();
+        }
     }
 
     /// 当前列（None = 维度栏）
@@ -423,7 +483,7 @@ impl App {
         }
     }
 
-    /// 光标移动（列内 / 维度栏 / 结果）
+    /// 光标移动（列内 / 维度栏 / 详情列 / 结果）
     pub fn move_cursor(&mut self, delta: isize) {
         if self.focus == 0 {
             let n = self.dim_enabled.len();
@@ -432,6 +492,11 @@ impl App {
             }
             self.dim_cursor = (self.dim_cursor as isize + delta).rem_euclid(n as isize) as usize;
         } else if self.focus == self.columns.len() + 1 {
+            // 详情列：选字段
+            let n = DetailField::ALL.len();
+            self.detail_cursor =
+                (self.detail_cursor as isize + delta).rem_euclid(n as isize) as usize;
+        } else if self.focus == self.columns.len() + 2 {
             // 结果栏
             let n = self.result.len();
             if n == 0 {
@@ -450,27 +515,26 @@ impl App {
     /// 当前滑动窗口的单位序列
     ///
     /// 规则（用户定案）：整个 TUI 三列 —— 列一/列二 = 滑动窗口，列三 = 结果（永远最右）。
-    /// 详情不是独立列：**焦点在物品（结果栏）上时才加入窗口的最后一个单位**，焦点离开即消失。
+    /// 详情列：**选中物品时出现**（焦点在详情列/结果栏），焦点离开就滑走。
     pub fn units(&self) -> Vec<Unit> {
         let mut units = vec![Unit::Dim];
         for i in 0..self.columns.len() {
             units.push(Unit::Column(i));
         }
-        let on_result = self.focus > self.columns.len();
-        if on_result && !self.result.is_empty() {
+        if self.show_detail && !self.result.is_empty() && self.focus > self.columns.len() {
             units.push(Unit::Detail);
         }
         units
     }
 
-    /// 焦点对应的单位索引（focus：0=维度栏，1..=N=列，N+1=结果栏）
+    /// 焦点对应的单位索引（focus：0=维度栏，1..=N=列，N+1=详情列，N+2=结果栏）
     pub fn focus_unit_index(&self) -> usize {
         if self.focus == 0 {
             0
         } else if self.focus <= self.columns.len() {
             self.focus
         } else {
-            // 结果栏 → 最后一个单位（有物品时是详情）
+            // 详情列 / 结果栏 → 列区最后一个单位（详情，若存在）
             self.units().len().saturating_sub(1)
         }
     }
@@ -491,9 +555,14 @@ impl App {
         self.viewport_start = self.viewport_start.min(max_start);
     }
 
-    /// 焦点左右移动
+    /// 焦点左右移动（0=维度栏，1..=N=列，N+1=详情列，N+2=结果栏）
     pub fn move_focus(&mut self, delta: isize) {
-        let max = self.columns.len() + 1; // 维度栏 + 列 + 结果栏
+        // 无选中物品时详情列/结果栏不存在 → 最远只能到最后一列
+        let max = if self.result.is_empty() {
+            self.columns.len()
+        } else {
+            self.columns.len() + 2
+        };
         self.focus = (self.focus as isize + delta).clamp(0, max as isize) as usize;
     }
 
@@ -562,6 +631,171 @@ impl App {
         self.result.get(self.result_cursor).and_then(|i| self.data.items.get(*i))
     }
 
+    // ── 详情列：字段读取 / 编辑（Enter 进入，再 Enter 确定）──
+
+    /// 详情列字段的原始值（编辑缓冲初始化用）
+    fn detail_raw(&self, item: &inventory_core::Item, field: DetailField) -> String {
+        match field {
+            DetailField::Name => item.name.clone(),
+            DetailField::Category => item.attr("category").unwrap_or("").to_string(),
+            DetailField::Status => item.attr("status").unwrap_or("").to_string(),
+            DetailField::Condition => item.attr("condition").unwrap_or("").to_string(),
+            DetailField::Layer => item.layer.to_string(),
+            DetailField::View => item.view.clone(),
+            DetailField::Desc => item.desc.clone().unwrap_or_default(),
+        }
+    }
+
+    /// 详情列字段的显示值
+    pub fn detail_value(&self, field: DetailField) -> String {
+        let Some(item) = self.current_item() else {
+            return "-".into();
+        };
+        match field {
+            DetailField::Layer => format!("第 {} 层", item.layer),
+            DetailField::View => self
+                .data
+                .view(&item.view)
+                .map(|v| v.name.clone())
+                .unwrap_or_else(|| item.view.clone()),
+            _ => self.detail_raw(item, field),
+        }
+    }
+
+    /// 焦点是否在详情列（需详情列可见）
+    pub fn on_detail(&self) -> bool {
+        self.focus == self.columns.len() + 1 && self.show_detail && !self.result.is_empty()
+    }
+
+    /// 进入详情列编辑态（Enter）
+    pub fn enter_detail_edit(&mut self) {
+        if !self.on_detail() || self.detail_edit.is_some() {
+            return;
+        }
+        let field = DetailField::ALL[self.detail_cursor];
+        let buffer = self
+            .current_item()
+            .map(|i| self.detail_raw(i, field))
+            .unwrap_or_default();
+        self.detail_edit = Some(DetailEdit { field, buffer });
+    }
+
+    /// 编辑态：切换候选值（枚举/数字用 jk 或上下键）
+    pub fn cycle_detail_edit(&mut self, delta: isize) {
+        let Some(edit) = self.detail_edit.as_ref() else {
+            return;
+        };
+        let field = edit.field;
+        let cur = edit.buffer.clone();
+
+        let next: Option<String> = match field {
+            DetailField::Layer => {
+                let v: i64 = cur.parse().unwrap_or(1);
+                Some((v + delta as i64).max(1).to_string())
+            }
+            DetailField::View => {
+                let ids: Vec<String> = self.data.views.iter().map(|v| v.id.clone()).collect();
+                cycle_in(&ids, &cur, delta)
+            }
+            DetailField::Category | DetailField::Status | DetailField::Condition => {
+                let key = match field {
+                    DetailField::Category => "category",
+                    DetailField::Status => "status",
+                    _ => "condition",
+                };
+                let values: Vec<String> = self
+                    .data
+                    .dimensions
+                    .iter()
+                    .find(|d| d.key == key)
+                    .map(|d| d.values.clone())
+                    .unwrap_or_default();
+                cycle_in(&values, &cur, delta)
+            }
+            DetailField::Name | DetailField::Desc => None,
+        };
+
+        if let Some(v) = next {
+            if let Some(edit) = self.detail_edit.as_mut() {
+                edit.buffer = v;
+            }
+        }
+    }
+
+    /// 编辑态：输入字符（文本字段）
+    pub fn detail_edit_push(&mut self, c: char) {
+        if let Some(edit) = self.detail_edit.as_mut() {
+            edit.buffer.push(c);
+        }
+    }
+
+    /// 编辑态：退格
+    pub fn detail_edit_backspace(&mut self) {
+        if let Some(edit) = self.detail_edit.as_mut() {
+            edit.buffer.pop();
+        }
+    }
+
+    /// 编辑态：取消（Esc）
+    pub fn cancel_detail_edit(&mut self) {
+        self.detail_edit = None;
+    }
+
+    /// 编辑态：确定（写内存 + 写盘 + 重算）
+    pub fn confirm_detail_edit(&mut self) -> anyhow::Result<()> {
+        let Some(edit) = self.detail_edit.take() else {
+            return Ok(());
+        };
+        let Some(idx) = self.result.get(self.result_cursor).copied() else {
+            return Ok(());
+        };
+
+        // 换视图：先取新视图尺寸（避免与 items 的可变借用冲突）
+        let new_view_size = if edit.field == DetailField::View {
+            self.data.view(&edit.buffer).map(|v| v.size)
+        } else {
+            None
+        };
+
+        let field = edit.field;
+        let buffer = edit.buffer;
+        {
+            let item = &mut self.data.items[idx];
+            match field {
+                DetailField::Name => item.name = buffer,
+                DetailField::Desc => {
+                    item.desc = if buffer.trim().is_empty() { None } else { Some(buffer) }
+                }
+                DetailField::Layer => {
+                    if let Ok(l) = buffer.parse::<u32>() {
+                        item.layer = l.max(1);
+                    }
+                }
+                DetailField::View => {
+                    item.view = buffer;
+                    // 坐标 clamp 进新视图（避免物品落在视图外看不见）
+                    if let Some(size) = new_view_size {
+                        item.pos[0] = item.pos[0].clamp(0.0, size[0]);
+                        item.pos[1] = item.pos[1].clamp(0.0, size[1]);
+                    }
+                }
+                DetailField::Category => {
+                    item.attrs.insert("category".into(), buffer);
+                }
+                DetailField::Status => {
+                    item.attrs.insert("status".into(), buffer);
+                }
+                DetailField::Condition => {
+                    item.attrs.insert("condition".into(), buffer);
+                }
+            }
+        }
+
+        inventory_core::save(&self.data_path, &self.data)?;
+        self.rebuild();
+        Ok(())
+    }
+
     /// 列搜索：过滤当前列的候选项
     pub fn apply_column_filter(&mut self) {
         let filter = self.search_input.clone();
@@ -625,6 +859,16 @@ impl App {
 // ══════════════════════════════════════════════════════════
 // 测试
 // ══════════════════════════════════════════════════════════
+
+/// 在候选列表里循环取下一个值（delta 步）
+fn cycle_in(values: &[String], cur: &str, delta: isize) -> Option<String> {
+    if values.is_empty() {
+        return None;
+    }
+    let idx = values.iter().position(|v| v == cur).unwrap_or(0) as isize;
+    let next = (idx + delta).rem_euclid(values.len() as isize) as usize;
+    Some(values[next].clone())
+}
 
 #[cfg(test)]
 mod tests {
@@ -705,6 +949,80 @@ mod tests {
         app.columns[1].groups[0].selected = Some(1); // 第 2 层
         app.rebuild();
         assert_eq!(app.result.len(), 1, "书桌第 2 层只有 1 件");
+    }
+
+    #[test]
+    fn detail_focus_and_cursor_move() {
+        let mut app = app_with(&[]);
+        // 焦点在结果栏区域（详情列）时，详情才加入列区
+        app.focus = app.columns.len() + 1;
+        assert!(app.units().contains(&Unit::Detail), "选中物品时详情在列区");
+        assert!(app.on_detail(), "N+1 是详情列");
+        // 焦点最远到结果栏（N+2）
+        for _ in 0..10 {
+            app.move_focus(1);
+        }
+        assert_eq!(app.focus, app.columns.len() + 2, "焦点最远到结果栏");
+        // 回详情列，字段循环
+        app.focus = app.columns.len() + 1;
+        app.move_cursor(1);
+        assert_eq!(app.detail_cursor, 1);
+        app.move_cursor(-1);
+        assert_eq!(app.detail_cursor, 0);
+        app.move_cursor(-1);
+        assert_eq!(app.detail_cursor, DetailField::ALL.len() - 1, "向上循环到末尾");
+        // 焦点离开结果栏区域 → 详情滑走（不在列区）
+        app.focus = 0;
+        assert!(!app.units().contains(&Unit::Detail), "焦点离开后详情滑走");
+    }
+
+    #[test]
+    fn detail_edit_cycle_and_confirm() {
+        let mut app = app_with(&[]);
+        app.focus = app.columns.len() + 1;
+        app.detail_cursor = 1; // 分类字段
+        app.enter_detail_edit();
+        assert!(app.detail_edit.is_some(), "Enter 进入编辑态");
+
+        let before = app.current_item().unwrap().attr("category").unwrap().to_string();
+        app.cycle_detail_edit(1);
+        let after = app.detail_edit.as_ref().unwrap().buffer.clone();
+        assert_ne!(before, after, "jk 应切换到下一个候选值");
+
+        app.confirm_detail_edit().unwrap();
+        assert!(app.detail_edit.is_none(), "确定后退出编辑态");
+        assert_eq!(
+            app.current_item().unwrap().attr("category").unwrap(),
+            after,
+            "确定后数据已更新"
+        );
+    }
+
+    #[test]
+    fn detail_edit_cancel_keeps_data() {
+        let mut app = app_with(&[]);
+        app.focus = app.columns.len() + 1;
+        app.detail_cursor = 1;
+        app.enter_detail_edit();
+        let before = app.current_item().unwrap().attr("category").unwrap().to_string();
+        app.cycle_detail_edit(1);
+        app.cancel_detail_edit();
+        assert!(app.detail_edit.is_none(), "Esc 退出编辑态");
+        assert_eq!(
+            app.current_item().unwrap().attr("category").unwrap(),
+            before,
+            "取消后数据不变"
+        );
+    }
+
+    #[test]
+    fn tab_hides_detail_unit() {
+        let mut app = app_with(&[]);
+        app.focus = app.columns.len() + 1; // 焦点到详情列
+        assert!(app.units().contains(&Unit::Detail));
+        app.show_detail = false;
+        assert!(!app.units().contains(&Unit::Detail), "Tab 隐藏后详情单位移除");
+        assert!(!app.on_detail(), "隐藏后焦点不在详情列");
     }
 
     #[test]
