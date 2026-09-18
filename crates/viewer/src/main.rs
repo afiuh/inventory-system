@@ -10,7 +10,7 @@ use inventory_core::load;
 use inventory_render::{render_overview, render_view, RenderOpts};
 use notify::{RecursiveMode, Watcher};
 use std::num::NonZeroU32;
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 use std::sync::Arc;
 use winit::application::ApplicationHandler;
 use winit::event::{ElementState, MouseButton, MouseScrollDelta, WindowEvent};
@@ -66,8 +66,10 @@ impl Viewer {
         // 性能关键（bench 实测，desk 视图 950x512）：
         // - load_system_fonts() 会让 parse 从 1.6ms 涨到 126ms（CJK 字体 fallback 查询）→ 不加载
         // - 抗锯齿(GeometricPrecision) 光栅化 53ms vs OptimizeSpeed 16ms → 用后者
-        let mut usvg_opts = resvg::usvg::Options::default();
-        usvg_opts.shape_rendering = resvg::usvg::ShapeRendering::OptimizeSpeed;
+        let usvg_opts = resvg::usvg::Options {
+            shape_rendering: resvg::usvg::ShapeRendering::OptimizeSpeed,
+            ..Default::default()
+        };
 
         Self {
             proxy,
@@ -160,7 +162,7 @@ impl Viewer {
         }
         let transform = resvg::tiny_skia::Transform::from_scale(self.zoom as f32, self.zoom as f32)
             .post_translate(self.offset.0 as f32, self.offset.1 as f32);
-        resvg::render(&tree, transform, &mut pixmap.as_mut());
+        resvg::render(tree, transform, &mut pixmap.as_mut());
 
         let surface = match self.surface.as_mut() {
             Some(s) => s,
@@ -367,12 +369,12 @@ fn parse_hex_color(s: &str) -> Option<(u8, u8, u8)> {
 }
 
 /// 与 data.toml 同目录的 TUI 联动文件（内容：当前选中物品名）
-fn focus_file_path(data_path: &PathBuf) -> PathBuf {
+fn focus_file_path(data_path: &Path) -> PathBuf {
     data_path.with_file_name(".inv-focus")
 }
 
 /// 读取联动文件；不存在 → None（此时保留命令行 --focus 的初始值）
-fn read_focus_file(data_path: &PathBuf) -> Option<Vec<String>> {
+fn read_focus_file(data_path: &Path) -> Option<Vec<String>> {
     std::fs::read_to_string(focus_file_path(data_path))
         .ok()
         .map(|s| {
@@ -385,7 +387,7 @@ fn read_focus_file(data_path: &PathBuf) -> Option<Vec<String>> {
 }
 
 fn watch_file(
-    path: &PathBuf,
+    path: &Path,
     proxy: EventLoopProxy<UserEvent>,
 ) -> Result<notify::RecommendedWatcher> {
     // 关键：**监听父目录**，而不是文件本身。

@@ -39,8 +39,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         ("OptimizeSpeed", resvg::usvg::ShapeRendering::OptimizeSpeed),
         ("CrispEdges", resvg::usvg::ShapeRendering::CrispEdges),
     ] {
-        let mut o = resvg::usvg::Options::default();
-        o.shape_rendering = sr;
+        let o = resvg::usvg::Options {
+            shape_rendering: sr,
+            ..Default::default()
+        };
         bench_opts(name, &svg, &o);
     }
 

@@ -149,7 +149,7 @@ fn status_bar_shows_search_hint() {
 #[test]
 fn status_bar_shows_debug_hint() {
     let mut app = app_two_columns();
-    app.debug = Some(DebugState { result_idx: 0, item_name: "手机".into() });
+    app.debug = Some(DebugState);
     let text = render_to_text(&mut app, 160, 20);
     assert!(text.contains("退出调试"), "调试模式提示应显示");
 }

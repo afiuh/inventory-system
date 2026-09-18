@@ -79,13 +79,9 @@ pub enum SearchMode {
     Global,
 }
 
+/// 调试模式标记（正在微调的物品由 App 的光标位置决定，无需存字段）
 #[derive(Debug, Clone)]
-pub struct DebugState {
-    /// 正在微调的结果项索引（指向 result）
-    pub result_idx: usize,
-    /// 被调整的物品名
-    pub item_name: String,
-}
+pub struct DebugState;
 
 /// 详情列可编辑字段（顺序 = 显示顺序）
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -211,21 +207,6 @@ impl App {
             .filter(|(_, on)| **on)
             .map(|(d, _)| d.key.clone())
             .collect()
-    }
-
-    /// 当前所有选中路径（列里的选择）
-    pub fn selections(&self) -> Vec<(String, Vec<String>)> {
-        let mut out: Vec<(String, Vec<String>)> = Vec::new();
-        for col in &self.columns {
-            for g in &col.groups {
-                if let Some(idx) = g.selected {
-                    if let Some(c) = g.items.get(idx) {
-                        out.push((g.dim.clone(), vec![c.value.clone()]));
-                    }
-                }
-            }
-        }
-        out
     }
 
     /// 位置维度的特殊路径（视图 + 层）—— 在给定列栈上读取
@@ -470,15 +451,6 @@ impl App {
         // 无选中物品 → 焦点不能停在详情列/结果栏（兜底回最后一列）
         if self.result.is_empty() && self.focus > self.columns.len() {
             self.focus = self.columns.len();
-        }
-    }
-
-    /// 当前列（None = 维度栏）
-    pub fn current_column(&self) -> Option<&Column> {
-        if self.focus == 0 {
-            None
-        } else {
-            self.columns.get(self.focus - 1)
         }
     }
 

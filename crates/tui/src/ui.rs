@@ -47,11 +47,7 @@ pub fn draw(f: &mut Frame, app: &mut App) {
             Unit::Column(_) => COL_W,
         })
         .sum();
-    let detail_room = if shown.contains(&Unit::Detail) && area.width < left_w + MIN_RESULT {
-        false
-    } else {
-        true
-    };
+    let detail_room = !(shown.contains(&Unit::Detail) && area.width < left_w + MIN_RESULT);
 
     // ── 约束：窗口单位… | 结果（独占剩余）──
     let mut constraints: Vec<Constraint> = Vec::new();

@@ -8,7 +8,7 @@ use clap::{Parser, Subcommand};
 use inventory_core::{check, load, save, Item};
 use inventory_render::{render_overview, render_view, RenderOpts};
 use std::collections::HashMap;
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 
 #[derive(Parser)]
 #[command(name = "inv", version, about = "物品管理系统（数据 = TOML 文件）")]
@@ -135,7 +135,7 @@ fn main() -> Result<()> {
 // ══════════════════════════════════════════════════════════
 
 fn cmd_list(
-    path: &PathBuf,
+    path: &Path,
     view: Option<String>,
     category: Option<String>,
     status: Option<String>,
@@ -177,7 +177,7 @@ fn cmd_list(
     Ok(())
 }
 
-fn cmd_find(path: &PathBuf, keyword: &str) -> Result<()> {
+fn cmd_find(path: &Path, keyword: &str) -> Result<()> {
     let data = load(path)?;
     let kw = keyword.to_lowercase();
     let hits: Vec<&Item> = data
@@ -216,7 +216,7 @@ fn cmd_find(path: &PathBuf, keyword: &str) -> Result<()> {
     Ok(())
 }
 
-fn cmd_stats(path: &PathBuf) -> Result<()> {
+fn cmd_stats(path: &Path) -> Result<()> {
     let data = load(path)?;
     println!("物品总数: {}", data.items.len());
     println!("视图: {} · 维度: {}", data.views.len(), data.dimensions.len());
@@ -233,7 +233,7 @@ fn cmd_stats(path: &PathBuf) -> Result<()> {
             }
         }
         let mut entries: Vec<_> = counts.into_iter().collect();
-        entries.sort_by(|a, b| b.1.cmp(&a.1));
+        entries.sort_by_key(|e| std::cmp::Reverse(e.1));
         println!("\n{} 分布:", dim.name);
         for (k, n) in entries {
             println!("  {k:<12} {n}");
@@ -244,7 +244,7 @@ fn cmd_stats(path: &PathBuf) -> Result<()> {
 
 #[allow(clippy::too_many_arguments)]
 fn cmd_add(
-    path: &PathBuf,
+    path: &Path,
     name: String,
     category: Option<String>,
     status: String,
@@ -304,7 +304,7 @@ fn cmd_add(
     Ok(())
 }
 
-fn cmd_move(path: &PathBuf, name: &str, pos: &str) -> Result<()> {
+fn cmd_move(path: &Path, name: &str, pos: &str) -> Result<()> {
     let mut data = load(path)?;
     let pos = parse_pos(pos)?;
     let item = data
@@ -327,7 +327,7 @@ fn cmd_move(path: &PathBuf, name: &str, pos: &str) -> Result<()> {
     Ok(())
 }
 
-fn cmd_set_attr(path: &PathBuf, name: &str, key: &str, value: &str) -> Result<()> {
+fn cmd_set_attr(path: &Path, name: &str, key: &str, value: &str) -> Result<()> {
     let mut data = load(path)?;
 
     // 维度值合法性（若该 key 是枚举维度）
@@ -347,7 +347,7 @@ fn cmd_set_attr(path: &PathBuf, name: &str, key: &str, value: &str) -> Result<()
     Ok(())
 }
 
-fn cmd_rm(path: &PathBuf, name: &str, yes: bool) -> Result<()> {
+fn cmd_rm(path: &Path, name: &str, yes: bool) -> Result<()> {
     let mut data = load(path)?;
     let idx = data
         .items
@@ -378,7 +378,7 @@ fn cmd_rm(path: &PathBuf, name: &str, yes: bool) -> Result<()> {
     Ok(())
 }
 
-fn cmd_check(path: &PathBuf) -> Result<()> {
+fn cmd_check(path: &Path) -> Result<()> {
     let data = load(path)?;
     let issues = check(&data);
     if issues.is_empty() {
@@ -398,7 +398,7 @@ fn cmd_check(path: &PathBuf) -> Result<()> {
     Ok(())
 }
 
-fn cmd_render(path: &PathBuf, view: Option<String>, out: PathBuf) -> Result<()> {
+fn cmd_render(path: &Path, view: Option<String>, out: PathBuf) -> Result<()> {
     let data = load(path)?;
     let opts = RenderOpts::default();
     let svg = match view {

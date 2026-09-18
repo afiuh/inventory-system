@@ -198,7 +198,7 @@ fn handle_key(app: &mut App, key: KeyEvent) -> Result<()> {
 
         KeyCode::Char('d') => {
             if let Some(name) = app.current_item().map(|i| i.name.clone()) {
-                app.debug = Some(DebugState { result_idx: app.result_cursor, item_name: name.clone() });
+                app.debug = Some(DebugState);
                 app.message = Some(format!("调试模式：{name}"));
             } else {
                 app.message = Some("先选中一个物品（l 切到结果栏）".into());
