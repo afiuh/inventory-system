@@ -139,6 +139,11 @@ impl Viewer {
 
         let mut pixmap = resvg::tiny_skia::Pixmap::new(w, h)
             .ok_or_else(|| anyhow::anyhow!("创建像素缓冲失败（窗口 {w}x{h} 过大？）"))?;
+
+        // 背景填充：SVG 之外（视图宽高比与窗口不一致时）不留黑边
+        if let Some((r, g, b)) = parse_hex_color(inventory_render::Theme::default().bg) {
+            pixmap.fill(resvg::tiny_skia::Color::from_rgba8(r, g, b, 255));
+        }
         let transform = resvg::tiny_skia::Transform::from_scale(self.zoom as f32, self.zoom as f32)
             .post_translate(self.offset.0 as f32, self.offset.1 as f32);
         resvg::render(&tree, transform, &mut pixmap.as_mut());
@@ -330,6 +335,19 @@ impl ApplicationHandler<UserEvent> for Viewer {
         // 事件循环空闲（保持 Wait 模式，无轮询开销）
         let _ = ControlFlow::Wait;
     }
+}
+
+/// 解析 "#rrggbb" → (r, g, b)
+fn parse_hex_color(s: &str) -> Option<(u8, u8, u8)> {
+    let s = s.trim_start_matches('#');
+    if s.len() != 6 {
+        return None;
+    }
+    Some((
+        u8::from_str_radix(&s[0..2], 16).ok()?,
+        u8::from_str_radix(&s[2..4], 16).ok()?,
+        u8::from_str_radix(&s[4..6], 16).ok()?,
+    ))
 }
 
 fn watch_file(
