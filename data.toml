@@ -91,13 +91,13 @@ size = [90.0, 60.0]
 name = "4cm 床垫"
 view = "bed"
 layer = 4
-pos = [29.899999618530273, 95.69999694824219]
+pos = [16.899999618530273, 50.70000076293945]
 size = 31.899999618530273
 shape = "box"
 desc = "床铺床垫"
+status = "在位"
 condition = "正常"
 category = "睡眠类"
-status = "在位"
 
 [[item]]
 name = "床单"
@@ -139,25 +139,25 @@ condition = "正常"
 name = "耳塞"
 view = "bed"
 layer = 1
-pos = [4.9, 85.7]
-size = 1.5
+pos = [30.899999618530273, 83.69999694824219]
+size = 5.5
 shape = "box"
-desc = "睡眠耳塞"
+desc = "睡觉必需品"
+condition = "正常"
 category = "睡眠类"
 status = "在位"
-condition = "正常"
 
 [[item]]
 name = "枕头"
 view = "bed"
 layer = 1
-pos = [5.9, 94.2]
-size = 11.3
+pos = [10.899999618530273, 91.19999694824219]
+size = 11.300000190734863
 shape = "box"
-desc = "睡眠枕头"
-category = "睡眠类"
+desc = "睡眠枕头1"
 status = "在位"
-condition = "正常"
+category = "睡眠类"
+condition = "待维护"
 
 # ── 书桌桌面（13 件）──
 
