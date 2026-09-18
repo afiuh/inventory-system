@@ -12,15 +12,12 @@ use notify::{RecursiveMode, Watcher};
 use std::num::NonZeroU32;
 use std::path::PathBuf;
 use std::sync::Arc;
-use std::time::{Duration, Instant};
 use winit::application::ApplicationHandler;
 use winit::event::{ElementState, MouseButton, MouseScrollDelta, WindowEvent};
 use winit::event_loop::{ActiveEventLoop, ControlFlow, EventLoop, EventLoopProxy};
 use winit::keyboard::{Key, NamedKey};
 use winit::window::{Window, WindowId};
 
-/// 重新加载防抖（编辑器保存可能触发多次事件）
-const RELOAD_DEBOUNCE: Duration = Duration::from_millis(150);
 /// 缩放步长
 const ZOOM_STEP: f64 = 1.15;
 /// 缩放范围
@@ -49,7 +46,6 @@ struct Viewer {
 
     dragging: bool,
     last_cursor: (f64, f64),
-    last_reload: Instant,
 
     _watcher: Option<notify::RecommendedWatcher>,
     proxy: EventLoopProxy<UserEvent>,
@@ -76,7 +72,6 @@ impl Viewer {
             surface: None,
             dragging: false,
             last_cursor: (0.0, 0.0),
-            last_reload: Instant::now(),
             _watcher: None,
         }
     }
@@ -227,11 +222,9 @@ impl ApplicationHandler<UserEvent> for Viewer {
     fn user_event(&mut self, _event_loop: &ActiveEventLoop, event: UserEvent) {
         match event {
             UserEvent::DataChanged => {
-                // 防抖：编辑器保存可能触发多次
-                if self.last_reload.elapsed() < RELOAD_DEBOUNCE {
-                    return;
-                }
-                self.last_reload = Instant::now();
+                // 不防抖：resvg 渲染毫秒级，重复渲染无害；
+                // 而防抖会**丢弃**窗口内的后续事件（含最后一次更新）——那才是卡住的根因。
+                // winit 的 request_redraw 本身会合并同一帧内的多次请求。
                 self.request_redraw();
             }
         }
@@ -246,6 +239,10 @@ impl ApplicationHandler<UserEvent> for Viewer {
             WindowEvent::RedrawRequested => {
                 if let Err(e) = self.render_pixels() {
                     eprintln!("渲染失败: {e:#}");
+                    // 失败时在标题提示（保留上一帧，不白屏）
+                    if let Some(w) = &self.window {
+                        w.set_title(&format!("inventory viewer — ⚠ {e}"));
+                    }
                 }
             }
             WindowEvent::MouseWheel { delta, .. } => {
@@ -313,13 +310,10 @@ fn watch_file(
     proxy: EventLoopProxy<UserEvent>,
 ) -> Result<notify::RecommendedWatcher> {
     let mut watcher = notify::recommended_watcher(move |res: notify::Result<notify::Event>| {
-        if let Ok(ev) = res {
-            if matches!(
-                ev.kind,
-                notify::EventKind::Modify(_) | notify::EventKind::Create(_)
-            ) {
-                let _ = proxy.send_event(UserEvent::DataChanged);
-            }
+        // 只监听单个文件：任何事件都视为"数据可能已变"，直接触发重渲染。
+        // （不过滤事件类型——rename/权限变更等在不同后端下类型不一，过滤会丢更新）
+        if res.is_ok() {
+            let _ = proxy.send_event(UserEvent::DataChanged);
         }
     })?;
     watcher.watch(path, RecursiveMode::NonRecursive)?;

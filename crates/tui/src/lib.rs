@@ -178,14 +178,19 @@ fn apply_search(app: &mut App, mode: SearchMode) {
     }
 }
 
+/// 保留 1 位小数（避免浮点误差累积成 11.329997062683105 这种值）
+fn round1(v: f32) -> f32 {
+    (v * 10.0).round() / 10.0
+}
+
 /// 调试模式：移动物品（cm）
 fn nudge(app: &mut App, dx: f32, dy: f32) -> Result<()> {
     let Some(idx) = app.result.get(app.result_cursor).copied() else {
         return Ok(());
     };
     let item = &mut app.data.items[idx];
-    item.pos[0] = (item.pos[0] + dx).max(0.0);
-    item.pos[1] = (item.pos[1] + dy).max(0.0);
+    item.pos[0] = round1((item.pos[0] + dx).max(0.0));
+    item.pos[1] = round1((item.pos[1] + dy).max(0.0));
     let pos = item.pos;
     let name = item.name.clone();
     save(&app.data_path, &app.data).context("写回数据失败")?;
@@ -199,7 +204,7 @@ fn scale(app: &mut App, factor: f32) -> Result<()> {
         return Ok(());
     };
     let item = &mut app.data.items[idx];
-    item.size = (item.size * factor).clamp(0.5, 200.0);
+    item.size = round1((item.size * factor).clamp(0.5, 200.0));
     let size = item.size;
     let name = item.name.clone();
     save(&app.data_path, &app.data).context("写回数据失败")?;
