@@ -65,6 +65,9 @@ pub struct RenderOpts {
     pub condition_key: String,
     /// 需要高亮的物品名（其余变暗）
     pub highlight: Vec<String>,
+    /// 目标宽高比（宽/高）。Some 时：视图区域（背景/网格）拉伸到该比例，
+    /// 物品**位置按比例映射、形状不变**（"只拉背景"）。
+    pub aspect: Option<f32>,
 }
 
 impl Default for RenderOpts {
@@ -78,6 +81,7 @@ impl Default for RenderOpts {
             status_key: "status".into(),
             condition_key: "condition".into(),
             highlight: Vec::new(),
+            aspect: None,
         }
     }
 }
@@ -106,8 +110,24 @@ pub fn render_view(data: &Data, view_id: &str, opts: &RenderOpts) -> Result<Stri
 
     let s = opts.scale;
     let pad = opts.padding;
-    let w = view.size[0] * s + pad * 2.0;
-    let h = view.size[1] * s + pad * 2.0;
+    let (vw, vh) = (view.size[0], view.size[1]);
+
+    // 显示区域：有 aspect 时非等比拉伸（保持视图一边，扩展另一边）
+    let (disp_w, disp_h) = match opts.aspect {
+        Some(a) if a > 0.0 => {
+            if vw / vh >= a {
+                (vw, vw / a) // 视图更宽 → 高度扩展
+            } else {
+                (vh * a, vh) // 视图更高 → 宽度扩展
+            }
+        }
+        _ => (vw, vh),
+    };
+    let sx = disp_w / vw; // 物品 x 位置映射系数
+    let sy = disp_h / vh; // 物品 y 位置映射系数
+
+    let w = disp_w * s + pad * 2.0;
+    let h = disp_h * s + pad * 2.0;
 
     let mut svg = String::with_capacity(4096);
     let _ = write!(
@@ -122,31 +142,31 @@ pub fn render_view(data: &Data, view_id: &str, opts: &RenderOpts) -> Result<Stri
         r##"<rect x="{pad:.1}" y="{pad:.1}" width="{vw:.1}" height="{vh:.1}" rx="6" fill="{}" stroke="{}" stroke-width="1"/>"##,
         opts.theme.card,
         opts.theme.border,
-        vw = view.size[0] * s,
-        vh = view.size[1] * s
+        vw = disp_w * s,
+        vh = disp_h * s
     );
 
     // 网格（每 10cm 一条淡线）
     let mut grid = String::new();
     let mut x = 10.0;
-    while x < view.size[0] {
+    while x < disp_w {
         let _ = write!(
             grid,
             r##"<line x1="{:.1}" y1="{pad:.1}" x2="{:.1}" y2="{:.1}" stroke="{}" stroke-opacity="0.5" stroke-width="0.6"/>"##,
             pad + x * s,
             pad + x * s,
-            pad + view.size[1] * s,
+            pad + disp_h * s,
             opts.theme.border
         );
         x += 10.0;
     }
     let mut y = 10.0;
-    while y < view.size[1] {
+    while y < disp_h {
         let _ = write!(
             grid,
             r##"<line x1="{pad:.1}" y1="{:.1}" x2="{:.1}" y2="{:.1}" stroke="{}" stroke-opacity="0.5" stroke-width="0.6"/>"##,
             pad + y * s,
-            pad + view.size[0] * s,
+            pad + disp_w * s,
             pad + y * s,
             opts.theme.border
         );
@@ -154,18 +174,27 @@ pub fn render_view(data: &Data, view_id: &str, opts: &RenderOpts) -> Result<Stri
     }
     svg.push_str(&grid);
 
-    // 物品
+    // 物品：位置按显示区域映射（形状/尺寸不变——"只拉背景"）
     for item in &items {
-        render_item(&mut svg, item, pad, s, opts);
+        render_item(&mut svg, item, pad, s, sx, sy, opts);
     }
 
     svg.push_str("</svg>");
     Ok(svg)
 }
 
-fn render_item(out: &mut String, item: &Item, pad: f32, scale: f32, opts: &RenderOpts) {
-    let cx = pad + item.pos[0] * scale;
-    let cy = pad + item.pos[1] * scale;
+#[allow(clippy::too_many_arguments)]
+fn render_item(
+    out: &mut String,
+    item: &Item,
+    pad: f32,
+    scale: f32,
+    sx: f32,
+    sy: f32,
+    opts: &RenderOpts,
+) {
+    let cx = pad + item.pos[0] * sx * scale;
+    let cy = pad + item.pos[1] * sy * scale;
     let s = (item.size * scale).max(3.0);
 
     let color = color_for(item.attr(&opts.color_key).unwrap_or(""), &opts.theme);

@@ -96,7 +96,16 @@ impl Viewer {
             .with_context(|| format!("读取数据失败: {}", self.data_path.display()))?;
         let t1 = std::time::Instant::now();
 
-        let opts = RenderOpts { highlight: self.focus.clone(), ..Default::default() };
+        // 窗口宽高比 → 传给 render（视图区域拉伸填满窗口，物品形状不变）
+        let aspect = self.window.as_ref().and_then(|w| {
+            let size = w.inner_size();
+            if size.height > 0 {
+                Some(size.width as f32 / size.height as f32)
+            } else {
+                None
+            }
+        });
+        let opts = RenderOpts { highlight: self.focus.clone(), aspect, ..Default::default() };
         let svg = match &self.view_id {
             Some(id) => render_view(&data, id, &opts)?,
             None => render_overview(&data, &opts)?,
@@ -266,6 +275,8 @@ impl ApplicationHandler<UserEvent> for Viewer {
         match event {
             WindowEvent::CloseRequested => event_loop.exit(),
             WindowEvent::Resized(_) => {
+                // 窗口比例变化 → SVG 需按新比例重新生成（视图区域自适应）
+                self.cached_tree = None;
                 self.request_redraw();
             }
             WindowEvent::RedrawRequested => {
