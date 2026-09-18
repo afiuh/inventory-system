@@ -203,7 +203,8 @@ fn draw_column(f: &mut Frame, app: &App, col_idx: usize, area: Rect) {
 }
 
 fn draw_results(f: &mut Frame, app: &App, area: Rect) {
-    let focused = app.focus == app.columns.len() + 1;
+    // 焦点在结果栏（N+2）时才高亮——N+1 是详情列
+    let focused = app.focus == app.columns.len() + 2;
     let total = app.data.items.len();
     let title = format!("结果 {}/{}", app.result.len(), total);
 
