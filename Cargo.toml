@@ -1,0 +1,29 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/core",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+
+[workspace.dependencies]
+serde = { version = "1", features = ["derive"] }
+toml_edit = { version = "0.22", features = ["serde"] }
+thiserror = "2"
+anyhow = "1"
+
+# 渲染层
+resvg = "0.45"
+
+# 查看器
+winit = "0.30"
+softbuffer = "0.4"
+notify = "8"
+
+# 控制层
+clap = { version = "4", features = ["derive"] }
+ratatui = "0.29"
+crossterm = "0.28"

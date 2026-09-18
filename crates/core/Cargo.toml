@@ -1,0 +1,10 @@
+[package]
+name = "inventory-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+serde.workspace = true
+toml_edit.workspace = true
+thiserror.workspace = true
