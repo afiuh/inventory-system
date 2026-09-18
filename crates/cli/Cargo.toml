@@ -1,0 +1,16 @@
+[package]
+name = "inventory-cli"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "inv"
+path = "src/main.rs"
+
+[dependencies]
+inventory-core = { path = "../core" }
+inventory-render = { path = "../render" }
+clap.workspace = true
+libc = "0.2"
+anyhow.workspace = true

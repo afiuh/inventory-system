@@ -46,7 +46,11 @@ L.append('[[dimension]]')
 L.append('key = "category"')
 L.append('name = "分类"')
 L.append('kind = "enum"')
-cats = d['categories']
+cats = list(d['categories'])
+# 补齐物品实际使用但未声明的分类（原数据脏数据：如"日用品"）
+for c in sorted({it['category'] for it in items}):
+    if c not in cats:
+        cats.append(c)
 L.append('values = [' + ', '.join(f'"{c}"' for c in cats) + ']')
 L.append('')
 L.append('[[dimension]]')
