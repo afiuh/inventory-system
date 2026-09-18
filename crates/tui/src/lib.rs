@@ -42,7 +42,9 @@ pub fn run(data_path: PathBuf) -> Result<()> {
 }
 
 fn event_loop<B: ratatui::backend::Backend>(terminal: &mut Terminal<B>, app: &mut App) -> Result<()> {
+    let mut last_focus: Option<String> = None;
     loop {
+        sync_focus(app, &mut last_focus);
         terminal.draw(|f| ui::draw(f, app))?;
         if app.quit {
             return Ok(());
@@ -59,6 +61,24 @@ fn event_loop<B: ratatui::backend::Backend>(terminal: &mut Terminal<B>, app: &mu
             Event::Resize(_, _) => {}
             _ => {}
         }
+    }
+}
+
+/// 同步当前选中物品到 `<data.toml 同目录>/.inv-focus`（viewer 监听该文件实现高亮联动）
+///
+/// - 只在选中变化时写（避免无谓的文件事件与重渲染）
+/// - tmp + rename 原子替换（viewer 不会读到半个文件）
+/// - 无选中时写空文件（viewer 端表现为无高亮）
+fn sync_focus(app: &App, last: &mut Option<String>) {
+    let name = app.current_item().map(|i| i.name.clone());
+    if last.as_deref() == name.as_deref() {
+        return;
+    }
+    *last = name.clone();
+    let path = app.data_path.with_file_name(".inv-focus");
+    let tmp = app.data_path.with_file_name(".inv-focus.tmp");
+    if std::fs::write(&tmp, name.unwrap_or_default().as_bytes()).is_ok() {
+        let _ = std::fs::rename(&tmp, &path);
     }
 }
 

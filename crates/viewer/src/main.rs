@@ -92,6 +92,11 @@ impl Viewer {
     /// 读数据 → render → 解析 SVG（返回 usvg Tree）
     fn build_tree(&mut self) -> Result<resvg::usvg::Tree> {
         let t0 = std::time::Instant::now();
+        // TUI 联动：同目录 .inv-focus（TUI 写入当前选中物品名）存在则覆盖 focus；
+        // 命令行 --focus 仅在文件不存在时作为初始值。
+        if let Some(f) = read_focus_file(&self.data_path) {
+            self.focus = f;
+        }
         let data = load(&self.data_path)
             .with_context(|| format!("读取数据失败: {}", self.data_path.display()))?;
         let t1 = std::time::Instant::now();
@@ -361,6 +366,24 @@ fn parse_hex_color(s: &str) -> Option<(u8, u8, u8)> {
     ))
 }
 
+/// 与 data.toml 同目录的 TUI 联动文件（内容：当前选中物品名）
+fn focus_file_path(data_path: &PathBuf) -> PathBuf {
+    data_path.with_file_name(".inv-focus")
+}
+
+/// 读取联动文件；不存在 → None（此时保留命令行 --focus 的初始值）
+fn read_focus_file(data_path: &PathBuf) -> Option<Vec<String>> {
+    std::fs::read_to_string(focus_file_path(data_path))
+        .ok()
+        .map(|s| {
+            s.lines()
+                .map(str::trim)
+                .filter(|l| !l.is_empty())
+                .map(String::from)
+                .collect()
+        })
+}
+
 fn watch_file(
     path: &PathBuf,
     proxy: EventLoopProxy<UserEvent>,
@@ -370,6 +393,7 @@ fn watch_file(
     // rename 后旧 inode 被丢弃，watch 随之失效 → 后续所有修改都收不到事件（实测：连续修改 0 次渲染）。
     // 监听目录则不受文件替换影响。
     let file_name = path.file_name().map(|s| s.to_os_string());
+    // 同目录的 .inv-focus（TUI 联动文件）变化也要触发重绘
     let dir = path
         .parent()
         .filter(|p| !p.as_os_str().is_empty())
@@ -383,9 +407,12 @@ fn watch_file(
             if matches!(ev.kind, notify::EventKind::Access(_)) {
                 return;
             }
-            // 目录里可能有其他文件变动：只处理目标文件相关的事件
+            // 目录里可能有其他文件变动：只处理目标文件 + .inv-focus 相关的事件
             let hit = match &file_name {
-                Some(name) => ev.paths.iter().any(|p| p.file_name() == Some(name.as_os_str())),
+                Some(name) => ev.paths.iter().any(|p| {
+                    let n = p.file_name();
+                    n == Some(name.as_os_str()) || n == Some(std::ffi::OsStr::new(".inv-focus"))
+                }),
                 None => true,
             };
             if hit {
