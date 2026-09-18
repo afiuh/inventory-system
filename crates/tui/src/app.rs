@@ -415,8 +415,15 @@ impl App {
         }
 
         self.columns = new_columns;
-        self.focus = self.focus.min(self.columns.len());
         self.recompute_result();
+        // 焦点防越界：无物品 → 最后一列；有物品 → 允许停在详情列/结果栏（N+2）
+        // （旧代码 clamp 到 N 会把详情列/结果栏上的焦点也压掉——编辑确定后焦点被踢走）
+        let max = if self.result.is_empty() {
+            self.columns.len()
+        } else {
+            self.columns.len() + 2
+        };
+        self.focus = self.focus.min(max);
     }
 
     /// 根据选中路径重算结果
@@ -1013,6 +1020,22 @@ mod tests {
             before,
             "取消后数据不变"
         );
+    }
+
+    #[test]
+    fn confirm_keeps_focus_on_detail_column() {
+        let mut app = app_with(&[]);
+        app.focus = app.columns.len() + 1; // 详情列
+        app.detail_cursor = 0; // 名称（文本字段）
+        app.enter_detail_edit();
+        app.detail_edit_push('X');
+        app.confirm_detail_edit().unwrap();
+        assert_eq!(
+            app.focus,
+            app.columns.len() + 1,
+            "确定后焦点应留在详情列（不被 rebuild 踢走）"
+        );
+        assert!(app.on_detail(), "详情列仍可见");
     }
 
     #[test]
