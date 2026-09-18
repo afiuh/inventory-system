@@ -3,6 +3,33 @@
 //! 约定：所有形状在 (cx, cy) 为中心、`s` 为长边边长的范围内绘制。
 //! `fill` 为渐变引用（形如 `url(#g7aa2f7)`）或纯色。
 
+/// 形状自带默认色——**颜色属于图形自身**（"矢量图画什么颜色就是什么颜色"）
+///
+/// 分类色已取消（2026-09-19）：颜色不再承载分类信息（分类在 TUI 里看）。
+/// 过渡期（简单几何剪影）每个形状配一个默认色；精细矢量图阶段颜色直接画在图形里。
+pub fn default_color(shape: Option<&str>) -> &'static str {
+    match shape.unwrap_or("box") {
+        "phone" => "#3b4261",     // 深灰蓝（手机）
+        "laptop" => "#565f89",    // 银灰（笔记本）
+        "headphone" => "#414868", // 深灰（耳机）
+        "charger" => "#9ece6a",   // 绿（充电器）
+        "keyboard" => "#565f89",  // 灰（键盘）
+        "book" => "#7aa2f7",      // 蓝（书）
+        "notebook" => "#bb9af7",  // 紫（本子）
+        "file" => "#e0af68",      // 黄（文件）
+        "tshirt" => "#f7768e",    // 红（T恤）
+        "pants" => "#7dcfff",     // 青（裤子）
+        "coat" => "#9d7cd8",      // 紫（外套）
+        "bottle" => "#73daca",    // 青绿（瓶子）
+        "cup" => "#ff9e64",       // 橙（杯子）
+        "ball" => "#ff9e64",      // 橙（球）
+        "pouch" => "#bb9af7",     // 紫（收纳袋）
+        "round" => "#7aa2f7",     // 蓝（通用圆）
+        "blob" => "#565f89",      // 灰（不规则）
+        _ => "#3b4261",           // 通用矩形
+    }
+}
+
 /// 形状分发：未知形状 → 通用圆角矩形（兜底，保证系统永远可用）
 pub fn draw(shape: Option<&str>, cx: f32, cy: f32, s: f32, fill: &str) -> String {
     match shape.unwrap_or("box") {

@@ -12,7 +12,6 @@ mod shapes;
 pub use shapes::{draw as draw_shape, KNOWN_SHAPES};
 
 use inventory_core::{Data, Item};
-use std::collections::HashSet;
 use std::fmt::Write as _;
 
 // ══════════════════════════════════════════════════════════
@@ -57,8 +56,6 @@ pub struct RenderOpts {
     pub padding: f32,
     /// 是否显示物品标签
     pub show_labels: bool,
-    /// 分类维度 key（决定颜色）
-    pub color_key: String,
     /// 去向维度 key（状态标记）
     pub status_key: String,
     /// 状况维度 key（状态标记）
@@ -77,7 +74,6 @@ impl Default for RenderOpts {
             scale: 4.0,
             padding: 16.0,
             show_labels: true,
-            color_key: "category".into(),
             status_key: "status".into(),
             condition_key: "condition".into(),
             highlight: Vec::new(),
@@ -197,7 +193,8 @@ fn render_item(
     let cy = pad + item.pos[1] * sy * scale;
     let s = (item.size * scale).max(3.0);
 
-    let color = color_for(item.attr(&opts.color_key).unwrap_or(""), &opts.theme);
+    // 颜色属于图形自身（分类色已取消——分类信息在 TUI 里看）
+    let color = shapes::default_color(item.shape.as_deref());
     // 纯色填充（渐变光栅化成本占 42%——性能优先；立体感靠描边与状态标记表达）
     let fill = color.to_string();
 
@@ -210,16 +207,34 @@ fn render_item(
     // 形状
     out.push_str(&shapes::draw(item.shape.as_deref(), cx, cy, s, &fill));
 
-    // 标签（够大才显示）
-    if opts.show_labels && s > 26.0 {
-        let name = truncate_chars(&item.name, 8);
-        let font_size = (s * 0.22).clamp(8.0, 15.0);
+    // 标签：分级显示（LOD）
+    // - 阈值 16px（原 26px）：更多小色块也有标签
+    // - 字号随色块放大（上限 20），名字截断随尺寸放宽
+    // - 文字描边（先描后填两次绘制）：任何底色上都清晰
+    if opts.show_labels && s > 16.0 {
+        let max_chars = if s > 90.0 {
+            24
+        } else if s > 55.0 {
+            14
+        } else {
+            8
+        };
+        let name = truncate_chars(&item.name, max_chars);
+        let font_size = (s * 0.22).clamp(7.0, 20.0);
+        let ty = cy + font_size * 0.36;
+        let esc = escape_xml(&name);
+        // 描边层（深色，加粗）
         let _ = write!(
             out,
-            r##"<text x="{cx:.1}" y="{:.1}" text-anchor="middle" font-family="{}" font-size="{font_size:.1}" fill="#ffffff" fill-opacity="0.95">{}</text>"##,
-            cy + font_size * 0.36,
+            r##"<text x="{cx:.1}" y="{ty:.1}" text-anchor="middle" font-family="{}" font-size="{font_size:.1}" fill="none" stroke="#0d0e14" stroke-width="{sw:.1}" stroke-opacity="0.75" stroke-linejoin="round">{esc}</text>"##,
             opts.theme.font,
-            escape_xml(&name)
+            sw = (font_size * 0.22).max(1.6)
+        );
+        // 填充层
+        let _ = write!(
+            out,
+            r##"<text x="{cx:.1}" y="{ty:.1}" text-anchor="middle" font-family="{}" font-size="{font_size:.1}" fill="#ffffff" fill-opacity="0.98">{esc}</text>"##,
+            opts.theme.font
         );
     }
 
@@ -396,17 +411,19 @@ pub fn render_overview(data: &Data, opts: &RenderOpts) -> Result<String, RenderE
             let cx = it.pos[0];
             let cy = it.pos[1];
             let s = it.size.max(1.0);
-            let color = color_for(it.attr(&opts.color_key).unwrap_or(""), &opts.theme);
+            // 颜色属于图形自身（分类色已取消）
+            let color = shapes::default_color(it.shape.as_deref());
             svg.push_str(&shapes::draw(it.shape.as_deref(), cx, cy, s, color));
-            if opts.show_labels && s * k > 26.0 {
+            if opts.show_labels && s * k > 16.0 {
                 let name = truncate_chars(&it.name, 8);
                 let fs = (s * 0.22).clamp(0.8, 30.0);
+                let ty = cy + fs * 0.36;
+                let esc = escape_xml(&name);
                 let _ = write!(
                     svg,
-                    r##"<text x="{cx:.1}" y="{:.1}" text-anchor="middle" font-family="{}" font-size="{fs:.1}" fill="#fff" fill-opacity="0.95">{}</text>"##,
-                    cy + fs * 0.36,
-                    opts.theme.font,
-                    escape_xml(&name)
+                    r##"<text x="{cx:.1}" y="{ty:.1}" text-anchor="middle" font-family="{font}" font-size="{fs:.1}" fill="none" stroke="#0d0e14" stroke-width="{sw:.1}" stroke-opacity="0.75" stroke-linejoin="round">{esc}</text><text x="{cx:.1}" y="{ty:.1}" text-anchor="middle" font-family="{font}" font-size="{fs:.1}" fill="#fff" fill-opacity="0.98">{esc}</text>"##,
+                    font = opts.theme.font,
+                    sw = (fs * 0.22).max(0.3)
                 );
             }
         }
@@ -420,37 +437,6 @@ pub fn render_overview(data: &Data, opts: &RenderOpts) -> Result<String, RenderE
 // ══════════════════════════════════════════════════════════
 // 辅助
 // ══════════════════════════════════════════════════════════
-
-/// 分类名 → 色板颜色（哈希分配，稳定）
-pub fn color_for(category: &str, theme: &Theme) -> &'static str {
-    let h = category
-        .bytes()
-        .fold(0u64, |acc, b| acc.wrapping_mul(31).wrapping_add(b as u64));
-    theme.palette[(h % theme.palette.len() as u64) as usize]
-}
-
-fn gradient_id(color: &str) -> String {
-    format!("g{}", color.trim_start_matches('#'))
-}
-
-/// 收集用到的颜色，生成渐变定义（当前未启用——纯色填充性能优先）
-#[allow(dead_code)]
-fn gradient_defs(items: &[&Item], opts: &RenderOpts) -> String {
-    let mut colors: HashSet<&str> = HashSet::new();
-    for it in items {
-        colors.insert(color_for(it.attr(&opts.color_key).unwrap_or(""), &opts.theme));
-    }
-    let mut out = String::from("<defs>");
-    for c in colors {
-        let _ = write!(
-            out,
-            r##"<linearGradient id="{}" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="{c}" stop-opacity="0.95"/><stop offset="1" stop-color="{c}" stop-opacity="0.62"/></linearGradient>"##,
-            gradient_id(c)
-        );
-    }
-    out.push_str("</defs>");
-    out
-}
 
 fn truncate_chars(s: &str, max: usize) -> String {
     let chars: Vec<char> = s.chars().collect();
@@ -522,10 +508,9 @@ mod tests {
     }
 
     #[test]
-    fn color_assignment_is_stable() {
-        let t = Theme::default();
-        assert_eq!(color_for("电子类", &t), color_for("电子类", &t));
-        assert_ne!(color_for("电子类", &t), color_for("衣物类", &t));
+    fn shape_color_is_stable() {
+        assert_eq!(shapes::default_color(Some("phone")), shapes::default_color(Some("phone")));
+        assert_ne!(shapes::default_color(Some("phone")), shapes::default_color(Some("book")));
     }
 
     #[test]
