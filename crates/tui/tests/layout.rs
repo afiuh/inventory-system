@@ -1,7 +1,7 @@
 //! 布局验收测试：结果栏独占最右 · 列区滑动窗口（多了就挤出去）
 
 use inventory_core::{Data, Dimension, DimensionKind, Item, Meta, View};
-use inventory_tui::app::App;
+use inventory_tui::app::{App, DebugState, SearchMode};
 use ratatui::backend::TestBackend;
 use ratatui::Terminal;
 use std::collections::HashMap;
@@ -125,4 +125,31 @@ fn no_panic_on_tiny_terminal() {
     let mut app = app_two_columns();
     let _ = render_to_text(&mut app, 30, 10);
     let _ = render_to_text(&mut app, 1, 1);
+}
+
+#[test]
+fn status_bar_keeps_keys_visible_with_message() {
+    let mut app = app_two_columns();
+    app.message = Some("已打开 viewer 窗口".into());
+    let text = render_to_text(&mut app, 160, 20);
+    assert!(text.contains("已打开viewer窗口"), "消息应显示");
+    assert!(text.contains("jk移动"), "快捷键提示必须同时可见（不能被消息顶掉）");
+}
+
+#[test]
+fn status_bar_shows_search_hint() {
+    let mut app = app_two_columns();
+    app.search = Some(SearchMode::Global);
+    app.search_input = "手机".into();
+    let text = render_to_text(&mut app, 160, 20);
+    assert!(text.contains("全局搜索"), "搜索框应显示");
+    assert!(text.contains("Enter确认"), "搜索模式提示应显示");
+}
+
+#[test]
+fn status_bar_shows_debug_hint() {
+    let mut app = app_two_columns();
+    app.debug = Some(DebugState { result_idx: 0, item_name: "手机".into() });
+    let text = render_to_text(&mut app, 160, 20);
+    assert!(text.contains("退出调试"), "调试模式提示应显示");
 }

@@ -112,6 +112,7 @@ fn handle_key(app: &mut App, key: KeyEvent) -> Result<()> {
     }
 
     // ── 普通模式 ──
+    app.message = None; // 按键即清除旧消息
     let ctrl = key.modifiers.contains(KeyModifiers::CONTROL);
     match key.code {
         KeyCode::Char('q') => app.quit = true,

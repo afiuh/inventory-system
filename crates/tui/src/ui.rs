@@ -330,25 +330,60 @@ fn draw_status(f: &mut Frame, app: &App, area: Rect) {
     let y = area.y + area.height - 1;
     let bar = Rect::new(area.x, y, area.width, 1);
 
-    let text = if let Some(mode) = app.search {
+    // ── 右侧：快捷键提示（**始终显示**，随模式变化）──
+    let keys = if app.debug.is_some() {
+        "←→↑↓ 移动  +/- 缩放  Esc 退出调试"
+    } else if app.search.is_some() {
+        "Enter 确认  Esc 取消"
+    } else {
+        "jk 移动  空格 选中  hl 切列  / 列搜索  s 全局  d 调试  o 看图  Tab 详情  Esc 回退  q 退出"
+    };
+
+    // ── 左侧：搜索框 > 消息 > 空 ──
+    let left = if let Some(mode) = app.search {
         let prefix = match mode {
             SearchMode::Column => "列搜索",
             SearchMode::Global => "全局搜索",
         };
-        Line::from(vec![
-            Span::styled(format!(" {prefix}: "), Style::default().fg(C_YELLOW)),
-            Span::styled(app.search_input.clone(), Style::default().fg(C_FG)),
-            Span::styled("█", Style::default().fg(C_YELLOW)),
-        ])
+        format!("{prefix}: {}█", app.search_input)
     } else if let Some(msg) = &app.message {
-        Line::from(Span::styled(format!(" {msg}"), Style::default().fg(C_GREEN)))
+        msg.clone()
     } else {
-        Line::from(Span::styled(
-            " jk 移动  空格 选中  hl 切列  / 列搜索  s 全局  d 调试  o 看图  Tab 详情  Esc 回退  q 退出",
-            Style::default().fg(C_DIM),
-        ))
+        String::new()
     };
 
-    let p = Paragraph::new(text).style(Style::default().bg(Color::Rgb(0x1a, 0x1b, 0x26)));
-    f.render_widget(p, bar);
+    let base = Style::default().bg(Color::Rgb(0x1a, 0x1b, 0x26));
+    let mut spans: Vec<Span> = Vec::new();
+    let left_w = display_width(&left);
+    let right_w = display_width(keys);
+    let width = area.width as usize;
+
+    if left.is_empty() {
+        spans.push(Span::styled(format!(" {keys}"), Style::default().fg(C_DIM)));
+    } else if left_w + right_w + 3 <= width {
+        // 左侧消息 + 右侧快捷键（共存）
+        let gap = width - left_w - right_w - 2;
+        spans.push(Span::styled(
+            format!(" {left}"),
+            Style::default().fg(C_GREEN),
+        ));
+        spans.push(Span::styled(" ".repeat(gap), base));
+        spans.push(Span::styled(keys.to_string(), Style::default().fg(C_DIM)));
+        spans.push(Span::styled(" ", base));
+    } else if right_w + 2 <= width {
+        // 太窄：快捷键优先（消息舍弃）
+        spans.push(Span::styled(format!(" {keys}"), Style::default().fg(C_DIM)));
+    } else {
+        // 极窄：只显示消息
+        spans.push(Span::styled(format!(" {left}"), Style::default().fg(C_GREEN)));
+    }
+
+    f.render_widget(Paragraph::new(Line::from(spans)).style(base), bar);
+}
+
+/// 显示宽度（CJK 算 2 列）
+fn display_width(s: &str) -> usize {
+    s.chars()
+        .map(|c| if (c as u32) > 0x2E80 { 2 } else { 1 })
+        .sum()
 }
