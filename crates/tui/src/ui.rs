@@ -23,28 +23,59 @@ pub fn draw(f: &mut Frame, app: &mut App) {
         return; // 终端尺寸为 0（最小化/未分配）时跳过
     }
 
-    // ── 主布局：维度栏 | 列… | 结果 | 详情 ──
-    let mut constraints = vec![Constraint::Length(14)];
-    for _ in &app.columns {
-        constraints.push(Constraint::Length(26));
+    // ── 宽度规划（契约：结果栏独占最右，剩余空间给两列滑动窗口）──
+    const DIM_W: u16 = 14; // 维度栏
+    const COL_W: u16 = 26; // 每个深度列
+    const DETAIL_W: u16 = 30;
+    const MIN_RESULT: u16 = 24;
+    const VISIBLE_UNITS: usize = 2; // 列区最多两栏（维度栏 / 深度列 同属列区）
+
+    // 列区单位（维度栏 + 各深度列），滑动窗口显示最多 2 个
+    let total_units = 1 + app.columns.len();
+    let visible = total_units.min(VISIBLE_UNITS);
+    app.ensure_visible(visible);
+    let start = app.viewport_start.min(total_units.saturating_sub(visible));
+
+    // 列区实际宽度
+    let col_area_w: u16 = (0..visible)
+        .map(|i| if start + i == 0 { DIM_W } else { COL_W })
+        .sum();
+
+    // 详情列：有选中物品才出现（在结果左侧）
+    let mut detail_w = if app.show_detail && !app.result.is_empty() { DETAIL_W } else { 0 };
+    // 空间不足时先挤掉详情，保证结果栏
+    if area.width < col_area_w + detail_w + MIN_RESULT {
+        detail_w = 0;
     }
-    constraints.push(Constraint::Min(26));
-    if app.show_detail {
-        constraints.push(Constraint::Length(34));
+
+    // ── 布局：列区 | 详情 | 结果（结果独占剩余）──
+    let mut constraints: Vec<Constraint> = Vec::new();
+    for u in start..start + visible {
+        constraints.push(Constraint::Length(if u == 0 { DIM_W } else { COL_W }));
     }
+    if detail_w > 0 {
+        constraints.push(Constraint::Length(detail_w));
+    }
+    constraints.push(Constraint::Min(MIN_RESULT));
     let chunks = Layout::horizontal(constraints).split(area);
 
-    draw_dim_bar(f, app, chunks[0]);
-    for (i, _) in app.columns.iter().enumerate() {
-        draw_column(f, app, i, chunks[i + 1]);
+    // ── 渲染 ──
+    let mut ci = 0usize;
+    for u in start..start + visible {
+        if u == 0 {
+            draw_dim_bar(f, app, chunks[ci]);
+        } else {
+            draw_column(f, app, u - 1, chunks[ci]);
+        }
+        ci += 1;
     }
-    let result_idx = app.columns.len() + 1;
-    draw_results(f, app, chunks[result_idx]);
-    if app.show_detail {
-        draw_detail(f, app, chunks[result_idx + 1]);
+    if detail_w > 0 {
+        draw_detail(f, app, chunks[ci]);
+        ci += 1;
     }
+    draw_results(f, app, chunks[ci]);
 
-    // ── 状态栏（底部一行覆盖）──
+    // ── 状态栏 ──
     draw_status(f, app, area);
 }
 
@@ -76,8 +107,9 @@ fn draw_dim_bar(f: &mut Frame, app: &App, area: Rect) {
         ])));
     }
 
+    let title = if app.viewport_start > 0 { "◂ 维度" } else { "维度" };
     let list = List::new(items)
-        .block(block("维度", focused))
+        .block(block(title, focused))
         .highlight_style(if focused {
             Style::default().bg(C_BLUE).fg(C_BG).add_modifier(Modifier::BOLD)
         } else {

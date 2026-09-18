@@ -9,3 +9,7 @@ inventory-core = { path = "../core" }
 ratatui.workspace = true
 crossterm.workspace = true
 anyhow.workspace = true
+
+[dev-dependencies]
+ratatui.workspace = true
+inventory-core = { path = "../core" }

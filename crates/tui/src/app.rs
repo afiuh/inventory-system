@@ -106,6 +106,9 @@ pub struct App {
 
     // ── 消息 ──
     pub message: Option<String>,
+
+    // ── 列区视口（0 = 维度栏；超过可见列数时最左的滑出视野）──
+    pub viewport_start: usize,
 }
 
 impl App {
@@ -126,6 +129,7 @@ impl App {
             search_input: String::new(),
             debug: None,
             message: None,
+            viewport_start: 0,
         };
         app.rebuild();
         app
@@ -432,6 +436,23 @@ impl App {
         }
     }
 
+    /// 调整列区视口，保证焦点列可见（visible = 当前能显示的列数）
+    pub fn ensure_visible(&mut self, visible: usize) {
+        if visible == 0 {
+            return;
+        }
+        let total = 1 + self.columns.len(); // 维度栏 + 各深度列
+        // 结果栏（focus == total）不属于列区，按最后一列处理
+        let focus_in_cols = self.focus.min(total.saturating_sub(1));
+        if focus_in_cols < self.viewport_start {
+            self.viewport_start = focus_in_cols;
+        } else if focus_in_cols >= self.viewport_start + visible {
+            self.viewport_start = focus_in_cols + 1 - visible;
+        }
+        let max_start = total.saturating_sub(visible);
+        self.viewport_start = self.viewport_start.min(max_start);
+    }
+
     /// 焦点左右移动
     pub fn move_focus(&mut self, delta: isize) {
         let max = self.columns.len() + 1; // 维度栏 + 列 + 结果栏
@@ -678,6 +699,33 @@ mod tests {
         app.back(); // 再回退 → 无筛选
         assert!(app.columns.iter().all(|c| c.groups.iter().all(|g| g.selected.is_none())));
         assert_eq!(app.result.len(), 3, "全部物品");
+    }
+
+    #[test]
+    fn viewport_slides_to_keep_focus_visible() {
+        let mut app = app_with(&[0, 1]); // 位置 + 分类
+        // 选位置的第一个视图 → 产生第 2 列
+        let loc = app.columns[0].groups.iter().position(|g| g.dim == "location").unwrap();
+        app.columns[0].groups[loc].selected = Some(0);
+        app.rebuild();
+        assert_eq!(app.columns.len(), 2, "应有 2 列（视图 + 层）");
+        let total_units = 1 + app.columns.len(); // 维度栏 + 2 列 = 3
+        assert_eq!(total_units, 3);
+
+        // 焦点在最后一个列区单位（列 2）、只能显示 2 个 → 视口滑动
+        app.focus = 2;
+        app.ensure_visible(2);
+        assert_eq!(app.viewport_start, 1, "焦点在右端时视口滑到 1（显示列 1、2）");
+
+        // 焦点在结果栏也不应越界（结果栏不属于列区）
+        app.focus = app.columns.len() + 1;
+        app.ensure_visible(2);
+        assert!(app.viewport_start <= 1);
+
+        // 焦点回到维度栏 → 视口回起点
+        app.focus = 0;
+        app.ensure_visible(2);
+        assert_eq!(app.viewport_start, 0, "焦点在左端时视口回 0");
     }
 
     #[test]
