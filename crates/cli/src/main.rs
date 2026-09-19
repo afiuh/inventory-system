@@ -13,12 +13,12 @@ use std::path::{Path, PathBuf};
 #[derive(Parser)]
 #[command(name = "inv", version, about = "物品管理系统（数据 = TOML 文件）")]
 struct Cli {
-    /// 数据文件路径
-    #[arg(short, long, default_value = "data.toml", global = true)]
+    /// 数据文件路径（默认：安装位置的数据文件）
+    #[arg(short, long, default_value = "/opt/inventory/data.toml", global = true)]
     data: PathBuf,
 
     #[command(subcommand)]
-    command: Command,
+    command: Option<Command>,
 }
 
 #[derive(Subcommand)]
@@ -100,10 +100,17 @@ fn main() -> Result<()> {
     let cli = Cli::parse();
     let path = &cli.data;
     match cli.command {
-        Command::List { view, category, status } => cmd_list(path, view, category, status),
-        Command::Find { keyword } => cmd_find(path, &keyword),
-        Command::Stats => cmd_stats(path),
-        Command::Add {
+        // 无子命令（直接敲 `inv`）或显式 `inv tui` → 进入 TUI（像 yazi 一样）
+        None | Some(Command::Tui) => {
+            let data = load(path)?;
+            drop(data);
+            inventory_tui::run(path.clone())?;
+            Ok(())
+        }
+        Some(Command::List { view, category, status }) => cmd_list(path, view, category, status),
+        Some(Command::Find { keyword }) => cmd_find(path, &keyword),
+        Some(Command::Stats) => cmd_stats(path),
+        Some(Command::Add {
             name,
             category,
             status,
@@ -114,19 +121,13 @@ fn main() -> Result<()> {
             size,
             shape,
             desc,
-        } => cmd_add(path, name, category, status, condition, view, layer, pos, size, shape, desc),
-        Command::Move { name, pos } => cmd_move(path, &name, &pos),
-        Command::Status { name, value } => cmd_set_attr(path, &name, "status", &value),
-        Command::Condition { name, value } => cmd_set_attr(path, &name, "condition", &value),
-        Command::Rm { name, yes } => cmd_rm(path, &name, yes),
-        Command::Check => cmd_check(path),
-        Command::Render { view, out } => cmd_render(path, view, out),
-        Command::Tui => {
-            let data = load(path)?;
-            drop(data);
-            inventory_tui::run(path.clone())?;
-            Ok(())
-        }
+        }) => cmd_add(path, name, category, status, condition, view, layer, pos, size, shape, desc),
+        Some(Command::Move { name, pos }) => cmd_move(path, &name, &pos),
+        Some(Command::Status { name, value }) => cmd_set_attr(path, &name, "status", &value),
+        Some(Command::Condition { name, value }) => cmd_set_attr(path, &name, "condition", &value),
+        Some(Command::Rm { name, yes }) => cmd_rm(path, &name, yes),
+        Some(Command::Check) => cmd_check(path),
+        Some(Command::Render { view, out }) => cmd_render(path, view, out),
     }
 }
 

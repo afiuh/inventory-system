@@ -434,10 +434,10 @@ layer = 1
 pos = [24.5, 5.0]
 size = 1.5
 shape = "round"
-desc = "绘图圆规"
+desc = "绘图圆规1"
+condition = "正常"
 category = "文具"
 status = "在位"
-condition = "正常"
 
 [[item]]
 name = "四支 0.7 的自动铅笔"

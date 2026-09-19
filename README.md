@@ -14,26 +14,30 @@
 - **调试模式**：方向键微调物品位置、`+/-` 等比缩放，实时写回数据并渲染
 - **数据驱动维度**：分类/去向/状态等维度在 TOML 里定义——加维度不用改代码
 
-## 快速开始
+## 安装（本机已装到 `/opt/inventory`）
 
 ```bash
 cargo build --release
+sudo mv <项目目录> /opt/inventory && sudo chown -R $USER:$USER /opt/inventory
+ln -s /opt/inventory/target/release/inv ~/.local/bin/inv
+```
 
-# CLI
-./target/release/inv --help
-./target/release/inv list --view desk          # 列物品
-./target/release/inv find 电池                  # 按关键词找
-./target/release/inv stats                     # 统计
-./target/release/inv check                     # 校验（越界/重名/悬空引用）
-./target/release/inv render --out out.svg      # 导出 SVG（--view desk 导单个视图）
+## 使用
 
-# TUI（默认读 ./data.toml，用 -d 指定）
-./target/release/inv tui
+```bash
+inv                    # 直接进入 TUI（像 yazi 一样）
+inv list --view desk   # 列物品
+inv find 电池           # 按关键词找
+inv stats              # 统计
+inv check              # 校验（越界/重名/悬空引用）
+inv render --out out.svg   # 导出 SVG（--view desk 导单个视图）
 
 # 独立查看器（可多开）
-./target/release/inventory-viewer data.toml --view desk
-./target/release/inventory-viewer data.toml --view desk --focus 台灯   # 打开即高亮某物品
+/opt/inventory/target/release/inventory-viewer /opt/inventory/data.toml --view desk
+/opt/inventory/target/release/inventory-viewer /opt/inventory/data.toml --view desk --focus 台灯
 ```
+
+**数据文件**：默认 `/opt/inventory/data.toml`（用 `-d <路径>` 指定别的）。
 
 ## 架构
 
@@ -90,6 +94,8 @@ desc = "…"             # 备注（借用人/数量/日期都写这里）
 | `o` | 打开 viewer 窗口（聚焦当前物品） |
 | `Tab` | 隐藏 / 显示详情列 |
 | `Esc` / `q` | 逐级回退 / 退出 |
+
+（`inv` 无参数即进入 TUI；`inv tui` 等价。）
 
 ## 开发
 
